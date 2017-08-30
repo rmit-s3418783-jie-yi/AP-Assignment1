@@ -146,7 +146,7 @@ public class Driver {
         // input
         String athleteID = input.next(); // input sth but not right
         // TODO: 2017/8/30 compare athleteID with ArrayList which from athleteChoose(String gametype)
-
+        // this is sth thing to learn how push and pull
     }
 
 
