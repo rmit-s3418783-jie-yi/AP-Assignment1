@@ -1,4 +1,4 @@
-package main;
+package AP1;
 
 public abstract class Game {
 
@@ -10,6 +10,7 @@ public abstract class Game {
     private int thirdPlacePoints = 1;
     private String gameOfficial;
     private String gameID;
+    private String selectedGameType;
 
     public Game (String gameID, String firstPlace, String secondPlace, String thirdPlace, String gameOfficial){
         this.gameID = gameID;
@@ -77,16 +78,38 @@ public abstract class Game {
         this.gameOfficial = gameOfficial;
     }
 
-    public void calculateWinners(){
-        if(){
-            //TODO
-            //Athlete's name with highest result set to first place
-            //Immediately add points to winner
-        }
-        else if{
+    public String getSelectedGameType(){
+        return selectedGameType;
+    }
 
-        }
-        else
+    public void setSelectedGameType(String selectedGameType) {
+        this.selectedGameType = selectedGameType;
+    }
+
+    public void swimmingSelected(){
+        setSelectedGameType("Swimming");
+    }
+
+    public void runningSelected(){
+        setSelectedGameType("Running");
+    }
+
+    public void cyclingSelected(){
+        setSelectedGameType("Cycling");
+    }
+
+    public void calculateWinners(){
+        // Todo
+//
+//        if(){
+//            //TODO
+//            //Athlete's name with highest result set to first place
+//            //Immediately add points to winner
+//        }
+//        else if{
+//
+//        }
+//        else
 
     }
 }

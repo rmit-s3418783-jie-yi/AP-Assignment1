@@ -1,4 +1,4 @@
-package main;
+package AP1;
 
 public class Official{
 
@@ -6,8 +6,8 @@ public class Official{
     private String officialName;
 
     public Official(String officialID, String officialName){
-        this.officialID = officialID
-        this.officialName = officialName
+        this.officialID = officialID;
+        this.officialName = officialName;
     }
 
     public String getOfficialID() {

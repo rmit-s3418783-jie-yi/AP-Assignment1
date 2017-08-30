@@ -1,9 +1,11 @@
 package AP1;
 
+import java.util.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Driver {
+    private Game game;
     // main menu
     public void mainMenu() {
         int mainMenuOption = 0;
@@ -72,18 +74,24 @@ public class Driver {
 
     public void gameSwitch(int subMenuOption) {
         switch (subMenuOption){
-            case 1:
-                // todo
-                athleteChoose();
+            case 1: //Swimming
+                // call a method that can record game type.
+                // TODO: 2017/8/30
+                // should sth inside?
+                athleteChoose("Swimming");
                 // link to Swimming game
                 break;
             case 2:
-                // todo
+                // call a method that can record game type.
+                // TODO: 2017/8/30
+                athleteChoose("Cycling");
                 // link to Cycling game
                 break;
             case 3:
-                // todo
-                // link to Running game
+                // call a method that can record game type.
+                // TODO: 2017/8/30
+                athleteChoose("Running");
+                // link to Cycling game
                 break;
             case 4:
                 // todo
@@ -92,32 +100,56 @@ public class Driver {
         }
     }
 
-    public void athleteChoose() {
+    public void athleteChoose(String gametype) {
         System.out.println("1\tadd athletes by yourself? (less than 8 athletes)\n" +
                 "2\tadd athletes automatically (full fill)");
+
         int athleteChoose = athleteSwitch();
         switch (athleteChoose){
             case 1:
+                int athletNo = athleteNum(); // how many athletes you want
                 //todo
+                //game.displayPlayers();
+
                 // list all the Swimming athletes
                 // temple ArrayList or sth to store this data
                 break;
             case 2:
                 // todo
-                // full fill in athletes by 8 if any.
+                // full fill in athletes by gametype
+                //fillin(gametype);
                 // temple ArrayList or sth to store this data
                 break;
         }
     }
 
+    public int athleteNum() {
+        Scanner input = new Scanner(System.in);
+        int inputInt = 0;
+        try {
+            inputInt = input.nextInt();
+            if (inputInt >= 1 && inputInt <= 8);
+            else System.out.println("\n\tYour option is invalid, please enter number 1 or 8.");
+        } catch (InputMismatchException imp){
+            System.out.println("\n\tYour option is invalid, please enter number\n\n");
+        }
+        return inputInt;
+    }
+
 
     // system go in to predict a athlete
     public void predictAthlete (){
-        // list athletes from temple database
-        System.out.println("Select a athlete above to predict.");
-        // todo
-        //
+        Scanner input = new Scanner(System.in);
+        // TODO: 2017/8/30
+        // list athletes from athleteChoose(String gametype)
+        System.out.println("Select a athlete above to predict.\nPlease enter athlete ID");
+        // input
+        String athleteID = input.next(); // input sth but not right
+        // TODO: 2017/8/30 compare athleteID with ArrayList which from athleteChoose(String gametype)
+        // this is sth thing to learn how push and pull
     }
+
+
 
     public int mainOption(){
         Scanner input = new Scanner(System.in);
@@ -169,5 +201,8 @@ public class Driver {
 //
 //
 //        }
+
+
+
 
 }

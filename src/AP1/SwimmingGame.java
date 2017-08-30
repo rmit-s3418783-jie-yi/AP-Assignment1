@@ -1,4 +1,4 @@
-package main;
+package AP1;
 
 public class SwimmingGame extends Game {
     private String gameType = "Swimming Game";

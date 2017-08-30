@@ -1,4 +1,6 @@
-package main;
+package AP1;
+
+import java.util.*;
 
 public abstract class Athlete {
 
@@ -6,16 +8,15 @@ public abstract class Athlete {
     private String participantName;
     private String participantState;
     private int totalPoints;
+    private double latestResult;
 
-    public  Athlete(String participantID, String participantName, String participantState, int totalPoints){
+    public  Athlete(String participantID, String participantName, String participantState){
         this.participantID = participantID;
         this.participantName = participantName;
         this.participantState = participantState;
-        this.totalPoints = 0;
+        totalPoints = 0;
+        latestResult = 0;
     }
-
-
-
 
     public String getParticipantID(){
         return participantID;
@@ -49,8 +50,21 @@ public abstract class Athlete {
         this.totalPoints = totalPoints;
     }
 
-    public abstract double Compete();
+    public abstract void compete(String s);
 
+    public double getLatestResult() {
+        return latestResult;
+    }
 
+    public void setLatestResult(double latestResult) {
+        this.latestResult = latestResult;
+    }
 
+    @Override
+    public String toString() {
+        return "ParticipantID: " + participantID + "\t" +
+                "participantName: " + participantName + "\t" +
+                "participantState: " + participantState + "\t" +
+                "totalPoints: " + totalPoints;
+    }
 }
