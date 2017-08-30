@@ -8,11 +8,11 @@ public class Runner extends Athlete {
 
     }
 
-    public double Compete() {
+    public void compete(String s) {
         int min = 10;
         int max = 20;
-
-        return Math.random() * (max + min); //provide a number between 10 to 20 seconds
+        int result = (int)Math.random() * (max + min);
+        super.setLatestResult(result); //provide a number between 10 to 20 seconds
     }
 
 }

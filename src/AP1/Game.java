@@ -10,6 +10,7 @@ public abstract class Game {
     private int thirdPlacePoints = 1;
     private String gameOfficial;
     private String gameID;
+    private String selectedGameType;
 
     public Game (String gameID, String firstPlace, String secondPlace, String thirdPlace, String gameOfficial){
         this.gameID = gameID;
@@ -75,6 +76,26 @@ public abstract class Game {
 
     public void setGameOfficial(String gameOfficial) {
         this.gameOfficial = gameOfficial;
+    }
+
+    public String getSelectedGameType(){
+        return selectedGameType;
+    }
+
+    public void setSelectedGameType(String selectedGameType) {
+        this.selectedGameType = selectedGameType;
+    }
+
+    public void swimmingSelected(){
+        setSelectedGameType("Swimming");
+    }
+
+    public void runningSelected(){
+        setSelectedGameType("Running");
+    }
+
+    public void cyclingSelected(){
+        setSelectedGameType("Cycling");
     }
 
     public void calculateWinners(){

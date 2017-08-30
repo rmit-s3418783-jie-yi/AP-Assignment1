@@ -9,11 +9,11 @@ public class SuperAthlete extends Athlete{
 
     }
 
-    public double Compete() {
+    public void compete(String s) {
 
         // Todo
 //
-//        if(){
+//        if(s == "Swimming"){
 //            //TODO
 //            //Swimmer calculations
 //            int min = 100;

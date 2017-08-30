@@ -9,11 +9,11 @@ public class Swimmer extends Athlete{
     }
 
 
-    public double Compete() {
+    public void compete(String s) {
         int min = 100;
         int max = 200;
-
-        return Math.random() * (max + min); //provides a number between 100 seconds and 200 seconds
+        int result = (int)Math.random() * (max + min);
+        super.setLatestResult(result);//provides a number between 100 seconds and 200 seconds
     }
 
 
