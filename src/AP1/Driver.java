@@ -1,5 +1,6 @@
 package AP1;
 
+import java.util.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -72,9 +73,11 @@ public class Driver {
 
     public void gameSwitch(int subMenuOption) {
         switch (subMenuOption){
-            case 1:
-                // todo
-                athleteChoose();
+            case 1: //Swimming
+                // call a method that can record game type.
+                // TODO: 2017/8/30
+
+                athleteChoose1();
                 // link to Swimming game
                 break;
             case 2:
@@ -92,7 +95,7 @@ public class Driver {
         }
     }
 
-    public void athleteChoose() {
+    public void athleteChoose1() {
         System.out.println("1\tadd athletes by yourself? (less than 8 athletes)\n" +
                 "2\tadd athletes automatically (full fill)");
         int athleteChoose = athleteSwitch();
@@ -104,6 +107,8 @@ public class Driver {
                 break;
             case 2:
                 // todo
+                ArrayList swimmer = new ArrayList();
+
                 // full fill in athletes by 8 if any.
                 // temple ArrayList or sth to store this data
                 break;
@@ -169,5 +174,8 @@ public class Driver {
 //
 //
 //        }
+
+
+
 
 }
