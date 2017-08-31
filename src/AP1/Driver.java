@@ -1,5 +1,8 @@
 package AP1;
 
+import com.sun.tools.javac.comp.Todo;
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.util.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -33,7 +36,6 @@ public class Driver {
         switch (mainMenuOption){
             case 1:
                 gameMenu();
-                // todo select a game
                 break;
             case 2:
                 predictAthlete();
@@ -75,6 +77,7 @@ public class Driver {
     public void gameSwitch(int subMenuOption) {
         switch (subMenuOption){
             case 1: //Swimming
+                // gametype = Swimming
                 // call a method that can record game type.
                 // TODO: 2017/8/30
                 // should sth inside?
@@ -108,14 +111,19 @@ public class Driver {
         switch (athleteChoose){
             case 1:
                 int athletNo = athleteNum(); // how many athletes you want
-                //todo
+                for (int i =0; i < athletNo; i++){
+                    // TODO: 2017/8/31 the loop ask user to add athletes
+                }
                 //game.displayPlayers();
 
                 // list all the Swimming athletes
                 // temple ArrayList or sth to store this data
                 break;
             case 2:
-                // todo
+                for (int i=0; i <8; i++){
+                    // TODO: 2017/8/31 automatically add 8 athletes from participation list
+
+                }
                 // full fill in athletes by gametype
                 //fillin(gametype);
                 // temple ArrayList or sth to store this data

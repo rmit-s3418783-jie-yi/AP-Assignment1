@@ -38,7 +38,7 @@ public class SuperAthlete extends Athlete{
 //            return Math.random() * (max + min);
 //
 //        }
-        return 0;
+
     }
 
 
