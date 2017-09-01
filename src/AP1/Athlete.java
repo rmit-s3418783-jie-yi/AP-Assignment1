@@ -19,6 +19,8 @@ public abstract class Athlete {
         latestResult = 0;
     }
 
+
+
     public String getParticipantID(){
         return participantID;
     }

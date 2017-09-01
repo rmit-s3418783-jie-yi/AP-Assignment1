@@ -20,8 +20,7 @@ public class Runner extends Athlete {
     @Override
     public String printAthlete() {
         return "ParticipantID: " + super.getParticipantID()+ "\t" +
-                "Participant Name: " + super.getParticipantName() + "\t" +
-                "Ability: " +  particpantAbility;
+                "Participant Name: " + super.getParticipantName() + "\t";
     }
 
     public String getParticpantAbility(){

@@ -6,10 +6,12 @@ import java.util.Scanner;
 
 public class Driver {
 
-    ArrayList<ParticipationList> participantList = new ArrayList<>(); // temple ArrayList
+    ArrayList<Athlete> participantArrayList = new ArrayList<>(); // temple ArrayList
     ArrayList<Results> resultsArrayList = new ArrayList<>();
 
     private Game game;
+    private Participants participants;
+    ParticipationList participationList = new ParticipationList();
     // main menu
     public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList,ArrayList<Official> officialArrayList) {
         int mainMenuOption = 0;
@@ -118,6 +120,8 @@ public class Driver {
         int athleteChoose = athleteSwitch();
         switch (athleteChoose){
             case 1:
+                participationList.listPlayers(gametype, athleteArrayList);
+
                 int athleteNum = athleteNum(); // how many athletes you want
                 for (int i =0; i < athleteNum; i++){
                     // TODO: 2017/8/31 the loop ask user to add athletes
@@ -220,6 +224,33 @@ public class Driver {
 //        }
 
 
-
+//    public void listPlayers(String gameType, ArrayList<Athlete> athleteArrayList) {
+//
+//        if (gameType.equalsIgnoreCase("Swimming")) {
+//            for (int i = 0; i < athleteArrayList.size(); i++) {
+//                if (athleteArrayList.get(i) instanceof Swimmer){
+//                    System.out.println(athleteArrayList.get(i).printAthlete(););
+//                }
+////                swimmer.printAthlete();
+////                superAthlete.printAthlete();
+//            }
+//
+//
+//        } else if (gameType.equalsIgnoreCase("Running")) {
+//            for (int i = 0; i < athleteArrayList.size(); i++) {
+////                runner.printAthlete();
+////                superAthlete.printAthlete();
+//
+//            }
+//        }else if ((gameType.equalsIgnoreCase("Cycling"))){
+//            for (int i = 0; i < athleteArrayList.size(); i++) {
+////                cyclist.printAthlete();
+////                superAthlete.printAthlete();
+//            }
+//
+//        }
+//
+//
+//    }
 
 }

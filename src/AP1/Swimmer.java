@@ -5,9 +5,9 @@ public class Swimmer extends Athlete{
 
     private String particpantAbility = "Swim";
 
-    public Swimmer(String participantID, String participantName, String participantState, String participantAbility) {
+    public Swimmer(String participantID, String participantName, String participantState) {
         super(participantID, participantName, participantState);
-        this.particpantAbility = participantAbility;
+        // this.particpantAbility = participantAbility;
 
     }
 
@@ -22,8 +22,7 @@ public class Swimmer extends Athlete{
     @Override
     public String printAthlete() {
         return "ParticipantID: " + super.getParticipantID()+ "\t" +
-                "Participant Name: " + super.getParticipantName() + "\t" +
-                "Ability: " +  particpantAbility;
+                "Participant Name: " + super.getParticipantName() + "\t";
     }
 
     public String getParticpantAbility(){

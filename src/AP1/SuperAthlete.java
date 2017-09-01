@@ -4,11 +4,11 @@ public class SuperAthlete extends Athlete{
 
    //gameType object to be passed from participation list to use a a condition
 
-    private String participantAbility = "Swim, Cycle, Run";
+    // private String participantAbility = "Swim, Cycle, Run";
 
-    public SuperAthlete(String participantID, String participantName, String participantState, String particpantAbility) {
+    public SuperAthlete(String participantID, String participantName, String participantState) {
         super(participantID, participantName, participantState);
-        this.participantAbility = participantAbility;
+        // this.participantAbility = participantAbility;
 
     }
 
@@ -47,8 +47,8 @@ public class SuperAthlete extends Athlete{
     @Override
     public String printAthlete() {
         return "ParticipantID: " + super.getParticipantID()+ "\t" +
-                "Participant Name: " + super.getParticipantName() + "\t" +
-                "Ability: " +  particpantAbility;
+                "Participant Name: " + super.getParticipantName() + "\t";
+                // "Ability: " +  particpantAbility;
     }
 
 
