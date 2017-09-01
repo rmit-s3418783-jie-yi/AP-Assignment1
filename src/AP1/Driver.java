@@ -1,19 +1,34 @@
 package AP1;
 
-import java.util.*;
-
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Driver {
+
+    ArrayList<ParticipationList> participantList = new ArrayList<>(); // temple ArrayList
+    ArrayList<Results> resultsArrayList = new ArrayList<>();
+
     private Game game;
     // main menu
-    public void mainMenu() {
+    public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList,ArrayList<Official> officialArrayList) {
         int mainMenuOption = 0;
         while (mainMenuOption != 6){
             menuText();
-            mainMenuOption = mainOption();
-            mainSwitch(mainMenuOption);
+            mainMenuOption = mainOption(); // exception
+            switch (mainMenuOption){
+                case 1:
+                    gameMenuText();
+                    gameMenu(athleteArrayList, gameArrayList);
+                    break;
+                case 2:
+                    predictAthlete();
+                    // todo
+                    break;
+                case 3:
+                    startGame();
+
+            }
             // return a value to break loop.
 
         }
@@ -30,21 +45,6 @@ public class Driver {
                 "Enter an option: ");
     }
 
-    public void mainSwitch (int mainMenuOption){
-        switch (mainMenuOption){
-            case 1:
-                gameMenu();
-                break;
-            case 2:
-                predictAthlete();
-                // todo
-                break;
-            case 3:
-                startGame();
-
-        }
-    }
-
     public void startGame() {
         // todo
         // print game type and
@@ -56,33 +56,20 @@ public class Driver {
     }
 
     // system go in to select a game.
-    public void gameMenu(){
+    public void gameMenu(ArrayList<Athlete> athleteArrayList, ArrayList<Game> gameArrayList){
         int subMenuOption = 0 ;
-//        while (subMenuOption != 4){
             gameMenuText();
             subMenuOption = subOption();
-            gameSwitch(subMenuOption);
-//        }
-    }
-
-
-    public void gameMenuText(){
-        System.out.print("\tOlympic Game\t\n=============================\n" +
-                "1.\tSwimming\n" +
-                "2.\tCycling\n" +
-                "3.\tRunning\n" +
-                "4.\tBack to main menu without save game\n\n" +
-                "Enter an option: ");
-    }
-
-    public void gameSwitch(int subMenuOption) {
         switch (subMenuOption){
             case 1: //Swimming
+                String gametype = "Swimming";
+                // TODO: 2017/9/1 test gaming type
+                athleteChoose("Swimming", athleteArrayList);
                 game.setGameType("Swimming");
                 System.out.println(game.getGameType());
                 // TODO: 2017/8/30
                 // should sth inside?
-                 athleteChoose("Swimming");
+
                 // link to Swimming game
                 break;
             case 2:
@@ -106,9 +93,25 @@ public class Driver {
                 // back to main menu
                 break;
         }
+//        }
     }
 
-    public void athleteChoose(String gametype) {
+
+    public void gameMenuText(){
+        System.out.print("\tOlympic Game\t\n=============================\n" +
+                "1.\tSwimming\n" +
+                "2.\tCycling\n" +
+                "3.\tRunning\n" +
+                "4.\tBack to main menu without save game\n\n" +
+                "Enter an option: ");
+    }
+
+//    public void gameSwitch(int subMenuOption, ArrayList<Athlete> athleteList, ArrayList<Game> gameList) {
+//
+//    }
+
+
+    public void athleteChoose(String gametype, ArrayList<Athlete> athleteArrayList) {
         System.out.println("1\tadd athletes by yourself? (less than 8 athletes)\n" +
                 "2\tadd athletes automatically (full fill)");
 

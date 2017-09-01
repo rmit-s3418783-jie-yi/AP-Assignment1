@@ -1,6 +1,6 @@
 package AP1;
 
-public class Reults {
+public class Results {
     private String firstPlace;
     private String secondPlace;
     private String thirdPlace;
@@ -13,7 +13,7 @@ public class Reults {
     private Game game;
 
 
-    public Reults (Game game, String firstPlace, String secondPlace, String thirdPlace, String gameOfficial) {
+    public Results(Game game, String firstPlace, String secondPlace, String thirdPlace, String gameOfficial) {
         this.gameID = gameID; // get game ID
         this.gameType = gameType; // get game type //Todo
         this.firstPlace = firstPlace;

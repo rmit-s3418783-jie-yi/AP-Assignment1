@@ -1,5 +1,7 @@
 package AP1;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -12,18 +14,20 @@ public class Ozlympic {
     public static void main (String[] args){
 
         ArrayList<Athlete> athleteList = new ArrayList<>();
-        ArrayList<ParticipationList> participantList = new ArrayList<>();
         ArrayList<Game> gameList = new ArrayList<>();
+        ArrayList<Official> officialsList = new ArrayList<>();
+
         cyclistData(athleteList);
         runnerData(athleteList);
         swimmerData(athleteList);
         supAthleteData(athleteList);
+        gameType(gameList);
 
         //getAthlete(athleteList);
         // todo
         // pass value to menu class and then return sth
         Driver driver = new Driver(); // create new menu
-        driver.mainMenu();
+        driver.mainMenu(athleteList, gameList,officialsList);
 
     }
 
