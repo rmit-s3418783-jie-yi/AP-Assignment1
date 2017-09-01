@@ -77,7 +77,7 @@ public class Driver {
                 System.out.println(game.getGameType());
                 // call a method that can record game type.
                 // TODO: 2017/8/30
-                athleteChoose("Cycling");
+                athleteChoose("Cycling",athleteArrayList);
                 // link to Cycling game
                 break;
             case 3:
@@ -85,7 +85,7 @@ public class Driver {
                 System.out.println(game.getGameType());
                 // call a method that can record game type.
                 // TODO: 2017/8/30
-                athleteChoose("Running");
+                athleteChoose("Running",athleteArrayList);
                 // link to Cycling game
                 break;
             case 4:
