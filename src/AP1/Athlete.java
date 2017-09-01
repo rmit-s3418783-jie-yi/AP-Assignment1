@@ -7,6 +7,7 @@ public abstract class Athlete {
     private String participantID;
     private String participantName;
     private String participantState;
+    private String participantAbility;
     private int totalPoints;
     private double latestResult;
 
@@ -18,6 +19,8 @@ public abstract class Athlete {
         latestResult = 0;
     }
 
+
+
     public String getParticipantID(){
         return participantID;
     }
@@ -28,6 +31,14 @@ public abstract class Athlete {
 
     public String getParticipantState(){
         return participantState;
+    }
+
+    public String getParticipantAbility() {
+        return participantAbility;
+    }
+
+    public void setParticipantAbility(String participantAbility) {
+        this.participantAbility = participantAbility;
     }
 
     public int getTotalPoints(){
@@ -60,11 +71,12 @@ public abstract class Athlete {
         this.latestResult = latestResult;
     }
 
-    @Override
-    public String toString() {
-        return "ParticipantID: " + participantID + "\t" +
-                "participantName: " + participantName + "\t" +
-                "participantState: " + participantState + "\t" +
-                "totalPoints: " + totalPoints;
-    }
+//    @Override
+//    public String toString() {
+//        return "ParticipantID: " + participantID + "\t" +
+//                "participantName: " + participantName + "\t" +
+//                "participantState: " + participantState + "\t" +
+//                "totalPoints: " + totalPoints;
+//    }
+     public abstract String printAthlete();
 }

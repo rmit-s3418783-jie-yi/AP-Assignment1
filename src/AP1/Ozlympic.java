@@ -1,5 +1,7 @@
 package AP1;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -12,17 +14,20 @@ public class Ozlympic {
     public static void main (String[] args){
 
         ArrayList<Athlete> athleteList = new ArrayList<>();
-        ArrayList<ParticipationList> participantList = new ArrayList<>();
+        ArrayList<Game> gameList = new ArrayList<>();
+        ArrayList<Official> officialsList = new ArrayList<>();
+
         cyclistData(athleteList);
         runnerData(athleteList);
         swimmerData(athleteList);
         supAthleteData(athleteList);
+        gameType(gameList);
 
         //getAthlete(athleteList);
         // todo
         // pass value to menu class and then return sth
         Driver driver = new Driver(); // create new menu
-        driver.mainMenu();
+        driver.mainMenu(athleteList, gameList,officialsList);
 
     }
 
@@ -39,7 +44,7 @@ public class Ozlympic {
     }
 
 
-    public static void  cyclistData(ArrayList athleteList){
+    public static void cyclistData(ArrayList athleteList){
         Athlete cyclist1 = new Cyclist("C01","Dario","VIC");
         Athlete cyclist2 = new Cyclist("C02","Aario","VIC");
         Athlete cyclist3 = new Cyclist("C03","Bario","VIC");
@@ -56,7 +61,7 @@ public class Ozlympic {
         athleteList.add(cyclist7);
     }
 
-    public static void  runnerData(ArrayList athleteList){
+    public static void runnerData(ArrayList athleteList){
         Athlete runner1 = new Runner("R01","Jay","VIC");
         Athlete runner2 = new Runner("R02","Aay","VIC");
         Athlete runner3 = new Runner("R03","Bay","VIC");
@@ -73,7 +78,7 @@ public class Ozlympic {
         athleteList.add(runner7);
     }
 
-    public static void  swimmerData(ArrayList athleteList){
+    public static void swimmerData(ArrayList athleteList){
         Athlete swimmer1 = new Swimmer("S01","Vincent","VIC");
         Athlete swimmer2 = new Swimmer("S02","Vincent","VIC");
         Athlete swimmer3 = new Swimmer("S03","Vincent","VIC");
@@ -90,7 +95,7 @@ public class Ozlympic {
         athleteList.add(swimmer7);
     }
 
-    public static void  supAthleteData(ArrayList athleteList){
+    public static void supAthleteData(ArrayList athleteList){
         Athlete superAthlete1 = new SuperAthlete("SA01","Maggie","VIC");
         Athlete superAthlete2 = new SuperAthlete("SA02","Aaggie","VIC");
         Athlete superAthlete3 = new SuperAthlete("SA03","Baggie","VIC");
@@ -99,6 +104,16 @@ public class Ozlympic {
         athleteList.add(superAthlete2);
         athleteList.add(superAthlete3);
         athleteList.add(superAthlete4);
+    }
+
+    public static void gameType(ArrayList gameList){
+        Game game1 = new Game("GCyc01", "Cycling");
+        gameList.add(game1);
+        Game game2 = new Game("GRun01", "Running");
+        gameList.add(game2);
+        Game game3 = new Game("GSwim01", "Swimming");
+        gameList.add(game3);
+
     }
 }
 

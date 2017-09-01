@@ -1,102 +1,30 @@
 package AP1;
 
-public abstract class Game {
-
-    private String firstPlace;
-    private String secondPlace;
-    private String thirdPlace;
-    private int firstPlacePoints = 5;
-    private int secondPlacePoints = 2;
-    private int thirdPlacePoints = 1;
-    private String gameOfficial;
+public class Game {
     private String gameID;
-    private String selectedGameType;
+    private String gameType;
 
-    public Game (String gameID, String firstPlace, String secondPlace, String thirdPlace, String gameOfficial){
+    public Game (String gameID, String gameType){
         this.gameID = gameID;
-        this.firstPlace = firstPlace;
-        this.secondPlace = secondPlace;
-        this.thirdPlace = thirdPlace;
-        this.gameOfficial = gameOfficial;
+        this.gameType = gameType;
     }
 
-
-
-    public String getFirstPlace(){
-        return firstPlace;
+    public void setGameID(String gameID){
+        this.gameID = gameID;
     }
 
-    public String getSecondPlace() {
-        return secondPlace;
+    public void setGameType(String gameType){
+        this.gameID = gameType;
     }
 
-    public String getThirdPlace(){
-        return thirdPlace;
+    public String getGameID(){
+        return gameID;
     }
 
-    public int getFirstPlacePoints(){
-        return firstPlacePoints;
+    public String getGameType() {
+        return gameType;
     }
 
-    public int getSecondPlacePoints(){
-        return getSecondPlacePoints();
-    }
-
-    public int getThirdPlacePoints(){
-        return thirdPlacePoints;
-    }
-
-    public void setFirstPlace(String firstPlace) {
-        this.firstPlace = firstPlace;
-    }
-
-    public void setSecondPlace(String secondPlace) {
-        this.secondPlace = secondPlace;
-    }
-
-    public void setThirdPlace(String thirdPlace) {
-        this.thirdPlace = thirdPlace;
-    }
-
-    public void setFirstPlacePoints(int firstPlacePoints) {
-        this.firstPlacePoints = firstPlacePoints;
-    }
-
-    public void setSecondPlacePoints(int secondPlacePoints) {
-        this.secondPlacePoints = secondPlacePoints;
-    }
-
-    public void setThirdPlacePoints(int thirdPlacePoints) {
-        this.thirdPlacePoints = thirdPlacePoints;
-    }
-
-    public String getGameOfficial() {
-        return gameOfficial;
-    }
-
-    public void setGameOfficial(String gameOfficial) {
-        this.gameOfficial = gameOfficial;
-    }
-
-    public String getSelectedGameType(){
-        return selectedGameType;
-    }
-
-    public void setSelectedGameType(String selectedGameType) {
-        this.selectedGameType = selectedGameType;
-    }
-
-    public void swimmingSelected(){
-        setSelectedGameType("Swimming");
-    }
-
-    public void runningSelected(){
-        setSelectedGameType("Running");
-    }
-
-    public void cyclingSelected(){
-        setSelectedGameType("Cycling");
-    }
 
     public void calculateWinners(){
         // Todo

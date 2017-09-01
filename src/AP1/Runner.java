@@ -2,6 +2,8 @@ package AP1;
 
 public class Runner extends Athlete {
 
+    private String particpantAbility = "Run";
+
 
     public Runner(String participantID, String participantName, String participantState) {
         super(participantID, participantName, participantState);
@@ -15,4 +17,13 @@ public class Runner extends Athlete {
         super.setLatestResult(result); //provide a number between 10 to 20 seconds ..............
     }
 
+    @Override
+    public String printAthlete() {
+        return "ParticipantID: " + super.getParticipantID()+ "\t" +
+                "Participant Name: " + super.getParticipantName() + "\t";
+    }
+
+    public String getParticpantAbility(){
+        return particpantAbility;
+    }
 }

@@ -1,21 +1,36 @@
 package AP1;
 
-import com.sun.tools.javac.comp.Todo;
-import com.sun.xml.internal.bind.v2.TODO;
-
-import java.util.*;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Driver {
+
+    ArrayList<Athlete> participantArrayList = new ArrayList<>(); // temple ArrayList
+    ArrayList<Results> resultsArrayList = new ArrayList<>();
+
     private Game game;
+    private Participants participants;
+    ParticipationList participationList = new ParticipationList();
     // main menu
-    public void mainMenu() {
+    public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList,ArrayList<Official> officialArrayList) {
         int mainMenuOption = 0;
         while (mainMenuOption != 6){
             menuText();
-            mainMenuOption = mainOption();
-            mainSwitch(mainMenuOption);
+            mainMenuOption = mainOption(); // exception
+            switch (mainMenuOption){
+                case 1:
+                    gameMenuText();
+                    gameMenu(athleteArrayList, gameArrayList);
+                    break;
+                case 2:
+                    predictAthlete();
+                    // todo
+                    break;
+                case 3:
+                    startGame();
+
+            }
             // return a value to break loop.
 
         }
@@ -32,21 +47,6 @@ public class Driver {
                 "Enter an option: ");
     }
 
-    public void mainSwitch (int mainMenuOption){
-        switch (mainMenuOption){
-            case 1:
-                gameMenu();
-                break;
-            case 2:
-                predictAthlete();
-                // todo
-                break;
-            case 3:
-                startGame();
-
-        }
-    }
-
     public void startGame() {
         // todo
         // print game type and
@@ -58,12 +58,46 @@ public class Driver {
     }
 
     // system go in to select a game.
-    public void gameMenu(){
-        gameMenuText();
-        int subMenuOption = 0;
-        subMenuOption = subOption();
-        gameSwitch(subMenuOption);
+    public void gameMenu(ArrayList<Athlete> athleteArrayList, ArrayList<Game> gameArrayList){
+        int subMenuOption = 0 ;
+            gameMenuText();
+            subMenuOption = subOption();
+        switch (subMenuOption){
+            case 1: //Swimming
+                String gametype = "Swimming";
+                // TODO: 2017/9/1 test gaming type
+                athleteChoose("Swimming", athleteArrayList);
+                game.setGameType("Swimming");
+                System.out.println(game.getGameType());
+                // TODO: 2017/8/30
+                // should sth inside?
+
+                // link to Swimming game
+                break;
+            case 2:
+                //game.getGameID();
+                System.out.println(game.getGameType());
+                // call a method that can record game type.
+                // TODO: 2017/8/30
+                athleteChoose("Cycling",athleteArrayList);
+                // link to Cycling game
+                break;
+            case 3:
+                //game.getGameID();
+                System.out.println(game.getGameType());
+                // call a method that can record game type.
+                // TODO: 2017/8/30
+                athleteChoose("Running",athleteArrayList);
+                // link to Cycling game
+                break;
+            case 4:
+                // todo
+                // back to main menu
+                break;
+        }
+//        }
     }
+
 
     public void gameMenuText(){
         System.out.print("\tOlympic Game\t\n=============================\n" +
@@ -74,44 +108,22 @@ public class Driver {
                 "Enter an option: ");
     }
 
-    public void gameSwitch(int subMenuOption) {
-        switch (subMenuOption){
-            case 1: //Swimming
-                // gametype = Swimming
-                // call a method that can record game type.
-                // TODO: 2017/8/30
-                // should sth inside?
-                athleteChoose("Swimming");
-                // link to Swimming game
-                break;
-            case 2:
-                // call a method that can record game type.
-                // TODO: 2017/8/30
-                athleteChoose("Cycling");
-                // link to Cycling game
-                break;
-            case 3:
-                // call a method that can record game type.
-                // TODO: 2017/8/30
-                athleteChoose("Running");
-                // link to Cycling game
-                break;
-            case 4:
-                // todo
-                // back to main menu
-                break;
-        }
-    }
+//    public void gameSwitch(int subMenuOption, ArrayList<Athlete> athleteList, ArrayList<Game> gameList) {
+//
+//    }
 
-    public void athleteChoose(String gametype) {
+
+    public void athleteChoose(String gametype, ArrayList<Athlete> athleteArrayList) {
         System.out.println("1\tadd athletes by yourself? (less than 8 athletes)\n" +
                 "2\tadd athletes automatically (full fill)");
 
         int athleteChoose = athleteSwitch();
         switch (athleteChoose){
             case 1:
-                int athletNo = athleteNum(); // how many athletes you want
-                for (int i =0; i < athletNo; i++){
+                participationList.listPlayers(gametype, athleteArrayList);
+
+                int athleteNum = athleteNum(); // how many athletes you want
+                for (int i =0; i < athleteNum; i++){
                     // TODO: 2017/8/31 the loop ask user to add athletes
                 }
                 //game.displayPlayers();
@@ -198,6 +210,7 @@ public class Driver {
         return inputInt;
     }
 
+
 //        try{
 //
 //            mainMenuOption = input.nextInt();
@@ -211,6 +224,33 @@ public class Driver {
 //        }
 
 
-
+//    public void listPlayers(String gameType, ArrayList<Athlete> athleteArrayList) {
+//
+//        if (gameType.equalsIgnoreCase("Swimming")) {
+//            for (int i = 0; i < athleteArrayList.size(); i++) {
+//                if (athleteArrayList.get(i) instanceof Swimmer){
+//                    System.out.println(athleteArrayList.get(i).printAthlete(););
+//                }
+////                swimmer.printAthlete();
+////                superAthlete.printAthlete();
+//            }
+//
+//
+//        } else if (gameType.equalsIgnoreCase("Running")) {
+//            for (int i = 0; i < athleteArrayList.size(); i++) {
+////                runner.printAthlete();
+////                superAthlete.printAthlete();
+//
+//            }
+//        }else if ((gameType.equalsIgnoreCase("Cycling"))){
+//            for (int i = 0; i < athleteArrayList.size(); i++) {
+////                cyclist.printAthlete();
+////                superAthlete.printAthlete();
+//            }
+//
+//        }
+//
+//
+//    }
 
 }
