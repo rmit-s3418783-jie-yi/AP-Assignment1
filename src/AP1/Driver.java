@@ -1,9 +1,7 @@
 package AP1;
 
-import com.sun.tools.javac.comp.Todo;
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.util.*;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -59,11 +57,14 @@ public class Driver {
 
     // system go in to select a game.
     public void gameMenu(){
-        gameMenuText();
-        int subMenuOption = 0;
-        subMenuOption = subOption();
-        gameSwitch(subMenuOption);
+        int subMenuOption = 0 ;
+//        while (subMenuOption != 4){
+            gameMenuText();
+            subMenuOption = subOption();
+            gameSwitch(subMenuOption);
+//        }
     }
+
 
     public void gameMenuText(){
         System.out.print("\tOlympic Game\t\n=============================\n" +
@@ -77,20 +78,24 @@ public class Driver {
     public void gameSwitch(int subMenuOption) {
         switch (subMenuOption){
             case 1: //Swimming
-                // gametype = Swimming
-                // call a method that can record game type.
+                game.setSelectedGameType("Swimming");
+                System.out.println(game.getSelectedGameType());
                 // TODO: 2017/8/30
                 // should sth inside?
                 athleteChoose("Swimming");
                 // link to Swimming game
                 break;
             case 2:
+                game.setSelectedGameType("Cycling");
+                System.out.println(game.getSelectedGameType());
                 // call a method that can record game type.
                 // TODO: 2017/8/30
                 athleteChoose("Cycling");
                 // link to Cycling game
                 break;
             case 3:
+                game.setSelectedGameType("Running");
+                System.out.println(game.getSelectedGameType());
                 // call a method that can record game type.
                 // TODO: 2017/8/30
                 athleteChoose("Running");
@@ -110,8 +115,8 @@ public class Driver {
         int athleteChoose = athleteSwitch();
         switch (athleteChoose){
             case 1:
-                int athletNo = athleteNum(); // how many athletes you want
-                for (int i =0; i < athletNo; i++){
+                int athleteNum = athleteNum(); // how many athletes you want
+                for (int i =0; i < athleteNum; i++){
                     // TODO: 2017/8/31 the loop ask user to add athletes
                 }
                 //game.displayPlayers();
@@ -197,6 +202,7 @@ public class Driver {
         }
         return inputInt;
     }
+
 
 //        try{
 //
