@@ -3,8 +3,11 @@ package AP1;
 
 public class Swimmer extends Athlete{
 
-    public Swimmer(String participantID, String participantName, String participantState) {
+    private String particpantAbility = "Swim";
+
+    public Swimmer(String participantID, String participantName, String participantState, String participantAbility) {
         super(participantID, participantName, participantState);
+        this.particpantAbility = participantAbility;
 
     }
 
@@ -16,5 +19,14 @@ public class Swimmer extends Athlete{
         super.setLatestResult(result);//provides a number between 100 seconds and 200 seconds
     }
 
+    @Override
+    public String printAthlete() {
+        return "ParticipantID: " + super.getParticipantID()+ "\t" +
+                "Participant Name: " + super.getParticipantName() + "\t" +
+                "Ability: " +  particpantAbility;
+    }
 
+    public String getParticpantAbility(){
+        return particpantAbility;
+    }
 }

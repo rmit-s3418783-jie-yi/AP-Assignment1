@@ -2,10 +2,13 @@ package AP1;
 
 public class SuperAthlete extends Athlete{
 
-    private String gameType; //gameType object to be passed from participation list to use a a condition
+   //gameType object to be passed from participation list to use a a condition
 
-    public SuperAthlete(String participantID, String participantName, String participantState) {
+    private String participantAbility = "Swim, Cycle, Run";
+
+    public SuperAthlete(String participantID, String participantName, String participantState, String particpantAbility) {
         super(participantID, participantName, participantState);
+        this.participantAbility = participantAbility;
 
     }
 
@@ -39,6 +42,13 @@ public class SuperAthlete extends Athlete{
 //
 //        }
 
+    }
+
+    @Override
+    public String printAthlete() {
+        return "ParticipantID: " + super.getParticipantID()+ "\t" +
+                "Participant Name: " + super.getParticipantName() + "\t" +
+                "Ability: " +  particpantAbility;
     }
 
 
