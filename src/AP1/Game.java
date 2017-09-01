@@ -1,9 +1,5 @@
 package AP1;
 
-import com.sun.org.apache.regexp.internal.RE;
-
-import java.awt.image.VolatileImage;
-
 public class Game {
     private String gameID;
     private String gameType;
@@ -29,19 +25,6 @@ public class Game {
         return gameType;
     }
 
-
-
-    public void swimmingSelected(){
-        setSelectedGameType("Swimming");
-    }
-
-    public void runningSelected(){
-        setSelectedGameType("Running");
-    }
-
-    public void cyclingSelected(){
-        setSelectedGameType("Cycling");
-    }
 
     public void calculateWinners(){
         // Todo

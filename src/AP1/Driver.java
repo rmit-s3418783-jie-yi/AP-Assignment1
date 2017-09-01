@@ -78,24 +78,24 @@ public class Driver {
     public void gameSwitch(int subMenuOption) {
         switch (subMenuOption){
             case 1: //Swimming
-                game.setSelectedGameType("Swimming");
-                System.out.println(game.getSelectedGameType());
+                game.setGameType("Swimming");
+                System.out.println(game.getGameID());
                 // TODO: 2017/8/30
                 // should sth inside?
                 athleteChoose("Swimming");
                 // link to Swimming game
                 break;
             case 2:
-                game.setSelectedGameType("Cycling");
-                System.out.println(game.getSelectedGameType());
+                game.getGameID();
+                System.out.println(game.getGameID());
                 // call a method that can record game type.
                 // TODO: 2017/8/30
                 athleteChoose("Cycling");
                 // link to Cycling game
                 break;
             case 3:
-                game.setSelectedGameType("Running");
-                System.out.println(game.getSelectedGameType());
+                game.getGameID();
+                System.out.println(game.getGameID());
                 // call a method that can record game type.
                 // TODO: 2017/8/30
                 athleteChoose("Running");

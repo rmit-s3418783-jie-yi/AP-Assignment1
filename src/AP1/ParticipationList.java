@@ -9,7 +9,7 @@ public class ParticipationList {
     private String athleteName;
     private String athleteID;
     private int athleteNum; //Number of atheletes competing in the game
-    private String gameType = game.getSelectedGameType(); //Game type object to be passed from Game
+    // private String gameType = game.getSelectedGameType(); //Game type object to be passed from Game
     private int numOfParticipants; //number of participants the user input
 
     public ParticipationList (String athleteID, String athleteName, double results){

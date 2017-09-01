@@ -103,8 +103,13 @@ public class Ozlympic {
     }
 
     public static void gameType(ArrayList gameList){
-        Game game = new Game("GC01", "Cycling");
-        gameList.add(cyclingGame);
+        Game game1 = new Game("GCyc01", "Cycling");
+        gameList.add(game1);
+        Game game2 = new Game("GRun01", "Running");
+        gameList.add(game2);
+        Game game3 = new Game("GSwim01", "Swimming");
+        gameList.add(game3);
+
     }
 }
 
