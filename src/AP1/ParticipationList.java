@@ -20,18 +20,18 @@ public class ParticipationList {
 
     public void displayPlayers(ArrayList<Athlete> athleteArrayList){
         for (int i = 0; i < athleteArrayList.size(); i ++){
-            if (gameType.equalsIgnoreCase("Swimming")){
+            if (game.getGameType().equalsIgnoreCase("Swimming")){
                 if (athleteArrayList.get(i) instanceof Swimmer){
                     //display swimmer + SA + display ID so user can choose later
                 }
 
             }
-            else if (gameType.equalsIgnoreCase("Running")){
+            else if (game.getGameType().equalsIgnoreCase("Running")){
                 if (athleteArrayList.get(i) instanceof Runner){
                     //display runners + SA + display ID so user can choose later
                 }
             }
-            else if (gameType.equalsIgnoreCase("Cycling")){
+            else if (game.getGameType().equalsIgnoreCase("Cycling")){
                 if(athleteArrayList.get(i) instanceof Cyclist){
                     //display cyclists + SA + display ID so user can choose later
                 }
