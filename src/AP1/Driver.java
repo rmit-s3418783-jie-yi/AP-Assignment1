@@ -12,8 +12,7 @@ public class Driver {
 
     ParticipationList participationList = new ParticipationList(); // why use this?
     // main menu
-    public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList,
-                         ArrayList<Official> officialArrayList) {
+    public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList, ArrayList<Official> officialArrayList) {
         int mainMenuOption = 0;
         boolean bMainOption = false;
         while (mainMenuOption != 6){
@@ -49,7 +48,7 @@ public class Driver {
         }
     }
 
-    public void menuText(){
+    private void menuText(){
         System.out.print("\tOlympic Game\t\n=============================\n" +
                 "1.\tSelect a game to run\n" +
                 "2.\tPredict the winner of the game\n" +
@@ -71,7 +70,7 @@ public class Driver {
     }
 
     // system go in to select a game.
-    public void gameMenu(ArrayList<Athlete> athleteArrayList, ArrayList<Game> gameArrayList){
+    private void gameMenu(ArrayList<Athlete> athleteArrayList, ArrayList<Game> gameArrayList){
         int gameMenuOption = 0 ;
         boolean bGameMenuOption = false;
             gameMenuText();
@@ -84,26 +83,15 @@ public class Driver {
         switch (gameMenuOption){
             case 1: //Swimming
                 // TODO: 2017/9/1 test gaming type
-                athleteChoose("Swimming", athleteArrayList);
-                // game.setGameType("Swimming");
-                // System.out.println(game.getGameType());
-                // TODO: 2017/8/30
-                // should sth inside?
-
                 // link to Swimming game
+                athleteChoose("Swimming", athleteArrayList);
                 break;
             case 2:
-                //game.getGameID();
-                //System.out.println(game.getGameType());
-                // call a method that can record game type.
                 // TODO: 2017/8/30
                 athleteChoose("Cycling",athleteArrayList);
                 // link to Cycling game
                 break;
             case 3:
-                // game.getGameID();
-                // System.out.println(game.getGameType());
-                // call a method that can record game type.
                 // TODO: 2017/8/30
                 athleteChoose("Running",athleteArrayList);
                 // link to Cycling game
@@ -125,8 +113,7 @@ public class Driver {
         }
     }
 
-
-    public void gameMenuText(){
+    private void gameMenuText(){
         System.out.print("\tOlympic Game\t\n=============================\n" +
                 "1.\tSwimming\n" +
                 "2.\tCycling\n" +
@@ -135,12 +122,7 @@ public class Driver {
                 "Enter an option: ");
     }
 
-//    public void gameSwitch(int subMenuOption, ArrayList<Athlete> athleteList, ArrayList<Game> gameList) {
-//
-//    }
-
-
-    public void athleteChoose(String gametype, ArrayList<Athlete> athleteArrayList) {
+    private void athleteChoose(String gametype, ArrayList<Athlete> athleteArrayList) {
         System.out.println("1\tadd athletes by yourself? (less than 8 athletes)\n" +
                 "2\tadd athletes automatically (full fill)");
         int athleteNum = 0;
@@ -156,21 +138,9 @@ public class Driver {
             case 1:
                 athleteNum =  athleteNo();
                 addParticipationList(gametype, athleteArrayList, athleteNum);
-
-
-                //game.displayPlayers();
-
-                // list all the Swimming athletes
-                // temple ArrayList or sth to store this data
                 break;
             case 2:
-                for (int i=0; i <8; i++){
-                    // TODO: 2017/8/31 automatically add 8 athletes from participation list
-
-                }
-                // full fill in athletes by gametype
-                //fillin(gametype);
-                // temple ArrayList or sth to store this data
+                addParticipationList(gametype, athleteArrayList, 8);
                 break;
         }
     }
@@ -226,7 +196,6 @@ public class Driver {
         }
     }
 
-
     // system go in to predict a athlete
     public void predictAthlete (){
         Scanner input = new Scanner(System.in);
@@ -239,9 +208,7 @@ public class Driver {
         // this is sth thing to learn how push and pull
     }
 
-
-
-    public int intTest(){
+    private int intTest(){
         Scanner input = new Scanner(System.in);
         int inputInt = 0;
             try {
