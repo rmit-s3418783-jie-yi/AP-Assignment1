@@ -5,8 +5,8 @@ public class Swimmer extends Athlete{
 
     private String particpantAbility = "Swim";
 
-    public Swimmer(String participantID, String participantName, String participantState) {
-        super(participantID, participantName, participantState);
+    public Swimmer(String participantID, String participantName, String participantState, int participantAge) {
+        super(participantID, participantName, participantState, participantAge);
         // this.particpantAbility = participantAbility;
 
     }

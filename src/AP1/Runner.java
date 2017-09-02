@@ -5,9 +5,8 @@ public class Runner extends Athlete {
     private String particpantAbility = "Run";
 
 
-    public Runner(String participantID, String participantName, String participantState) {
-        super(participantID, participantName, participantState);
-
+    public Runner(String participantID, String participantName, String participantState, int participantAge) {
+        super(participantID, participantName, participantState, participantAge);
     }
 
     public void compete(String s) {

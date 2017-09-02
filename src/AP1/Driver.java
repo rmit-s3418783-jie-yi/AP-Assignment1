@@ -1,26 +1,30 @@
 package AP1;
 
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Driver {
 
-    ArrayList<Athlete> participantArrayList = new ArrayList<>(); // temple ArrayList
+    ArrayList<Athlete> participantArrayList = new ArrayList<>(); // temple ArrayList for add athletes to play game // TODO  ????????
     ArrayList<Results> resultsArrayList = new ArrayList<>();
 
-    private Game game;
-    private Participants participants;
-    ParticipationList participationList = new ParticipationList();
+    ParticipationList participationList = new ParticipationList(); // why use this?
     // main menu
-    public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList,ArrayList<Official> officialArrayList) {
+    public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList,
+                         ArrayList<Official> officialArrayList) {
         int mainMenuOption = 0;
+        boolean bMainOption = false;
         while (mainMenuOption != 6){
             menuText();
-            mainMenuOption = mainOption(); // exception
+            do {
+                mainMenuOption = intTest(); // exception
+                bMainOption = bMainOptionTest(mainMenuOption); // test mainMenuOption in the range
+            } while (!bMainOption);
+            bMainOption = false;
             switch (mainMenuOption){
                 case 1:
-                    gameMenuText();
                     gameMenu(athleteArrayList, gameArrayList);
                     break;
                 case 2:
@@ -33,6 +37,15 @@ public class Driver {
             }
             // return a value to break loop.
 
+        }
+    }
+
+    private boolean bMainOptionTest(int mainMenuOption) {
+        if (mainMenuOption >= 1 && mainMenuOption <= 6)
+            return true;
+        else {
+            System.out.println("\n\tYour option is invalid, please enter number between 1 to 6.");
+            return false;
         }
     }
 
@@ -59,16 +72,21 @@ public class Driver {
 
     // system go in to select a game.
     public void gameMenu(ArrayList<Athlete> athleteArrayList, ArrayList<Game> gameArrayList){
-        int subMenuOption = 0 ;
+        int gameMenuOption = 0 ;
+        boolean bGameMenuOption = false;
             gameMenuText();
-            subMenuOption = subOption();
-        switch (subMenuOption){
+        do {
+            gameMenuOption = intTest(); // exception
+            bGameMenuOption = bGameMenuOptionTest(gameMenuOption); //test mainMenuOption in the range
+        } while (!bGameMenuOption);
+        bGameMenuOption = true;
+
+        switch (gameMenuOption){
             case 1: //Swimming
-                String gametype = "Swimming";
                 // TODO: 2017/9/1 test gaming type
                 athleteChoose("Swimming", athleteArrayList);
-                game.setGameType("Swimming");
-                System.out.println(game.getGameType());
+                // game.setGameType("Swimming");
+                // System.out.println(game.getGameType());
                 // TODO: 2017/8/30
                 // should sth inside?
 
@@ -76,15 +94,15 @@ public class Driver {
                 break;
             case 2:
                 //game.getGameID();
-                System.out.println(game.getGameType());
+                //System.out.println(game.getGameType());
                 // call a method that can record game type.
                 // TODO: 2017/8/30
                 athleteChoose("Cycling",athleteArrayList);
                 // link to Cycling game
                 break;
             case 3:
-                //game.getGameID();
-                System.out.println(game.getGameType());
+                // game.getGameID();
+                // System.out.println(game.getGameType());
                 // call a method that can record game type.
                 // TODO: 2017/8/30
                 athleteChoose("Running",athleteArrayList);
@@ -96,6 +114,15 @@ public class Driver {
                 break;
         }
 //        }
+    }
+
+    private boolean bGameMenuOptionTest(int gameMenuOption) {
+        if (gameMenuOption >= 1 && gameMenuOption <= 4)
+            return true;
+        else {
+            System.out.println("\n\tYour option is invalid, please enter number between 1 to 4.");
+            return false;
+        }
     }
 
 
@@ -116,16 +143,21 @@ public class Driver {
     public void athleteChoose(String gametype, ArrayList<Athlete> athleteArrayList) {
         System.out.println("1\tadd athletes by yourself? (less than 8 athletes)\n" +
                 "2\tadd athletes automatically (full fill)");
-
-        int athleteChoose = athleteSwitch();
+        int athleteNum = 0;
+        int athleteChoose = 0;
+        boolean bAthleteChoose = false;
+        gameMenuText();
+        do {
+            athleteChoose = intTest(); // exception
+            bAthleteChoose = bAthleteChooseTest(athleteChoose); //test mainMenuOption in the range
+        } while (!bAthleteChoose);
+        bAthleteChoose = true;
         switch (athleteChoose){
             case 1:
-                participationList.listPlayers(gametype, athleteArrayList);
+                athleteNum =  athleteNo();
+                addParticipationList(gametype, athleteArrayList, athleteNum);
 
-                int athleteNum = athleteNum(); // how many athletes you want
-                for (int i =0; i < athleteNum; i++){
-                    // TODO: 2017/8/31 the loop ask user to add athletes
-                }
+
                 //game.displayPlayers();
 
                 // list all the Swimming athletes
@@ -143,17 +175,55 @@ public class Driver {
         }
     }
 
-    public int athleteNum() {
-        Scanner input = new Scanner(System.in);
-        int inputInt = 0;
-        try {
-            inputInt = input.nextInt();
-            if (inputInt >= 1 && inputInt <= 8);
-            else System.out.println("\n\tYour option is invalid, please enter number 1 or 8.");
-        } catch (InputMismatchException imp){
-            System.out.println("\n\tYour option is invalid, please enter number\n\n");
+    private boolean bAthleteChooseTest(int athleteChoose) {
+        if (athleteChoose >= 1 && athleteChoose <= 2) return true;
+        else {
+            System.out.println("\n\tYour option is invalid, please enter number 1 or 2.");
+            return false;
         }
-        return inputInt;
+    }
+
+    private int athleteNo() {
+        int athleteNum =0;
+        boolean bAthleteNum = false;
+        do {
+            athleteNum = intTest(); // how many athletes you want
+            bAthleteNum = bAthleteNumTest(athleteNum); //test mainMenuOption in the range
+        } while (!bAthleteNum);
+        bAthleteNum = true;
+        return athleteNum;
+    }
+
+    private void addParticipationList(String gametype, ArrayList<Athlete> athleteArrayList, int athleteNum) {
+        // participationList.listPlayers(gametype, athleteArrayList);
+        for (int i =0; i < athleteNum; i++){
+            participationList.listPlayers(gametype, athleteArrayList);
+            System.out.println("Please enter athlete's ID to add athlete to play game.");
+            System.out.println("Please add" +(i+1)+" of "+athleteNum+" athlete: ");
+
+
+            // TODO: 2017/9/3 something wrong with pass participants list
+
+
+            Athlete participantArrayList = new Participants("","","", 28);
+
+
+
+
+
+            // addAthlete();
+        }
+
+
+
+    }
+
+    private boolean bAthleteNumTest(int athleteNum) {
+        if (athleteNum >= 1 && athleteNum <= 8) return true;
+        else {
+            System.out.println("\n\tYour option is invalid, please enter number 1 or 8.");
+            return false;
+        }
     }
 
 
@@ -171,42 +241,14 @@ public class Driver {
 
 
 
-    public int mainOption(){
+    public int intTest(){
         Scanner input = new Scanner(System.in);
         int inputInt = 0;
-        try {
-            inputInt = input.nextInt();
-            if (inputInt >= 1 && inputInt <= 6);
-            else System.out.println("\n\tYour option is invalid, please enter number between 1 to 6.");
-        } catch (InputMismatchException imp){
-            System.out.println("\n\tYour option is invalid, please enter number\n\n");
-        }
-        return inputInt;
-    }
-
-    public int subOption(){
-        Scanner input = new Scanner(System.in);
-        int inputInt = 0;
-        try {
-            inputInt = input.nextInt();
-            if (inputInt >= 1 && inputInt <= 4);
-            else System.out.println("\n\tYour option is invalid, please enter number between 1 to 4.");
-        } catch (InputMismatchException imp){
-            System.out.println("\n\tYour option is invalid, please enter number\n\n");
-        }
-        return inputInt;
-    }
-
-    public int athleteSwitch(){
-        Scanner input = new Scanner(System.in);
-        int inputInt = 0;
-        try {
-            inputInt = input.nextInt();
-            if (inputInt >= 1 && inputInt <= 2);
-            else System.out.println("\n\tYour option is invalid, please enter number 1 or 2.");
-        } catch (InputMismatchException imp){
-            System.out.println("\n\tYour option is invalid, please enter number\n\n");
-        }
+            try {
+                inputInt = input.nextInt();
+            } catch (InputMismatchException imp){
+                System.out.println("\n\tYour option is invalid, please enter number\n\n");
+            }
         return inputInt;
     }
 

@@ -5,8 +5,8 @@ public class Cyclist extends Athlete{
     private String particpantAbility = "Cycle";
 
 
-    public Cyclist(String participantID, String participantName, String participantState) {
-        super(participantID, participantName, participantState);
+    public Cyclist(String participantID, String participantName, String participantState, int participantAge) {
+        super(participantID, participantName, participantState, participantAge);
 
     }
 

@@ -6,8 +6,8 @@ public class SuperAthlete extends Athlete{
 
     // private String participantAbility = "Swim, Cycle, Run";
 
-    public SuperAthlete(String participantID, String participantName, String participantState) {
-        super(participantID, participantName, participantState);
+    public SuperAthlete(String participantID, String participantName, String participantState, int participantAge) {
+        super(participantID, participantName, participantState, participantAge);
         // this.participantAbility = participantAbility;
 
     }

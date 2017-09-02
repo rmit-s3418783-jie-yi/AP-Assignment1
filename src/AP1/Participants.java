@@ -1,31 +1,18 @@
 package AP1;
 
-public abstract class Participants {
-    private String participantID;
-    private String participantName;
-    private String participantState;
-    private int participantAge;
+public class Participants extends Athlete {
 
-    public Participants (String participantID, String participantName, String participantState, int participantAge){
-        this.participantID = participantID;
-        this.participantName = participantName;
-        this.participantState =participantState;
-        this.participantAge = participantAge;
-    }
-    public String getParticipantID() {
-        return participantID;
+    public Participants (String participantID, String participantName, String participantState, int participantAge) {
+        super(participantID, participantName, participantState, participantAge);
     }
 
-    public String getParticipantName() {
-        return participantName;
+    @Override
+    public void compete(String s) {
+
     }
 
-    public int getParticipantAge() {
-        return participantAge;
+    @Override
+    public String printAthlete() {
+        return null;
     }
-
-    public String toString () {
-        return "";
-    }
-    public abstract boolean checkSuper();
 }

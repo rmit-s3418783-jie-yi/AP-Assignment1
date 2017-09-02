@@ -1,11 +1,6 @@
 package AP1;
 
-import com.sun.org.apache.regexp.internal.RE;
-
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ozlympic {
     // todo
@@ -21,6 +16,7 @@ public class Ozlympic {
         runnerData(athleteList);
         swimmerData(athleteList);
         supAthleteData(athleteList);
+        officialData(officialsList);
         gameType(gameList);
 
         //getAthlete(athleteList);
@@ -45,13 +41,13 @@ public class Ozlympic {
 
 
     public static void cyclistData(ArrayList athleteList){
-        Athlete cyclist1 = new Cyclist("C01","Dario","VIC");
-        Athlete cyclist2 = new Cyclist("C02","Aario","VIC");
-        Athlete cyclist3 = new Cyclist("C03","Bario","VIC");
-        Athlete cyclist4 = new Cyclist("C04","Cario","VIC");
-        Athlete cyclist5 = new Cyclist("C05","Eario","VIC");
-        Athlete cyclist6 = new Cyclist("C06","Fario","VIC");
-        Athlete cyclist7 = new Cyclist("C07","Gario","VIC");
+        Athlete cyclist1 = new Cyclist("C01","Dario","VIC",25);
+        Athlete cyclist2 = new Cyclist("C02","Aario","VIC",36);
+        Athlete cyclist3 = new Cyclist("C03","Bario","VIC",27);
+        Athlete cyclist4 = new Cyclist("C04","Cario","VIC",32);
+        Athlete cyclist5 = new Cyclist("C05","Eario","VIC",31);
+        Athlete cyclist6 = new Cyclist("C06","Fario","VIC",22);
+        Athlete cyclist7 = new Cyclist("C07","Gario","VIC",26);
         athleteList.add(cyclist1);
         athleteList.add(cyclist2);
         athleteList.add(cyclist3);
@@ -62,13 +58,13 @@ public class Ozlympic {
     }
 
     public static void runnerData(ArrayList athleteList){
-        Athlete runner1 = new Runner("R01","Jay","VIC");
-        Athlete runner2 = new Runner("R02","Aay","VIC");
-        Athlete runner3 = new Runner("R03","Bay","VIC");
-        Athlete runner4 = new Runner("R04","Cay","VIC");
-        Athlete runner5 = new Runner("R05","Day","VIC");
-        Athlete runner6 = new Runner("R06","Eay","VIC");
-        Athlete runner7 = new Runner("R07","Fay","VIC");
+        Athlete runner1 = new Runner("R01","Jay","VIC",24);
+        Athlete runner2 = new Runner("R02","Aay","VIC",25);
+        Athlete runner3 = new Runner("R03","Bay","VIC",27);
+        Athlete runner4 = new Runner("R04","Cay","VIC",31);
+        Athlete runner5 = new Runner("R05","Day","VIC",33);
+        Athlete runner6 = new Runner("R06","Eay","VIC",32);
+        Athlete runner7 = new Runner("R07","Fay","VIC",29);
         athleteList.add(runner1);
         athleteList.add(runner2);
         athleteList.add(runner3);
@@ -79,13 +75,13 @@ public class Ozlympic {
     }
 
     public static void swimmerData(ArrayList athleteList){
-        Athlete swimmer1 = new Swimmer("S01","Vincent","VIC");
-        Athlete swimmer2 = new Swimmer("S02","Vincent","VIC");
-        Athlete swimmer3 = new Swimmer("S03","Vincent","VIC");
-        Athlete swimmer4 = new Swimmer("S04","Vincent","VIC");
-        Athlete swimmer5 = new Swimmer("S05","Vincent","VIC");
-        Athlete swimmer6 = new Swimmer("S06","Vincent","VIC");
-        Athlete swimmer7 = new Swimmer("S07","Vincent","VIC");
+        Athlete swimmer1 = new Swimmer("S01","Vincent","VIC",23);
+        Athlete swimmer2 = new Swimmer("S02","Vincent","VIC",25);
+        Athlete swimmer3 = new Swimmer("S03","Vincent","VIC",28);
+        Athlete swimmer4 = new Swimmer("S04","Vincent","VIC",35);
+        Athlete swimmer5 = new Swimmer("S05","Vincent","VIC",25);
+        Athlete swimmer6 = new Swimmer("S06","Vincent","VIC",27);
+        Athlete swimmer7 = new Swimmer("S07","Vincent","VIC",26);
         athleteList.add(swimmer1);
         athleteList.add(swimmer2);
         athleteList.add(swimmer3);
@@ -96,14 +92,25 @@ public class Ozlympic {
     }
 
     public static void supAthleteData(ArrayList athleteList){
-        Athlete superAthlete1 = new SuperAthlete("SA01","Maggie","VIC");
-        Athlete superAthlete2 = new SuperAthlete("SA02","Aaggie","VIC");
-        Athlete superAthlete3 = new SuperAthlete("SA03","Baggie","VIC");
-        Athlete superAthlete4 = new SuperAthlete("SA04","Caggie","VIC");
+        Athlete superAthlete1 = new SuperAthlete("SA01","Maggie","VIC",33);
+        Athlete superAthlete2 = new SuperAthlete("SA02","Aaggie","VIC",31);
+        Athlete superAthlete3 = new SuperAthlete("SA03","Baggie","VIC",32);
+        Athlete superAthlete4 = new SuperAthlete("SA04","Caggie","VIC",34);
         athleteList.add(superAthlete1);
         athleteList.add(superAthlete2);
         athleteList.add(superAthlete3);
         athleteList.add(superAthlete4);
+    }
+
+    private static void officialData(ArrayList<Official> officialsList) {
+        Official official1 = new Official("OFF01","Dario");
+        Official official2 = new Official("OFF02","Jay");
+        Official official3 = new Official("OFF03","Vincent");
+        Official official4 = new Official("OFF04","Maggie");
+        officialsList.add(official1);
+        officialsList.add(official2);
+        officialsList.add(official3);
+        officialsList.add(official4);
     }
 
     public static void gameType(ArrayList gameList){
