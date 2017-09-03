@@ -128,7 +128,6 @@ public class Driver {
         int athleteNum = 0;
         int athleteChoose = 0;
         boolean bAthleteChoose = false;
-        gameMenuText();
         do {
             athleteChoose = intTest(); // exception
             bAthleteChoose = bAthleteChooseTest(athleteChoose); //test mainMenuOption in the range
@@ -156,6 +155,7 @@ public class Driver {
     private int athleteNo() {
         int athleteNum =0;
         boolean bAthleteNum = false;
+        System.out.println("How many athletes your want to add?");
         do {
             athleteNum = intTest(); // how many athletes you want
             bAthleteNum = bAthleteNumTest(athleteNum); //test mainMenuOption in the range
@@ -165,11 +165,10 @@ public class Driver {
     }
 
     private void addParticipationList(String gametype, ArrayList<Athlete> athleteArrayList, int athleteNum) {
-        // participationList.listPlayers(gametype, athleteArrayList);
         for (int i =0; i < athleteNum; i++){
             participationList.listPlayers(gametype, athleteArrayList);
             System.out.println("Please enter athlete's ID to add athlete to play game.");
-            System.out.println("Please add" +(i+1)+" of "+athleteNum+" athlete: ");
+            System.out.println("Please add（" +(i+1)+" of "+athleteNum+"） athlete: ");
 
 
             // TODO: 2017/9/3 something wrong with pass participants list
