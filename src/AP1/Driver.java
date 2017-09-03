@@ -122,13 +122,12 @@ public class Driver {
                 "Enter an option: ");
     }
 
-    private void athleteChoose(String gametype, ArrayList<Athlete> athleteArrayList) {
+    private void athleteChoose(String gameType, ArrayList<Athlete> athleteArrayList) {
         System.out.println("1\tadd athletes by yourself? (less than 8 athletes)\n" +
                 "2\tadd athletes automatically (full fill)");
         int athleteNum = 0;
         int athleteChoose = 0;
         boolean bAthleteChoose = false;
-        gameMenuText();
         do {
             athleteChoose = intTest(); // exception
             bAthleteChoose = bAthleteChooseTest(athleteChoose); //test mainMenuOption in the range
@@ -137,10 +136,10 @@ public class Driver {
         switch (athleteChoose){
             case 1:
                 athleteNum =  athleteNo();
-                addParticipationList(gametype, athleteArrayList, athleteNum);
+                addParticipationList(gameType, athleteArrayList, athleteNum);
                 break;
             case 2:
-                addParticipationList(gametype, athleteArrayList, 8);
+                addParticipationList(gameType, athleteArrayList, 8);
                 break;
         }
     }
@@ -156,6 +155,7 @@ public class Driver {
     private int athleteNo() {
         int athleteNum =0;
         boolean bAthleteNum = false;
+        System.out.println("How many athletes your want to add?");
         do {
             athleteNum = intTest(); // how many athletes you want
             bAthleteNum = bAthleteNumTest(athleteNum); //test mainMenuOption in the range
@@ -164,25 +164,38 @@ public class Driver {
         return athleteNum;
     }
 
-    private void addParticipationList(String gametype, ArrayList<Athlete> athleteArrayList, int athleteNum) {
-        // participationList.listPlayers(gametype, athleteArrayList);
+    private void addParticipationList(String gameType, ArrayList<Athlete> athleteArrayList, int athleteNum) {
+        Scanner input = new Scanner(System.in);
+
         for (int i =0; i < athleteNum; i++){
-            participationList.listPlayers(gametype, athleteArrayList);
+            participationList.listPlayers(gameType, athleteArrayList);
             System.out.println("Please enter athlete's ID to add athlete to play game.");
-            System.out.println("Please add" +(i+1)+" of "+athleteNum+" athlete: ");
+            System.out.println("Please add（" +(i+1)+" of "+athleteNum+"） athlete: ");
+            String addParticipant = "";
+            boolean bAddParticipant = false;
 
+            // we need find a efficient way to do this
+            do {
+                addParticipant = input.next();
+                for (int j=0; j< athleteArrayList.size(); j++){
+                    System.out.println(athleteArrayList.get(i).getParticipantID());
 
-            // TODO: 2017/9/3 something wrong with pass participants list
+                    // TODO: 2017/9/3 problems here
+                    //athleteArrayList.get(i).getParticipantID() shows all ID is "C01"
 
+                    if (addParticipant.equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
+                        bAddParticipant = true;
+                        break;
+                    }
+                }
+                if (!bAddParticipant)
+                    System.out.println("We don't have this athlete, please enter the existing athleteID.");
 
-            Athlete participantArrayList = new Participants("","","", 28);
-
-
-
-
-
-            // addAthlete();
+            } while (!bAddParticipant);
+            bAddParticipant = false;
+            participantArrayList.add(athleteArrayList.get(i));
         }
+        // System.out.println();
 
 
 
@@ -200,11 +213,11 @@ public class Driver {
     public void predictAthlete (){
         Scanner input = new Scanner(System.in);
         // TODO: 2017/8/30
-        // list athletes from athleteChoose(String gametype)
+        // list athletes from athleteChoose(String gameType)
         System.out.println("Select a athlete above to predict.\nPlease enter athlete ID");
         // input
         String athleteID = input.next(); // input sth but not right
-        // TODO: 2017/8/30 compare athleteID with ArrayList which from athleteChoose(String gametype)
+        // TODO: 2017/8/30 compare athleteID with ArrayList which from athleteChoose(String gameType)
         // this is sth thing to learn how push and pull
     }
 
