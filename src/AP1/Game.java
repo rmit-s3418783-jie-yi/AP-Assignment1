@@ -25,6 +25,10 @@ public class Game {
         return gameType;
     }
 
+    @Override
+    public String toString() {
+        return "gameID:" + gameID + "gameType:" +gameType;
+    }
 
     public void calculateWinners(){
         // Todo

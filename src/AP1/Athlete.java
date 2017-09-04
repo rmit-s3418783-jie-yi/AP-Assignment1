@@ -80,5 +80,5 @@ public abstract class Athlete {
 //                "participantState: " + participantState + "\t" +
 //                "totalPoints: " + totalPoints;
 //    }
-     public abstract String printAthlete();
+    public abstract String printAthlete();
 }

@@ -6,6 +6,7 @@ public class Participants extends Athlete {
         super(participantID, participantName, participantState, participantAge);
     }
 
+
     @Override
     public void compete(String s) {
 

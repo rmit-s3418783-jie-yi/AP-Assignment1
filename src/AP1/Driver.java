@@ -2,7 +2,6 @@ package AP1;
 
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Driver {
@@ -11,6 +10,14 @@ public class Driver {
     ArrayList<Results> resultsArrayList = new ArrayList<>();
 
     ParticipationList participationList = new ParticipationList(); // why use this?
+
+    Prediction prediction; // = new Prediction("","");
+
+    Results results;
+
+
+
+
     // main menu
     public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList, ArrayList<Official> officialArrayList) {
         int mainMenuOption = 0;
@@ -57,16 +64,6 @@ public class Driver {
                 "5.\tDisplay the points of all athletes\n" +
                 "6.\tExit\n\n" +
                 "Enter an option: ");
-    }
-
-    public void startGame() {
-        // todo
-        // print game type and
-        // ask how many athletes your want
-        // do you want to add self or automatically
-        // add self todo
-        // automatically add todo
-
     }
 
     // system go in to select a game.
@@ -219,6 +216,23 @@ public class Driver {
         String athleteID = input.next(); // input sth but not right
         // TODO: 2017/8/30 compare athleteID with ArrayList which from athleteChoose(String gameType)
         // this is sth thing to learn how push and pull
+        prediction.setPredicationID(athleteID);
+
+
+    }
+
+    public void startGame() {
+        // TODO: 2017/9/4 call athlete  compete()
+        // compare the result
+
+
+        if (prediction.compareAthlete(results))
+            System.out.println("\t‧★,:*:‧\\(￣▽￣)/‧:*‧°★*" +
+                            "\n\t||\t\t\t||"+
+                            "\n\t||you predict right athlete!||"+
+                            "\n\t||\t\t\t||"+
+                            "\n\t‧★,:*:‧\\(￣▽￣)/‧:*‧°★*");
+
     }
 
     private int intTest(){
@@ -226,7 +240,7 @@ public class Driver {
         int inputInt = 0;
             try {
                 inputInt = input.nextInt();
-            } catch (InputMismatchException imp){
+            } catch (Exception e){
                 System.out.println("\n\tYour option is invalid, please enter number\n\n");
             }
         return inputInt;
