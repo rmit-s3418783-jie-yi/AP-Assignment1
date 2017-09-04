@@ -19,6 +19,14 @@ public class Ozlympic {
         officialData(officialsList);
         gameType(gameList);
 
+
+        System.out.println("\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
+                "\n\t||\t\t\t\t\t\t||"+
+
+                "\n\t||\t you predict\t\t|| " +
+                "\n\t||\tright athlete!\t\t||"+
+                "\n\t||\t\t\t\t\t\t||"+
+                "\n\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
         //getAthlete(athleteList);
         // todo
         // pass value to menu class and then return sth
