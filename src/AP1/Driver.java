@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Driver {
 
-    ArrayList<Athlete> participantArrayList = new ArrayList<>(); // temple ArrayList for add athletes to play game // TODO  ????????
+    ArrayList<Athlete> participantArrayList = new ArrayList<>();
     ArrayList<Results> resultsArrayList = new ArrayList<>();
 
     ParticipationList participationList = new ParticipationList(); // why use this?
 
-    Prediction prediction; // = new Prediction("","");
+    Prediction prediction; // to store data prediction
 
     Results results;
 
@@ -39,7 +39,15 @@ public class Driver {
                     break;
                 case 3:
                     startGame();
-
+                    break;
+                case 4:
+                    // displayResult();
+                    break;
+                case 5:
+                    // displayPoin();
+                    break;
+                case 6:
+                    break;
             }
             // return a value to break loop.
 
@@ -170,32 +178,44 @@ public class Driver {
             System.out.println("Please add（" +(i+1)+" of "+athleteNum+"） athlete: ");
             String addParticipant = "";
             boolean bAddParticipant = false;
+            boolean checkExist = false;
 
             // we need find a efficient way to do this
             do {
                 addParticipant = input.next();
                 for (int j=0; j< athleteArrayList.size(); j++){
-                    System.out.println(athleteArrayList.get(i).getParticipantID());
-
-                    // TODO: 2017/9/3 problems here
-                    //athleteArrayList.get(i).getParticipantID() shows all ID is "C01"
-
-                    if (addParticipant.equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
+                    if (addParticipant.equalsIgnoreCase(athleteArrayList.get(j).getParticipantID())){
+                        // TODO: 2017/9/4 check the athlete exist in ParticipantArrayList or not!!
                         bAddParticipant = true;
+                        // sth wrong here
+                         // checkExist = checkExist(addParticipant);
                         break;
                     }
                 }
+                if (!checkExist)
+                    System.out.println("This athlete already the add to list, please select again.");
                 if (!bAddParticipant)
                     System.out.println("We don't have this athlete, please enter the existing athleteID.");
-
-            } while (!bAddParticipant);
+            } while (!bAddParticipant && !checkExist);
             bAddParticipant = false;
+            checkExist = false;
+
             participantArrayList.add(athleteArrayList.get(i));
         }
         // System.out.println();
 
 
 
+    }
+
+    private boolean checkExist(String addParticipant) {
+        boolean exist = false;
+        for (int i = 0; i < participantArrayList.size(); i++){
+            if (addParticipant.equalsIgnoreCase(participantArrayList.get(i).getParticipantID())) {
+                exist = true;
+            } else exist =  false;
+        }
+        return exist;
     }
 
     private boolean bAthleteNumTest(int athleteNum) {
@@ -217,21 +237,24 @@ public class Driver {
         // TODO: 2017/8/30 compare athleteID with ArrayList which from athleteChoose(String gameType)
         // this is sth thing to learn how push and pull
         prediction.setPredicationID(athleteID);
-
-
     }
 
     public void startGame() {
-        // TODO: 2017/9/4 call athlete  compete()
-        // compare the result
+
+        if(participantArrayList.size()<4){
+            System.out.println("Sorry, the athlete numbers is less than 4, this game can not be accessed!");
+
+        }
+        // ProcessResults.class();
 
 
         if (prediction.compareAthlete(results))
-            System.out.println("\t‧★,:*:‧\\(￣▽￣)/‧:*‧°★*" +
-                            "\n\t||\t\t\t||"+
-                            "\n\t||you predict right athlete!||"+
-                            "\n\t||\t\t\t||"+
-                            "\n\t‧★,:*:‧\\(￣▽￣)/‧:*‧°★*");
+            System.out.println("\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
+                    "\n\t||\t\t\t\t\t\t||"+
+                    "\n\t||\t you predict\t\t|| " +
+                    "\n\t||\tright athlete!\t\t||"+
+                    "\n\t||\t\t\t\t\t\t||"+
+                    "\n\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
 
     }
 
