@@ -2,7 +2,7 @@ package AP1;
 
 public class Runner extends Athlete {
 
-    private String particpantAbility = "Run";
+    private String participantAbility = "Run";
 
 
     public Runner(String participantID, String participantName, String participantState, int participantAge) {
@@ -19,10 +19,11 @@ public class Runner extends Athlete {
     @Override
     public String printAthlete() {
         return "ParticipantID: " + super.getParticipantID()+ "\t" +
-                "Participant Name: " + super.getParticipantName() + "\t";
+                "Participant Name: " + super.getParticipantName() + "\t"+
+                "Ability: " +  participantAbility;
     }
 
     public String getParticpantAbility(){
-        return particpantAbility;
+        return participantAbility;
     }
 }

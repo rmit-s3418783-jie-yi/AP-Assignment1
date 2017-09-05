@@ -3,7 +3,7 @@ package AP1;
 
 public class Swimmer extends Athlete{
 
-    private String particpantAbility = "Swim";
+    private String participantAbility = "Swim";
 
     public Swimmer(String participantID, String participantName, String participantState, int participantAge) {
         super(participantID, participantName, participantState, participantAge);
@@ -22,10 +22,11 @@ public class Swimmer extends Athlete{
     @Override
     public String printAthlete() {
         return "ParticipantID: " + super.getParticipantID()+ "\t" +
-                "Participant Name: " + super.getParticipantName() + "\t";
+                "Participant Name: " + super.getParticipantName() + "\t"+
+                "Ability: " +  participantAbility;
     }
 
     public String getParticpantAbility(){
-        return particpantAbility;
+        return participantAbility;
     }
 }

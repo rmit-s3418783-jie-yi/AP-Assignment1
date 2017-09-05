@@ -17,27 +17,5 @@ public class ParticipationList {
                 System.out.println(athleteArrayList.get(j).printAthlete());
             }
         }
-
-
-//        if (gameType.equalsIgnoreCase("Swimming")) {
-//            for (int i = 0; i < athleteArrayList.size(); i++) {
-//                if (athleteArrayList.get(i) instanceof Swimmer){
-//                    System.out.println(athleteArrayList.get(i).printAthlete());
-//                }
-//
-//            }
-//        } else if (gameType.equalsIgnoreCase("Running")) {
-//            for (int i = 0; i < athleteArrayList.size(); i++) {
-//                if (athleteArrayList.get(i) instanceof Runner){
-//                    System.out.println(athleteArrayList.get(i).printAthlete());
-//                }
-//            }
-//        }else if ((gameType.equalsIgnoreCase("Cycling"))){
-//            for (int i = 0; i < athleteArrayList.size(); i++) {
-//                if (athleteArrayList.get(i) instanceof Cyclist){
-//                    System.out.println(athleteArrayList.get(i).printAthlete());
-//                }
-//            }
-//        }
     }
 }

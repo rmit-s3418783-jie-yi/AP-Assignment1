@@ -11,9 +11,11 @@ public class Results {
     private String athleteName3;
     private String gameOfficial;
     private String gameOfficialName;
+
     private int firstPlacePoints = 5;
     private int secondPlacePoints = 2;
     private int thirdPlacePoints = 1;
+
     private String gameID;
     private String gameType;
     private Game game;
@@ -77,6 +79,12 @@ public class Results {
         this.gameOfficial = gameOfficial;
     }
 
+    public String getGameOfficial() {
+        return gameOfficial;
+    }
+
+
+
     public int getFirstPlacePoints(){
         return firstPlacePoints;
     }
@@ -88,12 +96,6 @@ public class Results {
     public int getThirdPlacePoints(){
         return thirdPlacePoints;
     }
-
-    public String getGameOfficial() {
-        return gameOfficial;
-    }
-
-
 
     @Override
     public String toString() {

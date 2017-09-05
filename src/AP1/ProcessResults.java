@@ -8,7 +8,13 @@ public class ProcessResults {
 
     // TODO: 2017/9/4 compare the results to list DESC
 
-    // loop
+//    List unmodifiableList = Collections.unmodifiableList(list);
+//
+//    List newList = new ArrayList(unmodifiableList);
+//
+//    Collections.sort(newList);
+//
+    // loop dd
 
     // first. setID and setName
     // second .

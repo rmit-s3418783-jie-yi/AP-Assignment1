@@ -1,6 +1,9 @@
 package AP1;
 
 public class Game {
+
+
+    private int times = 1; // TODO: 2017/9/4 increase the num automatically if the gametype selected.()
     private String gameID;
     private String gameType;
 
