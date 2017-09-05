@@ -2,6 +2,7 @@ package AP1;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Driver {
@@ -144,8 +145,38 @@ public class Driver {
                 addParticipationList(gameType, athleteArrayList, athleteNum);
                 break;
             case 2:
-                addParticipationList(gameType, athleteArrayList, 8);
+                fullFillParticipationList(gameType, athleteArrayList, 8);
                 break;
+        }
+    }
+
+    private void fullFillParticipationList(String gameType, ArrayList<Athlete> athleteArrayList, int athleteNum) {
+
+        for (int i = 0; i <athleteNum; i++){
+            boolean bCheckExist = false;
+            boolean bGameType = false;
+            do {
+                Random random = new Random();
+                int index = random.nextInt(athleteArrayList.size());
+                Athlete athlete = athleteArrayList.get(index);
+                // 0-6 cyclist      7-13 runner     14-20 swimmer       21-24 supAthletes
+
+                for (int j = 0; j < athleteArrayList.size(); j++){
+                    bCheckExist = checkExist(athlete.getParticipantID());
+                    if (bCheckExist){
+                        bGameType = checkGameType(gameType, athleteArrayList.get(i));
+                        if (bGameType) {
+                            participantArrayList.add(athleteArrayList.get(i));
+                            break;
+                        }else break;
+                    }else{
+                        bCheckExist = false;
+                        bGameType = true;
+                        break;
+                    }
+                }
+            } while (!bCheckExist || !bGameType);
+            System.out.println(participantArrayList.size());
         }
     }
 
@@ -169,6 +200,8 @@ public class Driver {
         return athleteNum;
     }
 
+
+    // done
     private void addParticipationList(String gameType, ArrayList<Athlete> athleteArrayList, int athleteNum) {
         Scanner input = new Scanner(System.in);
         for (int i =0; i < athleteNum; i++){
@@ -190,10 +223,8 @@ public class Driver {
                             if (bGameType) {
                                 participantArrayList.add(athleteArrayList.get(j));
                                 break;
-                            }else {
-                                bGameType = false;
+                            }else
                                 break;
-                            }
                         }else{
                             bCheckExist = false;
                             bGameType = true;
