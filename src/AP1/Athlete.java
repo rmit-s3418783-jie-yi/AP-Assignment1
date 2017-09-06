@@ -13,7 +13,7 @@ public abstract class Athlete {
     private int totalPoints;
 
 
-    public  Athlete(String participantID, String participantName, String participantState, int participantAge){
+    public Athlete(String participantID, String participantName, String participantState, int participantAge){
         this.participantID = participantID;
         this.participantName = participantName;
         this.participantState = participantState;

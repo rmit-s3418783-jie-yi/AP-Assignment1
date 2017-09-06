@@ -25,7 +25,7 @@ public class ProcessResults {
     public ProcessResults(String athID, int athResults){
         this.athID = athID;
         this.athResults = athResults;
-        // this.results = new Results("","","");
+        this.results = new Results("","","");
     }
 
     // TODO: 2017/9/4 compare the results to list DESC
@@ -59,9 +59,9 @@ public class ProcessResults {
 
 
 
-            setFirstPlace(processResultsArrayList.get(0).getAthID());
-            setSecondPlace(processResultsArrayList.get(1).getAthID());
-            setThirdPlace(processResultsArrayList.get(2).getAthID());
+            results.setFirstPlace(processResultsArrayList.get(0).getAthID());
+            results.setSecondPlace(processResultsArrayList.get(1).getAthID());
+            results.setThirdPlace(processResultsArrayList.get(2).getAthID());
 
         // results.setWinners(finalResultsArraryList);
     }

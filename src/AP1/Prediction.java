@@ -18,7 +18,7 @@ public class Prediction {
     }
 
 
-    public boolean compareAthlete(Results results){
+    public boolean compareAthlete(ProcessResults results){
         if (predicationID.equalsIgnoreCase(results.getFirstPlace()))
             return true;
         else return false;

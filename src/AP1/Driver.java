@@ -23,7 +23,7 @@ public class Driver {
     private ArrayList<Results> resultsArrayList = new ArrayList<>();
     private ProcessResults processResults = new ProcessResults("",0);
     private Prediction prediction = new Prediction("",""); // to store data prediction
-    public Results results = new Results(processResults.getFirstPlace(),processResults.getSecondPlace(),processResults.getThirdPlace());
+    public Results resultWinner = new Results("","","");
     private Game game = new Game("","");
 
     // main menu
@@ -61,7 +61,7 @@ public class Driver {
                     displayResult();
                     break;
                 case 5:
-                    displayPoin(athleteArrayList,results);
+                    displayPoin(athleteArrayList,resultWinner);
                     break;
                 case 6:
                     break;
@@ -439,8 +439,8 @@ public class Driver {
     private void displayResult() {
         processResults.releaseResult(participantArrayList, game);
         //Results finalResult = new Results(results.getFirstPlace(),results.getSecondPlace(),results.getThirdPlace());
-
-        if (prediction.compareAthlete(results)) {
+        resultWinner.getFirstPlace();
+        if (prediction.compareAthlete(processResults)) {
             System.out.println("\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
                     "\n\t||\t\t\t\t\t\t||" +
                     "\n\t||\t you predict\t\t|| " +
