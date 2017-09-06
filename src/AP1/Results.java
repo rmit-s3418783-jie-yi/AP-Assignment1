@@ -2,6 +2,9 @@ package AP1;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Results {
     private String firstPlace; // athlete ID
     private String secondPlace;
@@ -33,6 +36,25 @@ public class Results {
         this.athleteName3 = athleteName3;
         this.gameOfficial = gameOfficial;
         this.gameOfficialName = gameOfficialName;
+    }
+
+    public void findWinner(ArrayList<ProcessResults> processResultsArrayList){
+
+        int firstPlaceResult = 999;
+        int secondPlaceResult = 888;
+        int thirdPlaceResult = 800;
+        for (int i = 0; i < processResultsArrayList.size(); i++){
+            if(processResultsArrayList.get(i).getAthResults() < firstPlaceResult){
+
+
+            }
+            else if(){
+
+            }
+            else if(){
+
+            }
+        }
     }
 
     public String getFirstPlace(){

@@ -17,6 +17,7 @@ public class Driver {
     private ArrayList<Results> resultsArrayList = new ArrayList<>();
 
     private ParticipationList participationList; //  = new ParticipationList(); // why use this?
+    private ProcessResults processResults;
 
     private Prediction prediction = new Prediction("",""); // to store data prediction
 
@@ -401,7 +402,7 @@ public class Driver {
         }else {
             // start the game
             // we need the ProcessResults Class to process the results.
-            // ProcessResults.class();
+            processResults.createAthlete(participantArrayList, game);
             for (int i = 0; i <participantArrayList.size(); i++){
                 System.out.println("Athlete ID: " + participantArrayList.get(i).getParticipantID() +
                         "\tAthlete Compete: " + participantArrayList.get(i).compete(game.getGameType()));
