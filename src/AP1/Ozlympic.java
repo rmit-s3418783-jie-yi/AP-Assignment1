@@ -13,7 +13,7 @@ public class Ozlympic {
     // todo
     // this is the main class which control all games and may be the interface
     // Scanner input = new Scanner(System.in);
-    public static void main (String[] args){
+    public static void main (String[] args) throws InterruptedException {
 
         ArrayList<Athlete> athleteList = new ArrayList<>();
         ArrayList<Game> gameList = new ArrayList<>();

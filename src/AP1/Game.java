@@ -47,7 +47,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "gameID:" + gameID + "gameType:" +gameType;
+        return "gameID:" + gameID + "\tgameType:" +gameType;
     }
 
     public void calculateWinners(){

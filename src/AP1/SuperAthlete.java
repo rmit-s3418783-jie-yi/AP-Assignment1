@@ -16,7 +16,7 @@ public class SuperAthlete extends Athlete{
 
     public int compete(String s) {
 
-         int result = 0 ;
+        int result = 0 ;
         Random random =  new Random();
 
         if(s == "Swimming"){
@@ -24,8 +24,6 @@ public class SuperAthlete extends Athlete{
             //Swimmer calculations
             int min = 100;
             int max = 200;
-
-
             result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
         }
         else if(s == "Running"){
@@ -33,8 +31,6 @@ public class SuperAthlete extends Athlete{
             //Runner Calculations
             int min = 10;
             int max = 20;
-
-
             result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
         }
         else if(s == "Cycling") {
@@ -42,8 +38,6 @@ public class SuperAthlete extends Athlete{
             //Cyclist Calculations
             int min = 500;
             int max = 800;
-
-
             result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
 
         }

@@ -7,33 +7,34 @@
  **********************************************************************************************************************/
 package AP1;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Driver {
 
+
+    private final int FIRSTPLACEPOINT = 5;
+    private final int SECONDPLACEPOINT = 2;
+    private final int THIRDPLACEPOINT = 1;
+
     private ArrayList<Athlete> participantArrayList = new ArrayList<>();
     private ArrayList<Results> resultsArrayList = new ArrayList<>();
-
-    private ParticipationList participationList; //  = new ParticipationList(); // why use this?
-    private ProcessResults processResults;
-
+    private ArrayList <ProcessResults> processResults = new ArrayList<ProcessResults>();
     private Prediction prediction = new Prediction("",""); // to store data prediction
-
-    private Results results;
-
+    //public Results results = new Results(); //= new Results("","","");
     private Game game = new Game("","");
-
     // main menu
-
 
     /****************************************************************************************************************
      *
      * This is the main menu part
      *
      ****************************************************************************************************************/
-    public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList, ArrayList<Official> officialArrayList) {
+    public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList, ArrayList<Official> officialArrayList) throws InterruptedException {
         int mainMenuOption = 0;
         boolean bMainOption = false;
         while (mainMenuOption != 6){
@@ -52,7 +53,7 @@ public class Driver {
                     // todo
                     break;
                 case 3:
-                    startGame(game);
+                    startGame(participantArrayList,game);
 
                     // give game id here
                     break;
@@ -60,7 +61,7 @@ public class Driver {
                     displayResult();
                     break;
                 case 5:
-                    // displayPoin();
+                    displayPoin(athleteArrayList,results);
                     break;
                 case 6:
                     break;
@@ -69,6 +70,7 @@ public class Driver {
 
         }
     }
+
 
 
 
@@ -221,10 +223,24 @@ public class Driver {
         }
     }
 
+    public void listPlayers(String gameType, ArrayList<Athlete> athleteArrayList) {
+        for (int j = 0; j < athleteArrayList.size();j ++){
+            if(athleteArrayList.get(j) instanceof SuperAthlete){
+                System.out.println(athleteArrayList.get(j).printAthlete());
+            } else if (gameType.equalsIgnoreCase("Swimming") && athleteArrayList.get(j) instanceof Swimmer){
+                System.out.println(athleteArrayList.get(j).printAthlete());
+            } else if (gameType.equalsIgnoreCase("Running") && athleteArrayList.get(j) instanceof Runner){
+                System.out.println(athleteArrayList.get(j).printAthlete());
+            } else if (gameType.equalsIgnoreCase("Cycling") && athleteArrayList.get(j) instanceof Cyclist){
+                System.out.println(athleteArrayList.get(j).printAthlete());
+            }
+        }
+    }
+
     private void addParticipationList(String gameType, ArrayList<Athlete> athleteArrayList, int athleteNum) {
         Scanner input = new Scanner(System.in);
         for (int i =0; i < athleteNum; i++){
-            participationList.listPlayers(gameType, athleteArrayList);
+            listPlayers(gameType, athleteArrayList);
             System.out.println("Please enter athlete's ID to add athlete to play game.");
             System.out.println("Please add（" +(i+1)+" of "+athleteNum+"） athlete: ");
             String addParticipant = "";
@@ -268,7 +284,7 @@ public class Driver {
                 if (!bCheckExist)
                     System.out.println("This athlete already the add to list, please select again.");
                 if (!bGameType){
-                    participationList.listPlayers(gameType, athleteArrayList);
+                    listPlayers(gameType, athleteArrayList);
                     System.out.println("This athlete is not suitable for " + gameType +", please enter the ID above: ");
                 }
             } while (!bAddParticipant || !bGameType || !bCheckExist);
@@ -361,6 +377,7 @@ public class Driver {
      *
      ****************************************************************************************************************/
     public void predictAthlete (){
+        // after run a game, here should clean.
         Scanner input = new Scanner(System.in);
         boolean bCheckExist = false;
         for (int i = 0; i < participantArrayList.size();i++){
@@ -392,22 +409,20 @@ public class Driver {
      * Start game part
      *
      ****************************************************************************************************************/
-    public void startGame(Game game) {
-        System.out.println(game.getGameID());
+    public void startGame(ArrayList<Athlete> participantArrayList,Game game) throws InterruptedException {
+        System.out.println(game.toString());
         if(participantArrayList.size()<4){
             // cancel the game
             System.out.println("Sorry, the athlete numbers is less than 4, this game can not be accessed!");
             participantArrayList.clear();
             System.out.println("This game had canceled, please start again.");
         }else {
-            // start the game
-            // we need the ProcessResults Class to process the results.
-            processResults.createAthlete(participantArrayList, game);
-            for (int i = 0; i <participantArrayList.size(); i++){
-                System.out.println("Athlete ID: " + participantArrayList.get(i).getParticipantID() +
-                        "\tAthlete Compete: " + participantArrayList.get(i).compete(game.getGameType()));
-            }
-            //Get the result from process results and add to results list
+            System.out.println("Athletes are ready to compete, wait a second.");
+            TimeUnit.SECONDS.sleep(3);
+
+            System.out.println("Result competed, please fo to display result part");
+            // TODO: 2017/9/6  Reword.
+
 
         }
 
@@ -422,12 +437,10 @@ public class Driver {
      *
      ****************************************************************************************************************/
     private void displayResult() {
-
-
-
-
-
-        if (prediction.compareAthlete(results))
+        processResults.releaseResult(participantArrayList, game);
+        Results finalResult = new Results(results.getFirstPlace(),results.getSecondPlace(),results.getThirdPlace());
+        String firstPlace = results.getFirstPlace();
+        if (prediction.compareAthlete(firstPlace))
             System.out.println("\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
                     "\n\t||\t\t\t\t\t\t||"+
                     "\n\t||\t you predict\t\t|| " +
@@ -437,6 +450,31 @@ public class Driver {
     }
 
 
+
+    /****************************************************************************************************************
+     *
+     * Display the point
+     *
+     ****************************************************************************************************************/
+
+    private void displayPoin(ArrayList<Athlete> athleteArrayList, Results results) {
+        for (int i =0; i< athleteArrayList.size();i++){
+            if (results.getFirstPlace().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
+                Athlete athlete = athleteArrayList.get(i);
+                athlete.setLastPoint(FIRSTPLACEPOINT);
+            }
+            if (results.getSecondPlace().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
+                Athlete athlete = athleteArrayList.get(i);
+                athlete.setLastPoint(SECONDPLACEPOINT);
+            }
+            if (results.getThirdPlace().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
+                Athlete athlete = athleteArrayList.get(i);
+                athlete.setLastPoint(THIRDPLACEPOINT);
+            }
+        }
+        for (int i =0; i<athleteArrayList.size(); i++)
+            System.out.println(athleteArrayList.get(i).toString());
+    }
 
 
 
@@ -455,4 +493,8 @@ public class Driver {
             }
         return inputInt;
     }
+
+
+
+
 }

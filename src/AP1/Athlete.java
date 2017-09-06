@@ -9,6 +9,7 @@ public abstract class Athlete {
     private String participantState;
     private int participantAge;
     private String participantAbility;
+    private int lastPoint;
     private int totalPoints;
 
 
@@ -17,8 +18,6 @@ public abstract class Athlete {
         this.participantName = participantName;
         this.participantState = participantState;
         this.participantAge = participantAge;
-        totalPoints = 0;
-
     }
 
 
@@ -59,8 +58,17 @@ public abstract class Athlete {
         this.participantID = participantID;
     }
 
-    public void setTotalPoints(int totalPoints) {
-        this.totalPoints = totalPoints;
+    public void setTotalPoints() {
+        totalPoints += lastPoint;
+    }
+
+    public void setLastPoint(int point) {
+        this.lastPoint = point;
+        setTotalPoints();
+    }
+
+    public int getLastPoint() {
+        return lastPoint;
     }
 
     public abstract int compete(String s);
@@ -68,18 +76,19 @@ public abstract class Athlete {
     public String printAthlete() {
         return "ParticipantID: " + getParticipantID()+ "\t" +
                 "Participant Name: " + getParticipantName() + "\t" +
-                "Ability: " +  participantAbility;
+                "Ability: " +  getParticipantAbility();
     }
 
 
 
-//    @Override
-//    public String toString() {
-//        return "ParticipantID: " + participantID + "\t" +
-//                "participantName: " + participantName + "\t" +
-//                "participantState: " + participantState + "\t" +
-//                "totalPoints: " + totalPoints;
-//    }
+    @Override
+    public String toString() {
+        return "ParticipantID: " + participantID +
+                "\tparticipantName: " + participantName +
+                "\tparticipantState: " + participantState +
+                "\tparticipantAge: " + participantAge +
+                "\ttotalPoints: " + totalPoints;
+    }
 
 
 }

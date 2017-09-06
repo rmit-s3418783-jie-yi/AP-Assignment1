@@ -10,14 +10,16 @@ public class Prediction {
     // only one thing need to do
     // compare the prediction with the first place
 
+    // public Results results;
+
     public Prediction (String predicationID, String predicationName){
         this.predicationID = predicationID;
         this.getPredicationName = predicationName;
     }
 
 
-    public boolean compareAthlete(Results results){
-        if (predicationID.equalsIgnoreCase(results.getFirstPlace()))
+    public boolean compareAthlete(String firstPlace){
+        if (predicationID.equalsIgnoreCase(firstPlace))
         return true;
         else return false;
     }
