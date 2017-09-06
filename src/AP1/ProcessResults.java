@@ -54,14 +54,9 @@ public class ProcessResults {
             finalResultsArraryList.add(processResultsArrayList.get(i));
 
         }
-
-
-
-
-
-            results.setFirstPlace(processResultsArrayList.get(0).getAthID());
-            results.setSecondPlace(processResultsArrayList.get(1).getAthID());
-            results.setThirdPlace(processResultsArrayList.get(2).getAthID());
+            setFirstPlace(processResultsArrayList.get(0).getAthID());
+            setSecondPlace(processResultsArrayList.get(1).getAthID());
+            setThirdPlace(processResultsArrayList.get(2).getAthID());
 
         // results.setWinners(finalResultsArraryList);
     }
@@ -120,6 +115,10 @@ public class ProcessResults {
 
     public Results getResults() {
         return results;
+    }
+
+    public void cleanArraylist(){
+        processResultsArrayList.clear();
     }
 
     // loop dd

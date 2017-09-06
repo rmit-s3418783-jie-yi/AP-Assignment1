@@ -61,7 +61,7 @@ public class Driver {
                     displayResult();
                     break;
                 case 5:
-                    displayPoin(athleteArrayList,resultWinner);
+                    displayPoin(athleteArrayList,processResults);
                     break;
                 case 6:
                     break;
@@ -418,17 +418,15 @@ public class Driver {
             System.out.println("This game had canceled, please start again.");
         }else {
             System.out.println("Athletes are ready to compete, wait a second.");
-            TimeUnit.SECONDS.sleep(3);
-
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println("3");
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println("2");
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println("1");
             System.out.println("Result competed, please fo to display result part");
             // TODO: 2017/9/6  Reword.
-
-
         }
-
-
-
-
     }
 
     /****************************************************************************************************************
@@ -439,17 +437,23 @@ public class Driver {
     private void displayResult() {
         processResults.releaseResult(participantArrayList, game);
         //Results finalResult = new Results(results.getFirstPlace(),results.getSecondPlace(),results.getThirdPlace());
-        resultWinner.getFirstPlace();
-        if (prediction.compareAthlete(processResults)) {
+
+        System.out.println("you prediction is :" + prediction.getPredicationID());
+        System.out.println("The winner is : " + processResults.getFirstPlace());
+        if (prediction.compareAthlete(processResults.getFirstPlace())) {
             System.out.println("\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
                     "\n\t||\t\t\t\t\t\t||" +
-                    "\n\t||\t you predict\t\t|| " +
-                    "\n\t||\tright athlete!\t\t||" +
+                    "\n\t||\t   you predict\t|| " +
+                    "\n\t||\t right athlete!\t||" +
                     "\n\t||\t\t\t\t\t\t||" +
                     "\n\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
         }else {
+
             System.out.println("You did not win");
         }
+        processResults.cleanArraylist();
+        participantArrayList.clear();
+        prediction.setPredicationID("");
     }
 
 
@@ -460,7 +464,7 @@ public class Driver {
      *
      ****************************************************************************************************************/
 
-    private void displayPoin(ArrayList<Athlete> athleteArrayList, Results results) {
+    private void displayPoin(ArrayList<Athlete> athleteArrayList, ProcessResults results) {
         for (int i =0; i< athleteArrayList.size();i++){
             if (results.getFirstPlace().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
                 Athlete athlete = athleteArrayList.get(i);

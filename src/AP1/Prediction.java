@@ -18,8 +18,8 @@ public class Prediction {
     }
 
 
-    public boolean compareAthlete(ProcessResults results){
-        if (predicationID.equalsIgnoreCase(results.getFirstPlace()))
+    public boolean compareAthlete(String results){
+        if (predicationID.equalsIgnoreCase(results))
             return true;
         else return false;
     }
