@@ -361,6 +361,13 @@ public class Driver {
             if (!bCheckExist)
                 System.out.println("This athlete is not ready for this game, pleas select from above.");
         }while (!bCheckExist);
+
+        for (int i = 0; i <participantArrayList.size(); i++){
+            System.out.println("Athlete ID: " + participantArrayList.get(i).getParticipantID() +
+                    "\tAthlete Compete: " + participantArrayList.get(i).compete("Swimming"));
+        }
+
+
     }
 
     /****************************************************************************************************************
