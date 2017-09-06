@@ -8,16 +8,33 @@ public class Game {
     private String gameType;
 
     public Game (String gameID, String gameType){
-        this.gameID = gameID;
+        // this.gameID = gameID;
         this.gameType = gameType;
     }
 
-    public void setGameID(String gameID){
-        this.gameID = gameID;
+
+
+
+    public void setGameID(){
+
+        if (gameType == "Swimming"){
+            int i = 1;
+            gameID = "S" + i;
+            i++;
+        }
+        else if (gameType == "Running"){
+            int i = 1;
+            gameID = "R" + i;
+            i ++;
+        } else if (gameType == "Cycling"){
+            int i = 1;
+            gameID = "C" + i;
+            i ++;
+        }
     }
 
     public void setGameType(String gameType){
-        this.gameID = gameType;
+        this.gameType = gameType;
     }
 
     public String getGameID(){

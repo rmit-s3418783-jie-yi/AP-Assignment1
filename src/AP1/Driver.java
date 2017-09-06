@@ -18,9 +18,11 @@ public class Driver {
 
     private ParticipationList participationList; //  = new ParticipationList(); // why use this?
 
-    private Prediction prediction; // to store data prediction
+    private Prediction prediction = new Prediction("",""); // to store data prediction
 
     private Results results;
+
+    private Game game = new Game("","");
 
     // main menu
 
@@ -49,10 +51,12 @@ public class Driver {
                     // todo
                     break;
                 case 3:
-                    startGame();
+                    startGame(game);
+
+                    // give game id here
                     break;
                 case 4:
-                    // displayResult();
+                    displayResult();
                     break;
                 case 5:
                     // displayPoin();
@@ -64,6 +68,8 @@ public class Driver {
 
         }
     }
+
+
 
     private boolean bMainOptionTest(int mainMenuOption) {
         if (mainMenuOption >= 1 && mainMenuOption <= 6)
@@ -104,17 +110,30 @@ public class Driver {
             case 1: //Swimming
                 // TODO: 2017/9/1 test gaming type
                 // link to Swimming game
-                athleteChoose("Swimming", athleteArrayList);
+                game.setGameType("Swimming");
+                game.setGameID();
+                athleteChoose(game.getGameType(), athleteArrayList);
+                // do sth about increase gameID's number.
+
+
                 break;
             case 2:
                 // TODO: 2017/8/30
-                athleteChoose("Cycling",athleteArrayList);
+                game.setGameType("Cycling");
+                game.setGameID();
+                athleteChoose(game.getGameType(),athleteArrayList);
                 // link to Cycling game
+
+
                 break;
             case 3:
                 // TODO: 2017/8/30
-                athleteChoose("Running",athleteArrayList);
+                game.setGameType("Running");
+                game.setGameID();
+                athleteChoose(game.getGameType(),athleteArrayList);
                 // link to Cycling game
+
+
                 break;
             case 4:
                 // todo
@@ -350,7 +369,7 @@ public class Driver {
         do {
             String athleteID = input.next();
             for (int i = 0; i < participantArrayList.size();i++) {
-                bCheckExist = athleteID.equalsIgnoreCase(participantArrayList.get(i).getParticipantID())
+                bCheckExist = athleteID.equalsIgnoreCase(participantArrayList.get(i).getParticipantID());
                 if (bCheckExist) {
                     Athlete athlete = participantArrayList.get(i);
                     prediction.setPredicationID(athlete.getParticipantID());
@@ -362,10 +381,7 @@ public class Driver {
                 System.out.println("This athlete is not ready for this game, pleas select from above.");
         }while (!bCheckExist);
 
-        for (int i = 0; i <participantArrayList.size(); i++){
-            System.out.println("Athlete ID: " + participantArrayList.get(i).getParticipantID() +
-                    "\tAthlete Compete: " + participantArrayList.get(i).compete("Swimming"));
-        }
+
 
 
     }
@@ -375,13 +391,39 @@ public class Driver {
      * Start game part
      *
      ****************************************************************************************************************/
-    public void startGame() {
-
+    public void startGame(Game game) {
+        System.out.println(game.getGameID());
         if(participantArrayList.size()<4){
+            // cancel the game
             System.out.println("Sorry, the athlete numbers is less than 4, this game can not be accessed!");
+            participantArrayList.clear();
+            System.out.println("This game had canceled, please start again.");
+        }else {
+            // start the game
+            // we need the ProcessResults Class to process the results.
+            // ProcessResults.class();
+            for (int i = 0; i <participantArrayList.size(); i++){
+                System.out.println("Athlete ID: " + participantArrayList.get(i).getParticipantID() +
+                        "\tAthlete Compete: " + participantArrayList.get(i).compete(game.getGameType()));
+            }
+            //Get the result from process results and add to results list
 
         }
-        // ProcessResults.class();
+
+
+
+
+    }
+
+    /****************************************************************************************************************
+     *
+     * Display the result
+     *
+     ****************************************************************************************************************/
+    private void displayResult() {
+
+
+
 
 
         if (prediction.compareAthlete(results))
@@ -391,8 +433,11 @@ public class Driver {
                     "\n\t||\tright athlete!\t\t||"+
                     "\n\t||\t\t\t\t\t\t||"+
                     "\n\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
-
     }
+
+
+
+
 
     /****************************************************************************************************************
      *
