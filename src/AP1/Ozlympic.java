@@ -28,6 +28,8 @@ public class Ozlympic {
 
 
 
+
+
         //getAthlete(athleteList);
         // todo
         // pass value to menu class and then return sth

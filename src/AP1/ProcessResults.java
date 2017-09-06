@@ -36,6 +36,21 @@ public class ProcessResults {
 //
 //    Collections.sort(newList);
 //
+
+
+    public ArrayList<ProcessResults> processResultsArrayList(ArrayList<Athlete> participantArrayList, Game game){
+        for (int i = 0; i <participantArrayList.size(); i++){
+            setAthID(participantArrayList.get(i).getParticipantID());
+            setAthResults(participantArrayList.get(i).compete(game.getGameType()));
+            ProcessResults processResults = new ProcessResults(getAthID(),getAthResults());
+
+            processResultsArrayList.add(processResults);
+            Collections.sort(processResultsArrayList, new ComparatorResult());
+        }
+        return processResultsArrayList;
+    }
+
+
     public void releaseResult(ArrayList<Athlete> participantArrayList, Game game){
         for (int i = 0; i <participantArrayList.size(); i++){
             setAthID(participantArrayList.get(i).getParticipantID());
@@ -58,7 +73,7 @@ public class ProcessResults {
             setSecondPlace(processResultsArrayList.get(1).getAthID());
             setThirdPlace(processResultsArrayList.get(2).getAthID());
 
-        // results.setWinners(finalResultsArraryList);
+            results.setWinners(finalResultsArraryList);
     }
 
 

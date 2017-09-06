@@ -23,7 +23,7 @@ public class Cyclist extends Athlete{
     }
 
 
-    public String getParticpantAbility(){
+    public String getParticipantAbility(){
         return participantAbility;
     }
 

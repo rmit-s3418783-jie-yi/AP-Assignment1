@@ -20,11 +20,13 @@ public class Driver {
     private final int THIRDPLACEPOINT = 1;
 
     private ArrayList<Athlete> participantArrayList = new ArrayList<>();
-    private ArrayList<Results> resultsArrayList = new ArrayList<>();
+    // private ArrayList<processResults> resultsArrayList = new ArrayList<>();
     private ProcessResults processResults = new ProcessResults("",0);
+    private ArrayList<ProcessResults> resultsArrayList = new ArrayList<>();
     private Prediction prediction = new Prediction("",""); // to store data prediction
-    public Results resultWinner = new Results("","","");
+    private Official official = new Official("","");
     private Game game = new Game("","");
+    // public Results resultAll = new Results(game,"","","",official);
 
     // main menu
 
@@ -58,7 +60,7 @@ public class Driver {
                     // give game id here
                     break;
                 case 4:
-                    displayResult();
+                    // displayResult(game,res);
                     break;
                 case 5:
                     displayPoin(athleteArrayList,processResults);
@@ -111,10 +113,9 @@ public class Driver {
 
         switch (gameMenuOption){
             case 1: //Swimming
-                // TODO: 2017/9/1 test gaming type
                 // link to Swimming game
                 game.setGameType("Swimming");
-                game.setGameID();
+                game.setGameID();// TODO: 2017/9/6 Make sure ID will increase by 1
                 athleteChoose(game.getGameType(), athleteArrayList);
                 // do sth about increase gameID's number.
 
@@ -417,16 +418,59 @@ public class Driver {
             participantArrayList.clear();
             System.out.println("This game had canceled, please start again.");
         }else {
-            System.out.println("Athletes are ready to compete, wait a second.");
-            TimeUnit.SECONDS.sleep(1);
-            System.out.println("3");
-            TimeUnit.SECONDS.sleep(1);
-            System.out.println("2");
-            TimeUnit.SECONDS.sleep(1);
-            System.out.println("1");
-            System.out.println("Result competed, please fo to display result part");
+            processGame();
+
+            // TODO: 2017/9/6 make sure the resultArrayList can link to Result class
+            /***
+             * new things
+             */
+            // processResults.releaseResult(participantArrayList, game);
+
+            resultsArrayList = processResults.processResultsArrayList(participantArrayList,game);
+            for (int i =0; i< resultsArrayList.size(); i++){
+                System.out.println(resultsArrayList.get(i).toString());
+            }
+
+
+            //Results finalResult = new Results(results.getFirstPlace(),results.getSecondPlace(),results.getThirdPlace());
+
+            System.out.println("you prediction is :" + prediction.getPredicationID());
+            System.out.println("The winner is : " + processResults.getFirstPlace());
+            if (prediction.compareAthlete(processResults.getFirstPlace())) {
+                System.out.println("\t||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
+                        "\n\t||\t\t\t\t\t\t\t||" +
+                        "\n\t||\t\tyou predict\t\t\t|| " +
+                        "\n\t||\t   right athlete!\t\t||" +
+                        "\n\t||\t\t\t\t\t\t\t||" +
+                        "\n\t||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
+            }else {
+
+                System.out.println("You did not win");
+            }
+            processResults.cleanArraylist();
+            participantArrayList.clear();
+            prediction.setPredicationID("");
+
+
             // TODO: 2017/9/6  Reword.
         }
+    }
+
+    private void processGame() throws InterruptedException {
+        System.out.println("Athletes are ready to compete, wait a second.");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("**********\t3\t***********");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("**********\t2\t***********");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("**********\t1\t***********");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("/******************************************************\n" +
+                "     *\n" +
+                "     * \tResult competed, please go to display result part\n" +
+                "     *\n" +
+                "     *******************************************************/");
+        TimeUnit.SECONDS.sleep(1);
     }
 
     /****************************************************************************************************************
@@ -434,26 +478,10 @@ public class Driver {
      * Display the result
      *
      ****************************************************************************************************************/
-    private void displayResult() {
-        processResults.releaseResult(participantArrayList, game);
-        //Results finalResult = new Results(results.getFirstPlace(),results.getSecondPlace(),results.getThirdPlace());
+    private void displayResult(Game game, Results results, Official official) {
 
-        System.out.println("you prediction is :" + prediction.getPredicationID());
-        System.out.println("The winner is : " + processResults.getFirstPlace());
-        if (prediction.compareAthlete(processResults.getFirstPlace())) {
-            System.out.println("\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
-                    "\n\t||\t\t\t\t\t\t||" +
-                    "\n\t||\t   you predict\t|| " +
-                    "\n\t||\t right athlete!\t||" +
-                    "\n\t||\t\t\t\t\t\t||" +
-                    "\n\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
-        }else {
 
-            System.out.println("You did not win");
-        }
-        processResults.cleanArraylist();
-        participantArrayList.clear();
-        prediction.setPredicationID("");
+
     }
 
 
@@ -500,8 +528,14 @@ public class Driver {
             }
         return inputInt;
     }
+    /****************************************************************************************************************
+     *
+     * Random a official
+     *
+     ****************************************************************************************************************/
 
+    private void randomOfficial(ArrayList<Official> officials){
 
-
+    }
 
 }
