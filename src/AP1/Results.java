@@ -11,7 +11,7 @@ public class Results {
     private String thirdPlace;
     private Official official;
     private Game game;
-    private ProcessResults
+    //private ProcessResults;
 
     public Results(String s1,String s2,String s3){
         firstPlace = s1;

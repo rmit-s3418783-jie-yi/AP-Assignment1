@@ -4,16 +4,17 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.SplittableRandom;
 
 public class ProcessResults {
 
 
-    private int firstPlace;
-    private int secondPlace;
-    private int thirdPlace;
+    private String firstPlace;
+    private String secondPlace;
+    private String thirdPlace;
     private String athID;
     private int athResults;
-    public Results results = new Results("","","");
+    public Results results; // = new Results("","","");
 
     ArrayList<ProcessResults> processResultsArrayList = new ArrayList<>();
     ArrayList<ProcessResults> finalResultsArraryList = new ArrayList<>();
@@ -24,6 +25,7 @@ public class ProcessResults {
     public ProcessResults(String athID, int athResults){
         this.athID = athID;
         this.athResults = athResults;
+        // this.results = new Results("","","");
     }
 
     // TODO: 2017/9/4 compare the results to list DESC
@@ -47,19 +49,27 @@ public class ProcessResults {
 
 
         Collections.sort(processResultsArrayList, new ComparatorResult());
-        for (int i =0 ; i< processResultsArrayList.size(); i++)
+        for (int i =0 ; i< processResultsArrayList.size(); i++){
             System.out.println(processResultsArrayList.get(i).toString());
+            finalResultsArraryList.add(processResultsArrayList.get(i));
+
+        }
 
 
-            results.setFirstPlace(processResultsArrayList.get(0).getAthID());
-            results.setSecondPlace(processResultsArrayList.get(1).getAthID());
-            results.setThirdPlace(processResultsArrayList.get(2).getAthID());
+
+
+
+            setFirstPlace(processResultsArrayList.get(0).getAthID());
+            setSecondPlace(processResultsArrayList.get(1).getAthID());
+            setThirdPlace(processResultsArrayList.get(2).getAthID());
 
         // results.setWinners(finalResultsArraryList);
     }
 
 
-
+    public ArrayList getFinalResult(){
+        return finalResultsArraryList;
+    }
 
 
     public void setAthID(String athID) {
@@ -84,6 +94,33 @@ public class ProcessResults {
                 "\tAthlete Result:" + getAthResults();
     }
 
+    public void setThirdPlace(String thirdPlace) {
+        this.thirdPlace = thirdPlace;
+    }
+
+    public void setSecondPlace(String secondPlace) {
+        this.secondPlace = secondPlace;
+    }
+
+    public void setFirstPlace(String firstPlace) {
+        this.firstPlace = firstPlace;
+    }
+
+    public String getFirstPlace() {
+        return firstPlace;
+    }
+
+    public String getSecondPlace() {
+        return secondPlace;
+    }
+
+    public String getThirdPlace() {
+        return thirdPlace;
+    }
+
+    public Results getResults() {
+        return results;
+    }
 
     // loop dd
 

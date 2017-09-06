@@ -7,8 +7,6 @@
  **********************************************************************************************************************/
 package AP1;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -23,11 +21,13 @@ public class Driver {
 
     private ArrayList<Athlete> participantArrayList = new ArrayList<>();
     private ArrayList<Results> resultsArrayList = new ArrayList<>();
-    private ArrayList <ProcessResults> processResults = new ArrayList<ProcessResults>();
+    private ProcessResults processResults = new ProcessResults("",0);
     private Prediction prediction = new Prediction("",""); // to store data prediction
-    //public Results results = new Results(); //= new Results("","","");
+    public Results results = new Results(processResults.getFirstPlace(),processResults.getSecondPlace(),processResults.getThirdPlace());
     private Game game = new Game("","");
+
     // main menu
+
 
     /****************************************************************************************************************
      *
@@ -438,15 +438,18 @@ public class Driver {
      ****************************************************************************************************************/
     private void displayResult() {
         processResults.releaseResult(participantArrayList, game);
-        Results finalResult = new Results(results.getFirstPlace(),results.getSecondPlace(),results.getThirdPlace());
-        String firstPlace = results.getFirstPlace();
-        if (prediction.compareAthlete(firstPlace))
+        //Results finalResult = new Results(results.getFirstPlace(),results.getSecondPlace(),results.getThirdPlace());
+
+        if (prediction.compareAthlete(results)) {
             System.out.println("\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
-                    "\n\t||\t\t\t\t\t\t||"+
+                    "\n\t||\t\t\t\t\t\t||" +
                     "\n\t||\t you predict\t\t|| " +
-                    "\n\t||\tright athlete!\t\t||"+
-                    "\n\t||\t\t\t\t\t\t||"+
+                    "\n\t||\tright athlete!\t\t||" +
+                    "\n\t||\t\t\t\t\t\t||" +
                     "\n\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
+        }else {
+            System.out.println("You did not win");
+        }
     }
 
 
