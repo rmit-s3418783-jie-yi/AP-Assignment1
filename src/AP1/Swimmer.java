@@ -27,12 +27,7 @@ public class Swimmer extends Athlete{
         return result;//provides a number between 100 seconds and 200 seconds
     }
 
-    @Override
-    public String printAthlete() {
-        return "ParticipantID: " + super.getParticipantID()+ "\t" +
-                "Participant Name: " + super.getParticipantName() + "\t"+
-                "Ability: " +  participantAbility;
-    }
+
 
     public String getParticpantAbility(){
         return participantAbility;

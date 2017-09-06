@@ -21,12 +21,7 @@ public class Runner extends Athlete {
         return result; //provide a number between 10 to 20 seconds ..............
     }
 
-    @Override
-    public String printAthlete() {
-        return "ParticipantID: " + super.getParticipantID()+ "\t" +
-                "Participant Name: " + super.getParticipantName() + "\t"+
-                "Ability: " +  participantAbility;
-    }
+
 
     public String getParticpantAbility(){
         return participantAbility;

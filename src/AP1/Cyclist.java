@@ -21,12 +21,7 @@ public class Cyclist extends Athlete{
         result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
         return result;
     }
-    @Override
-    public String printAthlete() {
-        return "ParticipantID: " + super.getParticipantID()+ "\t" +
-                "Participant Name: " + super.getParticipantName() + "\t" +
-                "Ability: " +  participantAbility;
-    }
+
 
     public String getParticpantAbility(){
         return participantAbility;

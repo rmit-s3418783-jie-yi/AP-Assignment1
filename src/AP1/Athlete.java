@@ -10,7 +10,7 @@ public abstract class Athlete {
     private int participantAge;
     private String participantAbility;
     private int totalPoints;
-    private double latestResult;
+
 
     public  Athlete(String participantID, String participantName, String participantState, int participantAge){
         this.participantID = participantID;
@@ -18,7 +18,7 @@ public abstract class Athlete {
         this.participantState = participantState;
         this.participantAge = participantAge;
         totalPoints = 0;
-        latestResult = 0;
+
     }
 
 
@@ -65,13 +65,13 @@ public abstract class Athlete {
 
     public abstract int compete(String s);
 
-    public double getLatestResult() {     //To pass the most recent result of the athlete to decide winner
-        return latestResult;
+    public String printAthlete() {
+        return "ParticipantID: " + getParticipantID()+ "\t" +
+                "Participant Name: " + getParticipantName() + "\t" +
+                "Ability: " +  participantAbility;
     }
 
-    public void setLatestResult(double latestResult) {
-        this.latestResult = latestResult;
-    }
+
 
 //    @Override
 //    public String toString() {
@@ -80,5 +80,6 @@ public abstract class Athlete {
 //                "participantState: " + participantState + "\t" +
 //                "totalPoints: " + totalPoints;
 //    }
-    public abstract String printAthlete();
+
+
 }
