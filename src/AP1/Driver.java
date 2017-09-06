@@ -342,14 +342,25 @@ public class Driver {
      ****************************************************************************************************************/
     public void predictAthlete (){
         Scanner input = new Scanner(System.in);
-        // TODO: 2017/8/30
-        // list athletes from athleteChoose(String gameType)
+        boolean bCheckExist = false;
+        for (int i = 0; i < participantArrayList.size();i++){
+            System.out.println(participantArrayList.get(i).printAthlete());
+        }
         System.out.println("Select a athlete above to predict.\nPlease enter athlete ID");
-        // input
-        String athleteID = input.next(); // input sth but not right
-        // TODO: 2017/8/30 compare athleteID with ArrayList which from athleteChoose(String gameType)
-        // this is sth thing to learn how push and pull
-        prediction.setPredicationID(athleteID);
+        do {
+            String athleteID = input.next();
+            for (int i = 0; i < participantArrayList.size();i++) {
+                bCheckExist = athleteID.equalsIgnoreCase(participantArrayList.get(i).getParticipantID())
+                if (bCheckExist) {
+                    Athlete athlete = participantArrayList.get(i);
+                    prediction.setPredicationID(athlete.getParticipantID());
+                    prediction.setGetPredicationName(athlete.getParticipantName());
+                    break;
+                }
+            }
+            if (!bCheckExist)
+                System.out.println("This athlete is not ready for this game, pleas select from above.");
+        }while (!bCheckExist);
     }
 
     /****************************************************************************************************************
