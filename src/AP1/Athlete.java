@@ -63,7 +63,7 @@ public abstract class Athlete {
         this.totalPoints = totalPoints;
     }
 
-    public abstract void compete(String s);
+    public abstract int compete(String s);
 
     public double getLatestResult() {     //To pass the most recent result of the athlete to decide winner
         return latestResult;

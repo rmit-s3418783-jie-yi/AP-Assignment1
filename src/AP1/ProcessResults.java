@@ -1,5 +1,7 @@
 package AP1;
 
+import java.util.ArrayList;
+
 public class ProcessResults {
 
     // TODO: 2017/9/4 call athlete  compete()
@@ -14,6 +16,11 @@ public class ProcessResults {
 //
 //    Collections.sort(newList);
 //
+    public void createAthlete(ArrayList<ParticipationList> participationListArrayList){
+        for (int i = 0; i < participationListArrayList.size(); i ++){
+
+        }
+    }
     // loop dd
 
     // first. setID and setName
