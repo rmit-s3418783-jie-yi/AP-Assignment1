@@ -1,5 +1,3 @@
-package AP1;
-
 import java.util.Comparator;
 
 public class ComparatorResult implements Comparator<ProcessResults> {

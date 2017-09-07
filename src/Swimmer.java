@@ -1,9 +1,7 @@
-package AP1;
-
 
 import java.util.Random;
 
-public class Swimmer extends Athlete{
+public class Swimmer extends Athlete {
 
     private String participantAbility = "Swim";
 

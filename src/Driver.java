@@ -5,7 +5,6 @@
  * Version: 1.15
  * Update Date: 04/09/2017
  **********************************************************************************************************************/
-package AP1;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,14 +18,18 @@ public class Driver {
     private final int SECONDPLACEPOINT = 2;
     private final int THIRDPLACEPOINT = 1;
 
+    int swimCount = 1;
+    int cyclingCount= 1;
+    int runningCount = 1;
+
     private ArrayList<Athlete> participantArrayList = new ArrayList<>();
-    // private ArrayList<processResults> resultsArrayList = new ArrayList<>();
     private ProcessResults processResults = new ProcessResults("",0);
-    private ArrayList<ProcessResults> resultsArrayList = new ArrayList<>();
+    private ArrayList<ProcessResults> processResultsArrayList = new ArrayList<>();
     private Prediction prediction = new Prediction("",""); // to store data prediction
-    private Official official = new Official("","");
-    private Game game = new Game("","");
-    // public Results resultAll = new Results(game,"","","",official);
+    private Official official;
+    private Game game;
+    private Results finalResult;
+    private ArrayList<Results> finalResultArrayList= new ArrayList<>();
 
     // main menu
 
@@ -36,7 +39,7 @@ public class Driver {
      * This is the main menu part
      *
      ****************************************************************************************************************/
-    public void mainMenu(ArrayList<Athlete> athleteArrayList,ArrayList<Game> gameArrayList, ArrayList<Official> officialArrayList) throws InterruptedException {
+    public void mainMenu(ArrayList<Athlete> athleteArrayList, ArrayList<Game> gameArrayList, ArrayList<Official> officialArrayList) throws InterruptedException {
         int mainMenuOption = 0;
         boolean bMainOption = false;
         while (mainMenuOption != 6){
@@ -48,22 +51,25 @@ public class Driver {
             bMainOption = false;
             switch (mainMenuOption){
                 case 1:
+                    game = new Game("","");
+                    finalResult = new Results(game,"","","",official);
+                    participantArrayList.clear();
                     gameMenu(athleteArrayList, gameArrayList);
                     break;
                 case 2:
+                    prediction = new Prediction("","");
                     predictAthlete();
-                    // todo
                     break;
                 case 3:
                     startGame(participantArrayList,game);
-
-                    // give game id here
+                    setFinalResult(officialArrayList);
+                    setPoint(athleteArrayList,finalResult);
                     break;
                 case 4:
-                    // displayResult(game,res);
+                    displayResult();
                     break;
                 case 5:
-                    displayPoin(athleteArrayList,processResults);
+                    displayPoint(athleteArrayList);
                     break;
                 case 6:
                     break;
@@ -109,42 +115,34 @@ public class Driver {
             gameMenuOption = intTest(); // exception
             bGameMenuOption = bGameMenuOptionTest(gameMenuOption); //test mainMenuOption in the range
         } while (!bGameMenuOption);
-        bGameMenuOption = true;
-
         switch (gameMenuOption){
-            case 1: //Swimming
-                // link to Swimming game
+            case 1: // link to Swimming game
+
+                String sID = "S" + swimCount;
+                swimCount++;
+                game.setGameID(sID);
                 game.setGameType("Swimming");
-                game.setGameID();// TODO: 2017/9/6 Make sure ID will increase by 1
                 athleteChoose(game.getGameType(), athleteArrayList);
-                // do sth about increase gameID's number.
-
-
                 break;
-            case 2:
-                // TODO: 2017/8/30
+            case 2:// link to Cycling game
+
+                String cID = "C" + cyclingCount;
+                cyclingCount++;
+                game.setGameID(cID);
                 game.setGameType("Cycling");
-                game.setGameID();
                 athleteChoose(game.getGameType(),athleteArrayList);
-                // link to Cycling game
-
-
                 break;
-            case 3:
-                // TODO: 2017/8/30
+            case 3:// link to Cycling game
+
+                String rID = "R" + runningCount;
+                runningCount++;
+                game.setGameID(rID);
                 game.setGameType("Running");
-                game.setGameID();
                 athleteChoose(game.getGameType(),athleteArrayList);
-                // link to Cycling game
-
-
                 break;
-            case 4:
-                // todo
-                // back to main menu
+            case 4:// back to main menu
                 break;
         }
-//        }
     }
 
     private boolean bGameMenuOptionTest(int gameMenuOption) {
@@ -381,24 +379,29 @@ public class Driver {
         // after run a game, here should clean.
         Scanner input = new Scanner(System.in);
         boolean bCheckExist = false;
-        for (int i = 0; i < participantArrayList.size();i++){
-            System.out.println(participantArrayList.get(i).printAthlete());
-        }
-        System.out.println("Select a athlete above to predict.\nPlease enter athlete ID");
-        do {
-            String athleteID = input.next();
-            for (int i = 0; i < participantArrayList.size();i++) {
-                bCheckExist = athleteID.equalsIgnoreCase(participantArrayList.get(i).getParticipantID());
-                if (bCheckExist) {
-                    Athlete athlete = participantArrayList.get(i);
-                    prediction.setPredicationID(athlete.getParticipantID());
-                    prediction.setGetPredicationName(athlete.getParticipantName());
-                    break;
-                }
+        if (participantArrayList.size() !=0){
+            for (int i = 0; i < participantArrayList.size();i++){
+                System.out.println(participantArrayList.get(i).printAthlete());
             }
-            if (!bCheckExist)
-                System.out.println("This athlete is not ready for this game, pleas select from above.");
-        }while (!bCheckExist);
+            System.out.println("Select a athlete above to predict.\nPlease enter athlete ID");
+            do {
+                String athleteID = input.next();
+                for (int i = 0; i < participantArrayList.size();i++) {
+                    bCheckExist = athleteID.equalsIgnoreCase(participantArrayList.get(i).getParticipantID());
+                    if (bCheckExist) {
+                        Athlete athlete = participantArrayList.get(i);
+                        prediction.setPredicationID(athlete.getParticipantID());
+                        prediction.setGetPredicationName(athlete.getParticipantName());
+                        break;
+                    }
+                }
+                if (!bCheckExist)
+                    System.out.println("This athlete is not ready for this game, pleas select from above.");
+            }while (!bCheckExist);
+        }else {
+            System.out.println("Game is not ready, please select a game to run.");
+        }
+
 
 
 
@@ -410,7 +413,7 @@ public class Driver {
      * Start game part
      *
      ****************************************************************************************************************/
-    public void startGame(ArrayList<Athlete> participantArrayList,Game game) throws InterruptedException {
+    public void startGame(ArrayList<Athlete> participantArrayList, Game game) throws InterruptedException {
         System.out.println(game.toString());
         if(participantArrayList.size()<4){
             // cancel the game
@@ -418,25 +421,17 @@ public class Driver {
             participantArrayList.clear();
             System.out.println("This game had canceled, please start again.");
         }else {
-            processGame();
-
-            // TODO: 2017/9/6 make sure the resultArrayList can link to Result class
-            /***
-             * new things
-             */
-            // processResults.releaseResult(participantArrayList, game);
-
-            resultsArrayList = processResults.processResultsArrayList(participantArrayList,game);
-            for (int i =0; i< resultsArrayList.size(); i++){
-                System.out.println(resultsArrayList.get(i).toString());
+            processGame(); // the process text
+            processResultsArrayList = processResults.processResultsArrayList(participantArrayList,game);
+            for (int i =0; i< processResultsArrayList.size(); i++){
+                System.out.println(processResultsArrayList.get(i).toString());
             }
 
-
-            //Results finalResult = new Results(results.getFirstPlace(),results.getSecondPlace(),results.getThirdPlace());
+            finalResult.setWinners(processResultsArrayList);
 
             System.out.println("you prediction is :" + prediction.getPredicationID());
-            System.out.println("The winner is : " + processResults.getFirstPlace());
-            if (prediction.compareAthlete(processResults.getFirstPlace())) {
+            System.out.println("The winner is : " + finalResult.getFirstPlace());
+            if (prediction.compareAthlete(finalResult.getFirstPlace())) {
                 System.out.println("\t||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
                         "\n\t||\t\t\t\t\t\t\t||" +
                         "\n\t||\t\tyou predict\t\t\t|| " +
@@ -444,11 +439,9 @@ public class Driver {
                         "\n\t||\t\t\t\t\t\t\t||" +
                         "\n\t||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
             }else {
-
                 System.out.println("You did not win");
             }
-            processResults.cleanArraylist();
-            participantArrayList.clear();
+            processResults.cleanArrayList();
             prediction.setPredicationID("");
 
 
@@ -466,10 +459,10 @@ public class Driver {
         System.out.println("**********\t1\t***********");
         TimeUnit.SECONDS.sleep(1);
         System.out.println("/******************************************************\n" +
-                "     *\n" +
-                "     * \tResult competed, please go to display result part\n" +
-                "     *\n" +
-                "     *******************************************************/");
+                "*\n" +
+                "* \tResult competed, will be list blow\n" +
+                "*\n" +
+                "*******************************************************/");
         TimeUnit.SECONDS.sleep(1);
     }
 
@@ -478,21 +471,26 @@ public class Driver {
      * Display the result
      *
      ****************************************************************************************************************/
-    private void displayResult(Game game, Results results, Official official) {
+    private void setFinalResult(ArrayList<Official> officialArrayList){
+        finalResult.setOfficial(randomOfficial(officialArrayList));
+        finalResult.setGame(game);
+        finalResultArrayList.add(finalResult);
+    }
 
+    private void displayResult() {
+        for (int i = 0; i <finalResultArrayList.size();i++){
+            System.out.println(finalResultArrayList.get(i).toString());
+        }
 
 
     }
-
-
 
     /****************************************************************************************************************
      *
      * Display the point
      *
      ****************************************************************************************************************/
-
-    private void displayPoin(ArrayList<Athlete> athleteArrayList, ProcessResults results) {
+    private void setPoint(ArrayList<Athlete> athleteArrayList, Results results){
         for (int i =0; i< athleteArrayList.size();i++){
             if (results.getFirstPlace().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
                 Athlete athlete = athleteArrayList.get(i);
@@ -507,9 +505,13 @@ public class Driver {
                 athlete.setLastPoint(THIRDPLACEPOINT);
             }
         }
+    }
+
+    private void displayPoint(ArrayList<Athlete> athleteArrayList) {
         for (int i =0; i<athleteArrayList.size(); i++)
             System.out.println(athleteArrayList.get(i).toString());
     }
+
 
 
 
@@ -528,14 +530,18 @@ public class Driver {
             }
         return inputInt;
     }
+
     /****************************************************************************************************************
      *
      * Random a official
      *
      ****************************************************************************************************************/
 
-    private void randomOfficial(ArrayList<Official> officials){
-
+    private Official randomOfficial(ArrayList<Official> officialArrayList){
+        Random random = new Random();
+        int index = random.nextInt(officialArrayList.size()-1);
+        Official official = officialArrayList.get(index);
+        return official;
     }
 
 }

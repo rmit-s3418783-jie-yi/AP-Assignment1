@@ -1,6 +1,4 @@
-package AP1;
 
-import java.util.ArrayList;
 
 public class Prediction {
     //private Athlete prediction;
@@ -19,7 +17,11 @@ public class Prediction {
 
 
     public boolean compareAthlete(String results){
-        if (predicationID.equalsIgnoreCase(results))
+        if (results == null) {
+            System.out.println("Your prediction is Null.");
+            return false;
+        }
+        else if (predicationID.equalsIgnoreCase(results))
             return true;
         else return false;
     }
