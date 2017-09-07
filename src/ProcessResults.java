@@ -9,24 +9,11 @@ public class ProcessResults {
     // private Results results;
 
     ArrayList<ProcessResults> processResultsArrayList = new ArrayList<>();
-    // ArrayList<ProcessResults> finalResultsArraryList = new ArrayList<>();
-    // TODO: 2017/9/4 call athlete  compete()
-
-    // here will be have a loop to go through each athlete.copete().
 
     public ProcessResults(String athID, int athResults){
         this.athID = athID;
         this.athResults = athResults;
     }
-
-    // TODO: 2017/9/4 compare the results to list DESC
-
-//    List unmodifiableList = Collections.unmodifiableList(list);
-//
-//    List newList = new ArrayList(unmodifiableList);
-//
-//    Collections.sort(newList);
-//
 
 
     public ArrayList<ProcessResults> processResultsArrayList(ArrayList<Athlete> participantArrayList, Game game){

@@ -19,21 +19,18 @@ public class SuperAthlete extends Athlete{
         Random random =  new Random();
 
         if(s == "Swimming"){
-            //TODO
             //Swimmer calculations
             int min = 100;
             int max = 200;
             result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
         }
         else if(s == "Running"){
-            //TODO
             //Runner Calculations
             int min = 10;
             int max = 20;
             result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
         }
         else if(s == "Cycling") {
-            //TODO
             //Cyclist Calculations
             int min = 500;
             int max = 800;

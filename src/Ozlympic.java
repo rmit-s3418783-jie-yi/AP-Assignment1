@@ -9,7 +9,6 @@
 import java.util.*;
 
 public class Ozlympic {
-    // todo
     // this is the main class which control all games and may be the interface
     // Scanner input = new Scanner(System.in);
     public static void main (String[] args) throws InterruptedException {
@@ -25,12 +24,6 @@ public class Ozlympic {
         officialData(officialsList);
         gameType(gameList);
 
-
-
-
-
-        //getAthlete(athleteList);
-        // todo
         // pass value to menu class and then return sth
         Driver driver = new Driver(); // create new menu
         driver.mainMenu(athleteList, gameList,officialsList);

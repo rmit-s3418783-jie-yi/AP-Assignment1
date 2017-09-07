@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Driver {
 
-
     private final int FIRSTPLACEPOINT = 5;
     private final int SECONDPLACEPOINT = 2;
     private final int THIRDPLACEPOINT = 1;
@@ -61,6 +60,7 @@ public class Driver {
                     predictAthlete();
                     break;
                 case 3:
+                    // TODO: 2017/9/7 need the exception
                     startGame(participantArrayList,game);
                     setFinalResult(officialArrayList);
                     setPoint(athleteArrayList,finalResult);
@@ -414,7 +414,6 @@ public class Driver {
      *
      ****************************************************************************************************************/
     public void startGame(ArrayList<Athlete> participantArrayList, Game game) throws InterruptedException {
-        System.out.println(game.toString());
         if(participantArrayList.size()<4){
             // cancel the game
             System.out.println("Sorry, the athlete numbers is less than 4, this game can not be accessed!");
@@ -447,6 +446,7 @@ public class Driver {
 
             // TODO: 2017/9/6  Reword.
         }
+
     }
 
     private void processGame() throws InterruptedException {
