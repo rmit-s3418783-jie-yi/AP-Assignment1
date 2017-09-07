@@ -1,6 +1,4 @@
-package AP1;
 
-import java.util.ArrayList;
 
 public class Prediction {
     //private Athlete prediction;
@@ -10,15 +8,21 @@ public class Prediction {
     // only one thing need to do
     // compare the prediction with the first place
 
+    // public Results results;
+
     public Prediction (String predicationID, String predicationName){
         this.predicationID = predicationID;
         this.getPredicationName = predicationName;
     }
 
 
-    public boolean compareAthlete(Results results){
-        if (predicationID.equalsIgnoreCase(results.getFirstPlace()))
-        return true;
+    public boolean compareAthlete(String results){
+        if (results == null) {
+            System.out.println("Your prediction is Null.");
+            return false;
+        }
+        else if (predicationID.equalsIgnoreCase(results))
+            return true;
         else return false;
     }
 

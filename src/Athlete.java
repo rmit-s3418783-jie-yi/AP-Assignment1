@@ -1,4 +1,3 @@
-package AP1;
 
 import java.util.*;
 
@@ -9,16 +8,15 @@ public abstract class Athlete {
     private String participantState;
     private int participantAge;
     private String participantAbility;
+    private int lastPoint;
     private int totalPoints;
-    private double latestResult;
 
-    public  Athlete(String participantID, String participantName, String participantState, int participantAge){
+
+    public Athlete(String participantID, String participantName, String participantState, int participantAge){
         this.participantID = participantID;
         this.participantName = participantName;
         this.participantState = participantState;
         this.participantAge = participantAge;
-        totalPoints = 0;
-        latestResult = 0;
     }
 
 
@@ -59,26 +57,37 @@ public abstract class Athlete {
         this.participantID = participantID;
     }
 
-    public void setTotalPoints(int totalPoints) {
-        this.totalPoints = totalPoints;
+    public void setTotalPoints() {
+        totalPoints += lastPoint;
     }
 
-    public abstract void compete(String s);
-
-    public double getLatestResult() {     //To pass the most recent result of the athlete to decide winner
-        return latestResult;
+    public void setLastPoint(int point) {
+        this.lastPoint = point;
+        setTotalPoints();
     }
 
-    public void setLatestResult(double latestResult) {
-        this.latestResult = latestResult;
+    public int getLastPoint() {
+        return lastPoint;
     }
 
-//    @Override
-//    public String toString() {
-//        return "ParticipantID: " + participantID + "\t" +
-//                "participantName: " + participantName + "\t" +
-//                "participantState: " + participantState + "\t" +
-//                "totalPoints: " + totalPoints;
-//    }
-    public abstract String printAthlete();
+    public abstract int compete(String s);
+
+    public String printAthlete() {
+        return "ParticipantID: " + getParticipantID()+ "\t" +
+                "Participant Name: " + getParticipantName() + "\t" +
+                "Ability: " +  getParticipantAbility();
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "ParticipantID: " + participantID +
+                "\tparticipantName: " + participantName +
+                "\tparticipantState: " + participantState +
+                "\tparticipantAge: " + participantAge +
+                "\ttotalPoints: " + totalPoints;
+    }
+
+
 }

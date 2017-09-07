@@ -1,12 +1,17 @@
-package AP1;
+/**********************************************************************************************************************
+ * Author: JIE YI (Jay) && Dario
+ * Purpose: The Start class that for AP-Assignment1
+ * Create Date: 28/07/2017
+ * Version: 1.03
+ * Update Date: 11/08/2017
+ *********************************************************************************************************************/
 
 import java.util.*;
 
 public class Ozlympic {
-    // todo
     // this is the main class which control all games and may be the interface
     // Scanner input = new Scanner(System.in);
-    public static void main (String[] args){
+    public static void main (String[] args) throws InterruptedException {
 
         ArrayList<Athlete> athleteList = new ArrayList<>();
         ArrayList<Game> gameList = new ArrayList<>();
@@ -19,16 +24,6 @@ public class Ozlympic {
         officialData(officialsList);
         gameType(gameList);
 
-
-        System.out.println("\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
-                "\n\t||\t\t\t\t\t\t||"+
-
-                "\n\t||\t you predict\t\t|| " +
-                "\n\t||\tright athlete!\t\t||"+
-                "\n\t||\t\t\t\t\t\t||"+
-                "\n\t||★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
-        //getAthlete(athleteList);
-        // todo
         // pass value to menu class and then return sth
         Driver driver = new Driver(); // create new menu
         driver.mainMenu(athleteList, gameList,officialsList);
@@ -84,12 +79,12 @@ public class Ozlympic {
 
     public static void swimmerData(ArrayList athleteList){
         Athlete swimmer1 = new Swimmer("S01","Vincent","VIC",23);
-        Athlete swimmer2 = new Swimmer("S02","Vincent","VIC",25);
-        Athlete swimmer3 = new Swimmer("S03","Vincent","VIC",28);
-        Athlete swimmer4 = new Swimmer("S04","Vincent","VIC",35);
-        Athlete swimmer5 = new Swimmer("S05","Vincent","VIC",25);
-        Athlete swimmer6 = new Swimmer("S06","Vincent","VIC",27);
-        Athlete swimmer7 = new Swimmer("S07","Vincent","VIC",26);
+        Athlete swimmer2 = new Swimmer("S02","Aincent","VIC",25);
+        Athlete swimmer3 = new Swimmer("S03","Bincent","VIC",28);
+        Athlete swimmer4 = new Swimmer("S04","Cincent","VIC",35);
+        Athlete swimmer5 = new Swimmer("S05","Dincent","VIC",25);
+        Athlete swimmer6 = new Swimmer("S06","Eincent","VIC",27);
+        Athlete swimmer7 = new Swimmer("S07","Fincent","VIC",26);
         athleteList.add(swimmer1);
         athleteList.add(swimmer2);
         athleteList.add(swimmer3);

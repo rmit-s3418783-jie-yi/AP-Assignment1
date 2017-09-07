@@ -1,4 +1,3 @@
-package AP1;
 
 public class Official{
 
@@ -24,5 +23,10 @@ public class Official{
 
     public void setOfficialName(String officialName) {
         this.officialName = officialName;
+    }
+
+    @Override
+    public String toString() {
+        return "OfficialID: " + officialID + "\tOfficialName: " + officialName;
     }
 }
