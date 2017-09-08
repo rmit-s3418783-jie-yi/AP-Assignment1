@@ -61,9 +61,12 @@ public class Driver {
                     break;
                 case 3:
                     // TODO: 2017/9/7 need the exception
-                    startGame(participantArrayList,game);
-                    setFinalResult(officialArrayList);
-                    setPoint(athleteArrayList,finalResult);
+                    if (runGame()){
+                        startGame(participantArrayList,game);
+                        // If game not start dont do next.
+                        setFinalResult(officialArrayList);
+                        setPoint(athleteArrayList,finalResult);
+                    }
                     break;
                 case 4:
                     displayResult();
@@ -413,6 +416,18 @@ public class Driver {
      * Start game part
      *
      ****************************************************************************************************************/
+    public boolean runGame(){
+        if (participantArrayList.size() !=0)
+            return true;
+        else {
+            System.out.println("Please select a game to run");
+            return false;
+        }
+    }
+
+
+
+
     public void startGame(ArrayList<Athlete> participantArrayList, Game game) throws InterruptedException {
         if(participantArrayList.size()<4){
             // cancel the game
@@ -480,9 +495,14 @@ public class Driver {
     }
 
     private void displayResult() {
-        for (int i = 0; i <finalResultArrayList.size();i++){
-            System.out.println(finalResultArrayList.get(i).toString());
+        if (finalResultArrayList.size() != 0){
+            for (int i = 0; i <finalResultArrayList.size();i++){
+                System.out.println(finalResultArrayList.get(i).toString());
+            }
+        }else {
+            System.out.println("No game had hold before, please run a game first.");
         }
+
 
 
     }
