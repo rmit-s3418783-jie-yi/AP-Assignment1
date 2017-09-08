@@ -452,7 +452,9 @@ public class Driver {
     private void processGame() throws InterruptedException {
         System.out.println("Athletes are ready to compete, wait a second.");
         TimeUnit.SECONDS.sleep(1);
-        System.out.println("**********\t3\t***********");
+        System.out.println("*****o\n" +
+                "    _ /<.\n" +
+                "   (*)>(*)*****\t3\t***********");
         TimeUnit.SECONDS.sleep(1);
         System.out.println("**********\t2\t***********");
         TimeUnit.SECONDS.sleep(1);
