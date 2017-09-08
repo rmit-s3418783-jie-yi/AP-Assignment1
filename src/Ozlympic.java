@@ -106,10 +106,10 @@ public class Ozlympic {
     }
 
     private static void officialData(ArrayList<Official> officialsList) {
-        Official official1 = new Official("OFF01","Dario");
-        Official official2 = new Official("OFF02","Jay");
-        Official official3 = new Official("OFF03","Vincent");
-        Official official4 = new Official("OFF04","Maggie");
+        Official official1 = new Official("OF01","Dario");
+        Official official2 = new Official("OF02","Jay");
+        Official official3 = new Official("OF03","Vincent");
+        Official official4 = new Official("OF04","Maggie");
         officialsList.add(official1);
         officialsList.add(official2);
         officialsList.add(official3);
