@@ -1,5 +1,5 @@
 /**********************************************************************************************************************
- * Author:
+ * Author: Dario Ongsono
  * Purpose: This class responsible for the swimmer athlete and how it process its compete method
  * Create Date: 28/07/2017
  * Version: 1.15
@@ -12,7 +12,8 @@ import java.util.Random;
 
 public class Swimmer extends Athlete{
     private String participantAbility;
-    private int result;
+    private int result; //Result of their compete method
+
     public Swimmer (String participantID, String participantName, String participantState, int participantAge) {
         super(participantID,participantName,participantState,participantAge);
         participantAbility = "Swim";
@@ -35,6 +36,6 @@ public class Swimmer extends Athlete{
     @Override
     public int getResult() {
         return result;
-    }
+    } //gets the results of the compete method
 
 }
