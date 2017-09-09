@@ -104,7 +104,7 @@ public class Driver {
     }
 
     public void menuText(){
-        // TODO: 2017/9/9 Text
+
         System.out.print("\tOlympic Game\t\n=============================\n" +
                 "1.\tSelect a game to run\n" +
                 "2.\tPredict the winner of the game\n" +
@@ -121,12 +121,12 @@ public class Driver {
      *
      ****************************************************************************************************************/
     public void gameMenuText(){
-        // TODO: 2017/9/9 text
+
         System.out.print("\tOlympic Game\t\n=============================\n" +
                 "1.\tSwimming\n" +
                 "2.\tCycling\n" +
                 "3.\tRunning\n" +
-                "4.\tBack to main menu without save game\n\n" +
+                "4.\tBack to main menu without saving game\n\n" +
                 "Enter an option: ");
     }
 
@@ -180,11 +180,11 @@ public class Driver {
      *
      ****************************************************************************************************************/
     public void selectAthlete(ArrayList<Participant> participants) {
-        // TODO: 2017/9/9 Reword.
+
         System.out.println("\tOlympic Game\t\n=============================\n"
-                +"how do you want to add Athlete?"
-                +"1\tadd athletes by yourself? (less than 8 athletes)\n"
-                +"2\tadd athletes automatically (full fill)");
+                +"how do you want to add the Athletes?"
+                +"1\tAdding athletes manually by Athlete ID (less than 8 athletes)\n"
+                +"2\tAdd athletes automatically (8 athletes)");
         int athleteNum;
         int athleteChoose;
         boolean bAthleteChoose;
@@ -213,8 +213,8 @@ public class Driver {
         Scanner input = new Scanner(System.in);
         for (int i =0; i < athleteNum; i++){
             listPlayers(participants);
-            System.out.println("Please enter athlete's ID to add athlete to play game.");
-            System.out.println("Please add（" +(i+1)+" of "+athleteNum+"） athlete: ");
+            System.out.println("Please enter the athlete's ID to compete.");
+            System.out.println("Please add（" +(i+1)+" of "+athleteNum+"） athletes: ");
             String addParticipant = "";
             boolean bAddParticipant;// = false;
             boolean bCheckExist;// = false;
@@ -260,13 +260,13 @@ public class Driver {
     public int athleteNo() {
         int athleteNum;
         boolean bAthleteNum;
-        System.out.println("How many athletes your want to add?");
+        System.out.println("How many athletes do you want to add?");
         do {
             athleteNum = intException(); // how many athletes you want
             if (athleteNum >= 1 && athleteNum <= 8) bAthleteNum = true;
             else {
                 bAthleteNum = false;
-                System.out.println("\n\tYour option is invalid, please enter number 1 or 8.");
+                System.out.println("\n\tYour option is invalid, please enter a number from 1 to 8.");
             }
         } while (!bAthleteNum);
         return athleteNum;
@@ -274,12 +274,12 @@ public class Driver {
 
     public void warning(boolean bAddParticipant, boolean bCheckExist, boolean bGameType, ArrayList participants) {
         if (!bAddParticipant)
-            System.out.println("We don't have this athlete, please enter the existing athleteID.");
+            System.out.println("We do not have this athlete, please enter an existing athleteID.");
         if (!bCheckExist)
-            System.out.println("This athlete already the add to list, please select again.");
+            System.out.println("This athlete has already been added to the list, please select another.");
         if (!bGameType){
             listPlayers(participants);
-            System.out.println("This athlete is not suitable for " + gameType +", please enter the ID above: ");
+            System.out.println("This athlete is not suitable for " + gameType +", please enter an ID from above: ");
         }
     }
 
@@ -340,7 +340,7 @@ public class Driver {
             for (int i = 0; i < participantArrayList.size();i++){
                 System.out.println(participantArrayList.get(i).printParticipant());
             }
-            System.out.println("Select a athlete above to predict.\nPlease enter athlete ID");
+            System.out.println("Select an athlete from above to predict.\nPlease enter athlete ID");
             do {
                 String athleteID = input.next();
                 for (int i = 0; i < participantArrayList.size();i++) {
@@ -352,7 +352,7 @@ public class Driver {
                     }
                 }
                 if (!bCheckExist)
-                    System.out.println("This athlete is not ready for this game, pleas select from above.");
+                    System.out.println("This athlete is not ready for this game, please select from above.");
             }while (!bCheckExist);
         }else {
             System.out.println("Game is not ready, please select a game to run.");
@@ -365,7 +365,7 @@ public class Driver {
      *
      ****************************************************************************************************************/
     public void processGame() throws Exception {
-        System.out.println("Athletes are ready to compete, wait a second.");
+        System.out.println("Athletes are ready to compete, please wait a second.");
         TimeUnit.SECONDS.sleep(1);
         System.out.println("**********\t3\t***********");
         TimeUnit.SECONDS.sleep(1);
@@ -375,7 +375,7 @@ public class Driver {
         TimeUnit.SECONDS.sleep(1);
         System.out.println("/******************************************************\n" +
                 "*\n" +
-                "* \tResult competed, will be list blow\n" +
+                "* \tProcessing results completed! The result will be listed below\n" +
                 "*\n" +
                 "*******************************************************/");
         TimeUnit.SECONDS.sleep(1);
@@ -397,9 +397,9 @@ public class Driver {
         resultsArrayList.add(results);
 
         // prediction.prediciton(results.getFirstID());
-        System.out.println(prediction.match(results.getFirstID()));
+        System.out.println(prediction.compareWinner(results.getFirstID()));
         processResults.cleanArrayList();
-        // TODO: 2017/9/9 check here
+
         prediction.setPredicationID("");
     }
 
@@ -409,7 +409,7 @@ public class Driver {
                 System.out.println(resultsArrayList.get(i).toString());
             }
         }else {
-            System.out.println("No game had hold before, please run a game first.");
+            System.out.println("No data of any game, please run a game first to display results.");
         }
 
 
@@ -507,9 +507,9 @@ public class Driver {
     public boolean startGame(ArrayList<Athlete> participantArrayList, Game game) throws Exception {
         if (participantArrayList.size() < 4) {
             // cancel the game
-            System.out.println("Sorry, the athlete numbers is less than 4, this game can not be accessed!");
+            System.out.println("Sorry, the number of athletes competing are less than 4, this game can't start with less than 4 athletes");
             participantArrayList.clear();
-            System.out.println("This game had canceled, please start again.");
+            System.out.println("This game had cancelled, please start again.");
             return false;
         } else {
             processResults = new ProcessResults("",0);

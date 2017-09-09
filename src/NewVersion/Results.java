@@ -1,6 +1,6 @@
 /**********************************************************************************************************************
- * Author:
- * Purpose: This is the control class that can hold most function and method to run a game.
+ * Author: Dario Ongsono
+ * Purpose: This class is used to set the winners of each game and to be used to record match data
  * Create Date: 28/07/2017
  * Version: 1.15
  * Update Date: 04/09/2017
@@ -52,11 +52,6 @@ public class Results {
         this.official = official;
     }
 
-    public void cleanResult(){
-        firstID = "";
-        secondID = "";
-        thirdID = "";
-    }
 
     @Override
     public String toString() {

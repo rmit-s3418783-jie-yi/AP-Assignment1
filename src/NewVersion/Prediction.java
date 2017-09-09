@@ -17,7 +17,7 @@ public class Prediction {
         this.predicationID = predicationID;
     }
 
-    public String match(String results){
+    public String compareWinner(String results){
         if (results == null || predicationID == null){ //If the user did not predict
             return "You did not predict a winner";
         } else {
@@ -28,7 +28,7 @@ public class Prediction {
                         "\n\t||\t   the right athlete!\t\t||" +
                         "\n\t||\t\t\t\t\t\t\t||" +
                         "\n\t||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||";
-                // TODO: 9/09/2017 Winner predict message
+                ge
             } else
                 return "Sorry! You did not predict correctly. Please try again! :) "; //If winner did not predict correctly
         }
