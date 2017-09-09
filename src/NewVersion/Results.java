@@ -61,7 +61,7 @@ public class Results {
     @Override
     public String toString() {
         return  game.toString()+
-                "\nReference: \n" + official.printParticipant() +
+                "\n\tRefer from \n" + official.printParticipant() +
                 "\nFirstPlace: " + firstID +
                 "\nSecondPlace: " + secondID +
                 "\nThirdPlace: " + thirdID;

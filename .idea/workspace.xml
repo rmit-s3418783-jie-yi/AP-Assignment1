@@ -6,21 +6,8 @@
     <list id="3861c6b8-0103-4799-b60d-658a8dc6e8a1" name="sasd (cherry picked from commit 3eafc17)" comment="sasd&#10;&#10;(cherry picked from commit 3eafc17)" />
     <list default="true" id="7519f138-14c9-4ca4-8436-d084d68f468e" name="Default" comment="test">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Athlete.java" afterPath="$PROJECT_DIR$/src/NewVersion/Athlete.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/ComparatorResult.java" afterPath="$PROJECT_DIR$/src/NewVersion/ComparatorResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Cyclist.java" afterPath="$PROJECT_DIR$/src/NewVersion/Cyclist.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Driver.java" afterPath="$PROJECT_DIR$/src/NewVersion/Driver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Game.java" afterPath="$PROJECT_DIR$/src/NewVersion/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Official.java" afterPath="$PROJECT_DIR$/src/NewVersion/Official.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Ozlympic.java" afterPath="$PROJECT_DIR$/src/NewVersion/Ozlympic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Participant.java" afterPath="$PROJECT_DIR$/src/NewVersion/Participant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Prediction.java" afterPath="$PROJECT_DIR$/src/NewVersion/Prediction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/ProcessResults.java" afterPath="$PROJECT_DIR$/src/NewVersion/ProcessResults.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Results.java" afterPath="$PROJECT_DIR$/src/NewVersion/Results.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Runner.java" afterPath="$PROJECT_DIR$/src/NewVersion/Runner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/SuperAthlete.java" afterPath="$PROJECT_DIR$/src/NewVersion/SuperAthlete.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NewVersion/Swimmer.java" afterPath="$PROJECT_DIR$/src/NewVersion/Swimmer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Results.java" afterPath="$PROJECT_DIR$/src/Results.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,14 +27,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Driver.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Driver.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/NewVersion/Driver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+            <state relative-caret-position="1140">
+              <caret line="384" column="5" lean-forward="true" selection-start-line="384" selection-start-column="5" selection-end-line="384" selection-end-column="5" />
               <folding>
+                <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
+                <element signature="method#menu#0;class#Driver#0" expanded="false" />
                 <element signature="method#displayResult#0;class#Driver#0" expanded="false" />
+                <element signature="method#startGame#0;class#Driver#0" expanded="false" />
+                <element signature="method#setFinalResult#0;class#Driver#0" expanded="false" />
                 <element signature="method#setPoint#0;class#Driver#0" expanded="false" />
                 <element signature="method#displayPoint#0;class#Driver#0" expanded="false" />
                 <element signature="method#selectAthlete#0;class#Driver#0" expanded="false" />
@@ -89,9 +80,13 @@
       <file leaf-file-name="ComparatorResult.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NewVersion/ComparatorResult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="180">
+              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#612#613#0" expanded="true" />
+                <element signature="e#676#677#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Swimmer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Swimmer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NewVersion/Swimmer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
-              <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+              <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -129,8 +124,8 @@
       <file leaf-file-name="Ozlympic.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/NewVersion/Ozlympic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="120" lean-forward="false" selection-start-line="6" selection-start-column="120" selection-end-line="6" selection-end-column="120" />
+            <state relative-caret-position="210">
+              <caret line="14" column="53" lean-forward="true" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="method#setOfficial#0;class#Ozlympic#0" expanded="false" />
@@ -203,6 +198,7 @@
       <find>finalResult</find>
       <find>AP1.</find>
       <find>participantArrayList</find>
+      <find>splitArrayList</find>
     </findStrings>
     <replaceStrings>
       <replace>bMainOption</replace>
@@ -271,15 +267,15 @@
         <option value="$PROJECT_DIR$/src/NewVersion/ProcessResults.java" />
         <option value="$PROJECT_DIR$/src/NewVersion/Prediction.java" />
         <option value="$PROJECT_DIR$/src/NewVersion/Participant.java" />
-        <option value="$PROJECT_DIR$/src/NewVersion/Ozlympic.java" />
         <option value="$PROJECT_DIR$/src/NewVersion/Official.java" />
         <option value="$PROJECT_DIR$/src/NewVersion/Game.java" />
-        <option value="$PROJECT_DIR$/src/NewVersion/Driver.java" />
         <option value="$PROJECT_DIR$/src/NewVersion/Cyclist.java" />
         <option value="$PROJECT_DIR$/src/NewVersion/ComparatorResult.java" />
         <option value="$PROJECT_DIR$/src/NewVersion/Athlete.java" />
         <option value="$PROJECT_DIR$/src/NewVersion/Runner.java" />
         <option value="$PROJECT_DIR$/src/NewVersion/Swimmer.java" />
+        <option value="$PROJECT_DIR$/src/NewVersion/Ozlympic.java" />
+        <option value="$PROJECT_DIR$/src/NewVersion/Driver.java" />
       </list>
     </option>
   </component>
@@ -295,7 +291,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="873" />
@@ -688,7 +684,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169535000" />
+    <option name="totallyTimeSpent" value="170839000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -700,8 +696,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="873" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277635" sideWeight="0.43633762" order="6" side_tool="false" content_ui="tabs" />
@@ -716,7 +711,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39974293" sideWeight="0.3004292" order="9" side_tool="false" content_ui="tabs" x="409" y="299" width="620" height="280" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17596567" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17596567" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2496318" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -946,7 +941,7 @@
         <state relative-caret-position="210">
           <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -964,7 +959,7 @@
         <state relative-caret-position="112">
           <caret line="110" column="44" lean-forward="false" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1049,20 +1044,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/NewVersion/Ozlympic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="120" lean-forward="false" selection-start-line="6" selection-start-column="120" selection-end-line="6" selection-end-column="120" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="method#setOfficial#0;class#Ozlympic#0" expanded="false" />
-            <element signature="method#setCyclist#0;class#Ozlympic#0" expanded="false" />
-            <element signature="method#setRunner#0;class#Ozlympic#0" expanded="false" />
-            <element signature="method#setSwimmer#0;class#Ozlympic#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/NewVersion/Official.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1079,49 +1060,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/NewVersion/Driver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#displayResult#0;class#Driver#0" expanded="false" />
-            <element signature="method#setPoint#0;class#Driver#0" expanded="false" />
-            <element signature="method#displayPoint#0;class#Driver#0" expanded="false" />
-            <element signature="method#selectAthlete#0;class#Driver#0" expanded="false" />
-            <element signature="method#fullFillParticipationList#0;class#Driver#0" expanded="false" />
-            <element signature="method#addParticipationList#0;class#Driver#0" expanded="false" />
-            <element signature="method#warning#0;class#Driver#0" expanded="false" />
-            <element signature="method#athleteNo#0;class#Driver#0" expanded="false" />
-            <element signature="method#selectGame#0;class#Driver#0" expanded="false" />
-            <element signature="method#bGameMenuOptionTest#0;class#Driver#0" expanded="false" />
-            <element signature="method#bMainOptionTest#0;class#Driver#0" expanded="false" />
-            <element signature="method#splitArrayList#0;class#Driver#0" expanded="false" />
-            <element signature="method#setOfficial#0;class#Driver#0" expanded="false" />
-            <element signature="method#setGame#0;class#Driver#0" expanded="false" />
-            <element signature="method#intException#0;class#Driver#0" expanded="false" />
-            <element signature="method#processGame#0;class#Driver#0" expanded="false" />
-            <element signature="method#menuText#0;class#Driver#0" expanded="false" />
-            <element signature="method#gameMenuText#0;class#Driver#0" expanded="false" />
-            <element signature="method#listPlayers#0;class#Driver#0" expanded="false" />
-            <element signature="method#checkExist#0;class#Driver#0" expanded="false" />
-            <element signature="method#checkGameType#0;class#Driver#0" expanded="false" />
-            <element signature="method#displayAthlete#0;class#Driver#0" expanded="false" />
-            <element signature="method#predictAthlete#0;class#Driver#0" expanded="false" />
-            <element signature="method#runGame#0;class#Driver#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/NewVersion/Cyclist.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NewVersion/ComparatorResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
@@ -1148,8 +1087,72 @@
     <entry file="file://$PROJECT_DIR$/src/NewVersion/Swimmer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+          <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NewVersion/Ozlympic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="53" lean-forward="true" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="method#setOfficial#0;class#Ozlympic#0" expanded="false" />
+            <element signature="method#setCyclist#0;class#Ozlympic#0" expanded="false" />
+            <element signature="method#setRunner#0;class#Ozlympic#0" expanded="false" />
+            <element signature="method#setSwimmer#0;class#Ozlympic#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NewVersion/ComparatorResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#612#613#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NewVersion/Driver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="384" column="5" lean-forward="true" selection-start-line="384" selection-start-column="5" selection-end-line="384" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#menu#0;class#Driver#0" expanded="false" />
+            <element signature="method#displayResult#0;class#Driver#0" expanded="false" />
+            <element signature="method#startGame#0;class#Driver#0" expanded="false" />
+            <element signature="method#setFinalResult#0;class#Driver#0" expanded="false" />
+            <element signature="method#setPoint#0;class#Driver#0" expanded="false" />
+            <element signature="method#displayPoint#0;class#Driver#0" expanded="false" />
+            <element signature="method#selectAthlete#0;class#Driver#0" expanded="false" />
+            <element signature="method#fullFillParticipationList#0;class#Driver#0" expanded="false" />
+            <element signature="method#addParticipationList#0;class#Driver#0" expanded="false" />
+            <element signature="method#warning#0;class#Driver#0" expanded="false" />
+            <element signature="method#athleteNo#0;class#Driver#0" expanded="false" />
+            <element signature="method#selectGame#0;class#Driver#0" expanded="false" />
+            <element signature="method#bGameMenuOptionTest#0;class#Driver#0" expanded="false" />
+            <element signature="method#bMainOptionTest#0;class#Driver#0" expanded="false" />
+            <element signature="method#splitArrayList#0;class#Driver#0" expanded="false" />
+            <element signature="method#setOfficial#0;class#Driver#0" expanded="false" />
+            <element signature="method#setGame#0;class#Driver#0" expanded="false" />
+            <element signature="method#intException#0;class#Driver#0" expanded="false" />
+            <element signature="method#processGame#0;class#Driver#0" expanded="false" />
+            <element signature="method#menuText#0;class#Driver#0" expanded="false" />
+            <element signature="method#gameMenuText#0;class#Driver#0" expanded="false" />
+            <element signature="method#listPlayers#0;class#Driver#0" expanded="false" />
+            <element signature="method#checkExist#0;class#Driver#0" expanded="false" />
+            <element signature="method#checkGameType#0;class#Driver#0" expanded="false" />
+            <element signature="method#displayAthlete#0;class#Driver#0" expanded="false" />
+            <element signature="method#predictAthlete#0;class#Driver#0" expanded="false" />
+            <element signature="method#runGame#0;class#Driver#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

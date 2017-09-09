@@ -1,9 +1,9 @@
 /**********************************************************************************************************************
- * Author:
+ * Author: JIE YI (Jay)
  * Purpose: This is the control class that can hold most function and method to run a game.
  * Create Date: 28/07/2017
- * Version: 1.15
- * Update Date: 04/09/2017
+ * Version: 2.13
+ * Update Date: 09/09/2017
  **********************************************************************************************************************/
 
 package NewVersion;
@@ -19,7 +19,7 @@ public class Driver {
     private Game game;
     private Results results;
     private String gameType = "";
-    private int athleteNum = 0;
+//    private int athleteNum = 0;
     private Prediction prediction = new Prediction("");
     private ProcessResults processResults;
     int swimmingCount = 1;
@@ -35,7 +35,6 @@ public class Driver {
     public void start(ArrayList<Participant> participants) throws Exception {
         splitArrayList(participants);
         menu(participants);
-
     }
 
     private void menu(ArrayList<Participant> participants) throws Exception {
@@ -64,6 +63,7 @@ public class Driver {
                     if (runGame()){
                         setGame(gameType);
                         if (startGame(participantArrayList,game)){
+                            processGame();
                             setFinalResult(processResultsArrayList,setOfficial());
                             setPoint(participantArrayList,results);
                         }
@@ -113,9 +113,6 @@ public class Driver {
         }
     }
 
-
-
-
     private void setFinalResult(ArrayList processResultsArrayList, Official official) throws Exception{
         results = new Results(game,"","","",official);
         results.setWinners(processResultsArrayList);
@@ -151,8 +148,6 @@ public class Driver {
         for (int i =0; i<participants.size()-4; i++)
             System.out.println(participants.get(i).toString());
     }
-
-
 
     private void selectAthlete(ArrayList<Participant> participants) {
         System.out.println("1\tadd athletes by yourself? (less than 8 athletes)\n"
@@ -280,7 +275,6 @@ public class Driver {
         } while (!bAthleteNum);
         return athleteNum;
     }
-
 
     // Select a game to run
     private void selectGame(ArrayList<Participant> participants) {

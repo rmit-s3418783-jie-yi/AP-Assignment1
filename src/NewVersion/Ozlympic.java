@@ -2,8 +2,8 @@
  * Author: JIE YI (Jay)
  * Purpose: This is the control class that can hold most function and method to run a game.
  * Create Date: 28/07/2017
- * Version: 1.15
- * Update Date: 04/09/2017
+ * Version: 2.05
+ * Update Date: 08/09/2017
  **********************************************************************************************************************/
 
 package NewVersion;
