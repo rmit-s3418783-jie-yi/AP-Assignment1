@@ -23,7 +23,9 @@ public class Ozlympic {
         Driver driver = new Driver();
         driver.start(participants);
 
+
     }
+
     public static void setOfficial(ArrayList participants){
         Participant official1 = new Official("OF01","Official01","VIC",50);
         Participant official2 = new Official("OF01","Official02","VIC",52);

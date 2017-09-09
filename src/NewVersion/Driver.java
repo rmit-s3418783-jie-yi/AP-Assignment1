@@ -73,6 +73,7 @@ public class Driver {
             bMainOption = false;
             switch (mainMenuOption){
                 case 1:
+                    participantArrayList.clear();
                     selectGame(participants);
                     selectAthlete(participants);
                     System.out.println("Athlete are ready for the game");
@@ -105,7 +106,7 @@ public class Driver {
 
     public void menuText(){
 
-        System.out.print("\tOlympic Game\t\n=============================\n" +
+        System.out.print("\n\tOlympic Game\t\n=============================\n" +
                 "1.\tSelect a game to run\n" +
                 "2.\tPredict the winner of the game\n" +
                 "3.\tStart the game\n" +
@@ -122,7 +123,7 @@ public class Driver {
      ****************************************************************************************************************/
     public void gameMenuText(){
 
-        System.out.print("\tOlympic Game\t\n=============================\n" +
+        System.out.print("\n\tOlympic Game\t\n=============================\n" +
                 "1.\tSwimming\n" +
                 "2.\tCycling\n" +
                 "3.\tRunning\n" +
@@ -181,10 +182,11 @@ public class Driver {
      ****************************************************************************************************************/
     public void selectAthlete(ArrayList<Participant> participants) {
 
-        System.out.println("\tOlympic Game\t\n=============================\n"
-                +"how do you want to add the Athletes?"
+        System.out.print("\n\tOlympic Game\t\n=============================\n"
+                +"how do you want to add the Athletes?\n"
                 +"1\tAdding athletes manually by Athlete ID (less than 8 athletes)\n"
-                +"2\tAdd athletes automatically (8 athletes)");
+                +"2\tAdd athletes automatically (8 athletes)\n"
+                +"Your option: ");
         int athleteNum;
         int athleteChoose;
         boolean bAthleteChoose;
@@ -254,6 +256,8 @@ public class Driver {
                 warning(bAddParticipant,bCheckExist,bGameType,participants);
             } while (!bAddParticipant || !bGameType || !bCheckExist);
         }
+        System.out.print("\n\tOlympic Game\t\n=============================\n"
+                +"\tParticipant List as below: \n");
         displayAthlete(participantArrayList);
     }
 
@@ -304,6 +308,8 @@ public class Driver {
                 }
             } while (!bCheckExist || !bGameType);
         }
+        System.out.print("\n\tOlympic Game\t\n=============================\n"
+                +"\tParticipant List as below: \n");
         displayAthlete(participantArrayList);
     }
 
@@ -336,11 +342,13 @@ public class Driver {
         // after run a game, here should clean.
         Scanner input = new Scanner(System.in);
         boolean bCheckExist = false;
+        System.out.print("\n\tOlympic Game\t\n=============================\n"
+                        +"\tParticipant List as below: \n");
         if (participantArrayList.size() !=0){
             for (int i = 0; i < participantArrayList.size();i++){
                 System.out.println(participantArrayList.get(i).printParticipant());
             }
-            System.out.println("Select an athlete from above to predict.\nPlease enter athlete ID");
+            System.out.println("\nSelect an athlete from above to predict.\nPlease enter athlete ID");
             do {
                 String athleteID = input.next();
                 for (int i = 0; i < participantArrayList.size();i++) {
@@ -406,6 +414,8 @@ public class Driver {
     public void displayResult() {
         if (resultsArrayList.size() != 0){
             for (int i = 0; i <resultsArrayList.size();i++){
+                System.out.print("\n\tOlympic Game\t\n=============================\n"
+                        +"\tResult from history: \n");
                 System.out.println(resultsArrayList.get(i).toString());
             }
         }else {

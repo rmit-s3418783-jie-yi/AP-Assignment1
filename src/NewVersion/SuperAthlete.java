@@ -47,13 +47,4 @@ public class SuperAthlete extends Athlete {
         result = random.nextInt(max - min + 1) + min;
         return result;
     }
-
-    @Override
-    public int getResult() {
-        return result;
-    }
-
-
-
-
 }

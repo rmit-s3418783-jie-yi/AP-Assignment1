@@ -19,16 +19,19 @@ public class Prediction {
 
     public String compareWinner(String results){
         if (results == null || predicationID == null){ //If the user did not predict
-            return "You did not predict a winner";
+            if (predicationID == null)
+                return "You did not predict a winner";
+            else return "";
         } else {
             if (predicationID.equalsIgnoreCase(results)) { //If winner predicted correctly
-                return "\t||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
-                        "\n\t||\t\t\t\t\t\t\t||" +
-                        "\n\t||\t\tyou predicted\t\t\t|| " +
-                        "\n\t||\t   the right athlete!\t\t||" +
-                        "\n\t||\t\t\t\t\t\t\t||" +
-                        "\n\t||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||";
-                ge
+                return "\t\tOlympic Game\t\n==============================\n"+
+                        "||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
+                        "\n||\t\t\t\t\t\t\t||" +
+                        "\n||\t\tCongratulation!\t\t|| " +
+                        "\n||\t\t you predicted\t\t|| " +
+                        "\n||\t   the right athlete!\t||" +
+                        "\n||\t\t\t\t\t\t\t||" +
+                        "\n||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||";
             } else
                 return "Sorry! You did not predict correctly. Please try again! :) "; //If winner did not predict correctly
         }

@@ -34,9 +34,4 @@ public class Cyclist extends Athlete {
         return result;
     }
 
-    @Override
-    public int getResult() {
-        return result;
-    }
-
 }

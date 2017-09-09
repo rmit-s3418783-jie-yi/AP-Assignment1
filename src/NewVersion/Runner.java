@@ -33,12 +33,5 @@ public class Runner extends Athlete {
         result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
         return result;
     }
-
-    @Override
-    public int getResult() {
-        return result;
-    }
-
-
 }
 

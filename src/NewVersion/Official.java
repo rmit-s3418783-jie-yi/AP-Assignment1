@@ -15,7 +15,7 @@ public class Official extends Participant {
     }
 
     public String printParticipant() {
-        return "Official ID: " + getParticipantID() +
+        return "Official ID: " + super.getParticipantID() +
                 "\tOfficial Name: " + super.getParticipantName();
     }
 

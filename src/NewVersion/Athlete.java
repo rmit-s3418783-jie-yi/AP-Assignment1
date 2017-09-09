@@ -1,6 +1,7 @@
 /**********************************************************************************************************************
  * Author: Dario Ongsono
- * Purpose: This class the abstract class for athlete and how it determines the abstract method the subclasses has to implement
+ * Purpose: This class the abstract class for athlete
+ *              and how it determines the abstract method the subclasses has to implement
  * Create Date: 28/07/2017
  * Version: 1.15
  * Update Date: 04/09/2017
@@ -28,7 +29,7 @@ public abstract class Athlete extends Participant {
 
     public abstract int compete(String gameType); //compete method to be implemented in the sub classes so that
 
-    public abstract int getResult(); //returns back the compete() result
+    // public abstract int getResult(); //returns back the compete() result
 
     @Override
     public String printParticipant() {
