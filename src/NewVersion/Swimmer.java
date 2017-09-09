@@ -1,5 +1,5 @@
 /**********************************************************************************************************************
- * Author: Dario Ongsono
+ * Author:
  * Purpose: This class responsible for the swimmer athlete and how it process its compete method
  * Create Date: 28/07/2017
  * Version: 1.15
