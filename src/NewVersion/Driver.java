@@ -182,9 +182,10 @@ public class Driver {
     public void selectAthlete(ArrayList<Participant> participants) {
         // TODO: 2017/9/9 Reword.
         System.out.println("\tOlympic Game\t\n=============================\n"
-                +"how do you want to add Athlete?"
+                +"how do you want to add Athlete?\n"
                 +"1\tadd athletes by yourself? (less than 8 athletes)\n"
-                +"2\tadd athletes automatically (full fill)");
+                +"2\tadd athletes automatically (full fill)\n"
+                +"Your Option: ");
         int athleteNum;
         int athleteChoose;
         boolean bAthleteChoose;
