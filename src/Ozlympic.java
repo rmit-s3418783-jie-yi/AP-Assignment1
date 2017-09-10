@@ -6,8 +6,6 @@
  * Update Date: 08/09/2017
  **********************************************************************************************************************/
 
-package NewVersion;
-
 import java.util.ArrayList;
 
 public class Ozlympic {
@@ -28,9 +26,9 @@ public class Ozlympic {
 
     public static void setOfficial(ArrayList participants){
         Participant official1 = new Official("OF01","Official01","VIC",50);
-        Participant official2 = new Official("OF01","Official02","VIC",52);
-        Participant official3 = new Official("OF01","Official03","VIC",54);
-        Participant official4 = new Official("OF01","Official04","VIC",58);
+        Participant official2 = new Official("OF02","Official02","VIC",52);
+        Participant official3 = new Official("OF03","Official03","VIC",54);
+        Participant official4 = new Official("OF04","Official04","VIC",58);
         participants.add(official1);
         participants.add(official2);
         participants.add(official3);

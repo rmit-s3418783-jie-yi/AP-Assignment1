@@ -6,8 +6,6 @@
  * Update Date: 04/09/2017
  **********************************************************************************************************************/
 
-package NewVersion;
-
 public class Official extends Participant {
     public Official(String participantID, String participantName, String participantState, int participantAge) {
         super(participantID,participantName,participantState,participantAge);

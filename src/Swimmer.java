@@ -6,8 +6,6 @@
  * Update Date: 04/09/2017
  **********************************************************************************************************************/
 
-package NewVersion;
-
 import java.util.Random;
 
 public class Swimmer extends Athlete{

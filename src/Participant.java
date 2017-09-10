@@ -6,8 +6,6 @@
  * Update Date: 04/09/2017
  **********************************************************************************************************************/
 
-package NewVersion;
-
 public abstract class Participant {
 
     private String participantID;
@@ -57,17 +55,6 @@ public abstract class Participant {
         this.participantAge = participantAge;
     }
 
-    public String printParticipant() {
-        return "ParticipantID: " + getParticipantID() +
-                "\tParticipant Name: " + getParticipantName();
-    }
-
-    public String printAll(){
-        return  "ParticipantID: " + getParticipantID() +
-                "\tParticipant Name: " + getParticipantName()+
-                "\tparticipantState: " + getParticipantState() +
-                "\tparticipantAge: " + getParticipantAge();
-
-    }
+    public abstract String printParticipant();
 
 }

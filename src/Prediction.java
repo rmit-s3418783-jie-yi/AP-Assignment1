@@ -6,10 +6,6 @@
  * Update Date: 04/09/2017
  **********************************************************************************************************************/
 
-package NewVersion;
-
-
-
 public class Prediction {
     private String predicationID;
 

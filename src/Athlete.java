@@ -7,7 +7,6 @@
  * Update Date: 04/09/2017
  **********************************************************************************************************************/
 
-package NewVersion;
 
 import java.util.ArrayList;
 
@@ -37,14 +36,6 @@ public abstract class Athlete extends Participant {
                 "\tParticipant Name: " + getParticipantName();
     }
 
-
-    public String printAll(){
-        return  "ParticipantID: " + getParticipantID() +
-                "\tParticipant Name: " + getParticipantName()+
-                "\tparticipantState: " + getParticipantState() +
-                "\tparticipantAge: " + getParticipantAge();
-
-    }
 
     public void setTotalPoints() {
         totalPoints += lastPoint;

@@ -5,9 +5,6 @@
  * Version: 1.28
  * Update Date: 02/09/2017
  **********************************************************************************************************************/
-
-package NewVersion;
-
 import java.util.Comparator;
 
 public class ComparatorResult implements Comparator<ProcessResults> {

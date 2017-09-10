@@ -6,8 +6,6 @@
  * Update Date: 09/09/2017
  **********************************************************************************************************************/
 
-package NewVersion;
-
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
