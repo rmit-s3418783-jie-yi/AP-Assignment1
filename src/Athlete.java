@@ -8,16 +8,19 @@
  **********************************************************************************************************************/
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Athlete extends Participant {
+public abstract class Athlete extends Participant implements Serializable {
 
     private String participantAbility;
     private int totalPoints; //total points an athlete has
     private int lastPoint; //latest point the athlete has been awarded
 
-    public Athlete(String participantID, String participantName, String participantState, int participantAge)
-    {super(participantID,participantName,participantState,participantAge);
+    public Athlete(String participantID, String participantName, String participantState, int participantAge, int totalPoints)
+    {
+        super(participantID,participantName,participantState,participantAge);
+        this.totalPoints = totalPoints;
 
     }
 

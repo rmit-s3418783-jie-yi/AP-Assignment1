@@ -13,8 +13,8 @@ public class Runner extends Athlete {
     private String participantAbility;
     private int result; //returns latest result from compete()
 
-    public Runner (String participantID, String participantName, String participantState, int participantAge) {
-        super(participantID,participantName,participantState,participantAge);
+    public Runner (String participantID, String participantName, String participantState, int participantAge ) {
+        super(participantID,participantName,participantState,participantAge, );
         participantAbility = "Run";
     }
 

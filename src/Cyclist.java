@@ -12,8 +12,8 @@ public class Cyclist extends Athlete {
     private String participantAbility;
     private int result = 0; //result for compete method
 
-    public Cyclist(String participantID, String participantName, String participantState, int participantAge) {
-        super(participantID, participantName, participantState, participantAge);
+    public Cyclist(String participantID, String participantName, String participantState, int participantAge, int totalPoints) {
+        super(participantID, participantName, participantState, participantAge, totalPoints);
         participantAbility = "Run";
     }
 

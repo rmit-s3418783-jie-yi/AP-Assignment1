@@ -59,4 +59,5 @@ public class ProcessResults {
     public void cleanArrayList(){
         processResultsArrayList.clear();
     } //Clears the processResult arraylist
+
 }

@@ -6,9 +6,10 @@
  * Update Date: 04/09/2017
  **********************************************************************************************************************/
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Results {
+public class Results implements Serializable{
     private String firstID; //variable to hold first place ID
     private String secondID; //variable to hold second place ID
     private String thirdID; //variable to hold third place ID
