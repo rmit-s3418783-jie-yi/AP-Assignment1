@@ -1,32 +1,22 @@
+/**********************************************************************************************************************
+ * Author: Dario Ongsono
+ * Purpose: This is a subclass of the participant class to create the official object
+ * Create Date: 28/07/2017
+ * Version: 1.15
+ * Update Date: 04/09/2017
+ **********************************************************************************************************************/
 
-public class Official{
+public class Official extends Participant {
+    public Official(String participantID, String participantName, String participantState, int participantAge) {
+        super(participantID,participantName,participantState,participantAge);
 
-    private String officialID;
-    private String officialName;
-
-    public Official(String officialID, String officialName){
-        this.officialID = officialID;
-        this.officialName = officialName;
     }
 
-    public String getOfficialID() {
-        return officialID;
+    public String printParticipant() {
+        return "Official ID: " + super.getParticipantID() +
+                "\tOfficial Name: " + super.getParticipantName();
     }
 
-    public String getOfficialName() {
-        return officialName;
-    }
 
-    public void setOfficialID(String officialID) {
-        this.officialID = officialID;
-    }
 
-    public void setOfficialName(String officialName) {
-        this.officialName = officialName;
-    }
-
-    @Override
-    public String toString() {
-        return "OfficialID: " + officialID + "\tOfficialName: " + officialName;
-    }
 }

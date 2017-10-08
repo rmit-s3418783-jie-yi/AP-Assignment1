@@ -1,93 +1,63 @@
+/**********************************************************************************************************************
+ * Author: Dario Ongsono
+ * Purpose: This class the abstract class for athlete
+ *              and how it determines the abstract method the subclasses has to implement
+ * Create Date: 28/07/2017
+ * Version: 1.15
+ * Update Date: 04/09/2017
+ **********************************************************************************************************************/
 
-import java.util.*;
 
-public abstract class Athlete {
+import java.io.Serializable;
+import java.util.ArrayList;
 
-    private String participantID;
-    private String participantName;
-    private String participantState;
-    private int participantAge;
+public abstract class Athlete extends Participant implements Serializable {
+
     private String participantAbility;
-    private int lastPoint;
-    private int totalPoints;
+    private int totalPoints; //total points an athlete has
+    private int lastPoint; //latest point the athlete has been awarded
 
+    public Athlete(String participantID, String participantName, String participantState, int participantAge, int totalPoints)
+    {
+        super(participantID,participantName,participantState,participantAge);
+        this.totalPoints = totalPoints;
 
-    public Athlete(String participantID, String participantName, String participantState, int participantAge){
-        this.participantID = participantID;
-        this.participantName = participantName;
-        this.participantState = participantState;
-        this.participantAge = participantAge;
     }
 
-
-
-    public String getParticipantID(){
-        return participantID;
-    }
-
-    public String getParticipantName(){
-        return participantName;
-    }
-
-    public String getParticipantState(){
-        return participantState;
-    }
 
     public String getParticipantAbility() {
         return participantAbility;
     }
 
-    public void setParticipantAbility(String participantAbility) {
-        this.participantAbility = participantAbility;
+    public abstract int compete(String gameType); //compete method to be implemented in the sub classes so that
+
+    // public abstract int getResult(); //returns back the compete() result
+
+    @Override
+    public String printParticipant() {
+        return "ParticipantID: " + getParticipantID() +
+                "\tParticipant Name: " + getParticipantName();
     }
 
-    public int getTotalPoints(){
-        return totalPoints;
-    }
-
-    public void setParticipantState(String participantState) {
-        this.participantState = participantState;
-    }
-
-    public void setParticipantName(String participantName) {
-        this.participantName = participantName;
-    }
-
-    public void setParticipantID(String participantID) {
-        this.participantID = participantID;
-    }
 
     public void setTotalPoints() {
         totalPoints += lastPoint;
-    }
+    } //set the last points
 
     public void setLastPoint(int point) {
         this.lastPoint = point;
         setTotalPoints();
-    }
-
-    public int getLastPoint() {
-        return lastPoint;
-    }
-
-    public abstract int compete(String s);
-
-    public String printAthlete() {
-        return "ParticipantID: " + getParticipantID()+ "\t" +
-                "Participant Name: " + getParticipantName() + "\t" +
-                "Ability: " +  getParticipantAbility();
-    }
-
-
+    } //Set the latest point awarded to the athlete
 
     @Override
-    public String toString() {
-        return "ParticipantID: " + participantID +
-                "\tparticipantName: " + participantName +
-                "\tparticipantState: " + participantState +
-                "\tparticipantAge: " + participantAge +
+    public String toString() { //toString method to print particpants
+        return "ParticipantID: " + getParticipantID() +
+                "\tparticipantName: " + getParticipantName() +
+                "\tparticipantState: " + getParticipantState() +
+                "\tparticipantAge: " + getParticipantAge() +
                 "\ttotalPoints: " + totalPoints;
-    }
 
+
+    }
 
 }

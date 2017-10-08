@@ -1,12 +1,10 @@
 /**********************************************************************************************************************
- * Author:
- * Purpose: This is the control class that can hold most function and method to run a game.
+ * Author: Dario Ongsono
+ * Purpose: This class is the abstract class of all participants of this system including officials
  * Create Date: 28/07/2017
  * Version: 1.15
  * Update Date: 04/09/2017
  **********************************************************************************************************************/
-
-package NewVersion;
 
 public abstract class Participant {
 
@@ -57,17 +55,6 @@ public abstract class Participant {
         this.participantAge = participantAge;
     }
 
-    public String printParticipant() {
-        return "ParticipantID: " + getParticipantID() +
-                "\tParticipant Name: " + getParticipantName();
-    }
-
-    public String printAll(){
-        return  "ParticipantID: " + getParticipantID() +
-                "\tParticipant Name: " + getParticipantName()+
-                "\tparticipantState: " + getParticipantState() +
-                "\tparticipantAge: " + getParticipantAge();
-
-    }
+    public abstract String printParticipant();
 
 }

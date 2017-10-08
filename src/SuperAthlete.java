@@ -1,53 +1,49 @@
+/**********************************************************************************************************************
+ * Author: Dario Ongsono
+ * Purpose: This is the super athlete subclass where this athlete can compete in any of the 3 sport
+ * Create Date: 28/07/2017
+ * Version: 1.15
+ * Update Date: 04/09/2017
+ **********************************************************************************************************************/
 
 import java.util.Random;
 
-public class SuperAthlete extends Athlete{
+public class SuperAthlete extends Athlete {
+    private String participantAbility;
+    private int result; //results from the compete method
 
-   //gameType object to be passed from participation list to use a a condition
-
-    private String participantAbility = "Swim, Cycle, Run";
-
-    public SuperAthlete(String participantID, String participantName, String participantState, int participantAge) {
-        super(participantID, participantName, participantState, participantAge);
-        // this.participantAbility = participantAbility;
-
-    }
-
-    public int compete(String s) {
-
-        int result = 0 ;
-        Random random =  new Random();
-
-        if(s == "Swimming"){
-            //Swimmer calculations
-            int min = 100;
-            int max = 200;
-            result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
-        }
-        else if(s == "Running"){
-            //Runner Calculations
-            int min = 10;
-            int max = 20;
-            result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
-        }
-        else if(s == "Cycling") {
-            //Cyclist Calculations
-            int min = 500;
-            int max = 800;
-            result = random.nextInt(max - min + 1) + min;//provides a number between 100 seconds to 200 second
-
-        }
-
-        return result;
-
+    public SuperAthlete (String participantID, String participantName, String participantState, int participantAge, int totalPoints) {
+        super(participantID,participantName,participantState,participantAge, totalPoints);
+        participantAbility = "Swim, Cyclist, Run";
     }
 
     @Override
-    public String printAthlete() {
-        return "ParticipantID: " + super.getParticipantID()+ "\t" +
-                "Participant Name: " + super.getParticipantName() + "\t" +
-                "Ability: " +  participantAbility;
+    public String getParticipantAbility() {
+        return participantAbility;
     }
 
-
+    public int compete(String gameType) { //Take gameType parameter so that this class knows which compete to use
+        Random random =  new Random();
+        int min = 0;
+        int max = 0;
+        if(gameType == "Swimming"){
+            //Swimmer calculations
+            min = 100; //min result in seconds
+            max = 200; //max result in seconds
+        }
+        else if(gameType == "Running"){
+            //Runner Calculations
+            min = 10;//min result in seconds
+            max = 20; //max result in seconds
+        }
+        else if(gameType == "Cycling") {
+            //Cyclist Calculations
+            min = 500; //min result in seconds
+            max = 800; //max result in seconds
+        }
+        //provides a number
+        //Generates a number between the range provided by the min and max variables
+        result = random.nextInt(max - min + 1) + min;
+        return result;
+    }
 }

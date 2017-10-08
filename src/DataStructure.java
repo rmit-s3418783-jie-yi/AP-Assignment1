@@ -1,39 +1,26 @@
-/**********************************************************************************************************************
- * Author: JIE YI (Jay)
- * Purpose: This is the control class that can hold most function and method to run a game.
- * Create Date: 28/07/2017
- * Version: 1.15
- * Update Date: 04/09/2017
- **********************************************************************************************************************/
-
-package NewVersion;
-
 import java.util.ArrayList;
 
-public class Ozlympic {
+public class DataStructure {
 
-    public static void main (String[] args) throws Exception {
-        ArrayList<Participant> participants = new ArrayList<>();
-        setCyclist(participants);
-        setRunner(participants);
-        setSuperAthlete(participants);
-        setSwimmer(participants);
-        setOfficial(participants);
-
-        Driver driver = new Driver();
-        driver.start(participants);
+    public DataStructure(){
 
     }
+    static ArrayList<Results> resultsArrayList = new ArrayList<>();
+    static ArrayList<Athlete> participantArrayList = new ArrayList<>();
+    static ArrayList<Official> officialArrayList = new ArrayList<>();
+    static ArrayList<ProcessResults> processResultsArrayList = new ArrayList<>();
+    static ArrayList<Participant> participants = new ArrayList<>();
+
     public static void setOfficial(ArrayList participants){
         Participant official1 = new Official("OF01","Official01","VIC",50);
-        Participant official2 = new Official("OF01","Official02","VIC",52);
-        Participant official3 = new Official("OF01","Official03","VIC",54);
-        Participant official4 = new Official("OF01","Official04","VIC",58);
+        Participant official2 = new Official("OF02","Official02","VIC",52);
+        Participant official3 = new Official("OF03","Official03","VIC",54);
+        Participant official4 = new Official("OF04","Official04","VIC",58);
         participants.add(official1);
         participants.add(official2);
         participants.add(official3);
         participants.add(official4);
-        
+
 
     }
 
@@ -90,7 +77,7 @@ public class Ozlympic {
         participants.add(swimmer7);
 
     }
-    
+
     public static void setSuperAthlete(ArrayList participants){
         Participant superAthlete1 = new SuperAthlete("SA01","Sup01","VIC",33);
         Participant superAthlete2 = new SuperAthlete("SA02","Sup02","VIC",31);

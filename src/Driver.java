@@ -2,100 +2,109 @@
  * Author: JIE YI (Jay)
  * Purpose: This is the control class that can hold most function and method to run a game.
  * Create Date: 28/07/2017
- * Version: 1.15
- * Update Date: 04/09/2017
+ * Version: 2.13
+ * Update Date: 09/09/2017
  **********************************************************************************************************************/
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
-
-    private final int FIRSTPLACEPOINT = 5;
-    private final int SECONDPLACEPOINT = 2;
     private final int THIRDPLACEPOINT = 1;
-
-    int swimCount = 1;
-    int cyclingCount= 1;
-    int runningCount = 1;
-
-    private ArrayList<Athlete> participantArrayList = new ArrayList<>();
-    private ProcessResults processResults = new ProcessResults("",0);
-    private ArrayList<ProcessResults> processResultsArrayList = new ArrayList<>();
-    private Prediction prediction = new Prediction("",""); // to store data prediction
-    private Official official;
+    private final int SECONDPLACEPOINT = 2;
+    private final int FIRSTPLACEPOINT = 5;
+    private Participant participant;
     private Game game;
-    private Results finalResult;
-    private ArrayList<Results> finalResultArrayList= new ArrayList<>();
+    private Results results;
+    private String gameType = "";
+//    private int athleteNum = 0;
+    private Prediction prediction = new Prediction("");
+    private ProcessResults processResults;
+    int swimmingCount = 1;
+    int runningCount = 1;
+    int cyclingCount = 1;
+    // private Official official;
 
-    // main menu
-
+    ArrayList<Results> resultsArrayList = new ArrayList<>();
+    ArrayList<Athlete> participantArrayList = new ArrayList<>();
+    ArrayList<Official> officialArrayList = new ArrayList<>();
+    ArrayList<ProcessResults> processResultsArrayList = new ArrayList<>();
 
     /****************************************************************************************************************
      *
-     * This is the main menu part
+     * Start a game
      *
      ****************************************************************************************************************/
-    public void mainMenu(ArrayList<Athlete> athleteArrayList, ArrayList<Game> gameArrayList, ArrayList<Official> officialArrayList) throws InterruptedException {
+    public void splitArrayList(ArrayList<Participant> participants) {
+        // put the official into a new ArrayList
+        for (int i =0; i < participants.size();i++){
+            Participant participant = participants.get(i);
+            if (participant instanceof Official) {
+                Official official = (Official) participant;
+                officialArrayList.add(official);
+            }
+        }
+    }
+
+    public Official setOfficial(){
+        Random random = new Random();
+        int index = random.nextInt(officialArrayList.size()-1);
+        Official official = officialArrayList.get(index);
+        return official;
+    }
+
+    public void start(ArrayList<Participant> participants) throws Exception {
+        splitArrayList(participants);
+        menu(participants);
+    }
+
+    public void menu(ArrayList<Participant> participants) throws Exception {
+        String menuLoop = "";
         int mainMenuOption = 0;
         boolean bMainOption = false;
-        while (mainMenuOption != 6){
+        do {
             menuText();
             do {
-                mainMenuOption = intTest(); // exception
+                mainMenuOption = intException(); // exception
                 bMainOption = bMainOptionTest(mainMenuOption); // test mainMenuOption in the range
             } while (!bMainOption);
             bMainOption = false;
             switch (mainMenuOption){
                 case 1:
-                    game = new Game("","");
-                    finalResult = new Results(game,"","","",official);
                     participantArrayList.clear();
-                    gameMenu(athleteArrayList, gameArrayList);
+                    selectGame(participants);
+                    selectAthlete(participants);
+                    System.out.println("Athlete are ready for the game");
                     break;
                 case 2:
-                    prediction = new Prediction("","");
                     predictAthlete();
                     break;
                 case 3:
-                    // TODO: 2017/9/7 need the exception
                     if (runGame()){
-                        startGame(participantArrayList,game);
-                        // If game not start dont do next.
-                        setFinalResult(officialArrayList);
-                        setPoint(athleteArrayList,finalResult);
+                        setGame(gameType);
+                        if (startGame(participantArrayList,game)){
+                            processGame();
+                            setFinalResult(processResultsArrayList,setOfficial());
+                            setPoint(participantArrayList,results);
+                        }
                     }
                     break;
                 case 4:
                     displayResult();
                     break;
                 case 5:
-                    displayPoint(athleteArrayList);
+                    displayPoint(participants);
                     break;
                 case 6:
+                    menuLoop = "Exit";
                     break;
             }
-            // return a value to break loop.
-
-        }
+        }while (menuLoop != "Exit");
     }
 
+    public void menuText(){
 
-
-
-    private boolean bMainOptionTest(int mainMenuOption) {
-        if (mainMenuOption >= 1 && mainMenuOption <= 6)
-            return true;
-        else {
-            System.out.println("\n\tYour option is invalid, please enter number between 1 to 6.");
-            return false;
-        }
-    }
-
-    private void menuText(){
-        System.out.print("\tOlympic Game\t\n=============================\n" +
+        System.out.print("\n\tOlympic Game\t\n=============================\n" +
                 "1.\tSelect a game to run\n" +
                 "2.\tPredict the winner of the game\n" +
                 "3.\tStart the game\n" +
@@ -105,164 +114,125 @@ public class Driver {
                 "Enter an option: ");
     }
 
-    /****************************************************************************************************************\
+    /****************************************************************************************************************
      *
-     * This is the select a game menu part
+     * Select a game
      *
      ****************************************************************************************************************/
-    private void gameMenu(ArrayList<Athlete> athleteArrayList, ArrayList<Game> gameArrayList){
-        int gameMenuOption = 0 ;
-        boolean bGameMenuOption = false;
-            gameMenuText();
-        do {
-            gameMenuOption = intTest(); // exception
-            bGameMenuOption = bGameMenuOptionTest(gameMenuOption); //test mainMenuOption in the range
-        } while (!bGameMenuOption);
-        switch (gameMenuOption){
-            case 1: // link to Swimming game
+    public void gameMenuText(){
 
-                String sID = "S" + swimCount;
-                swimCount++;
-                game.setGameID(sID);
-                game.setGameType("Swimming");
-                athleteChoose(game.getGameType(), athleteArrayList);
-                break;
-            case 2:// link to Cycling game
-
-                String cID = "C" + cyclingCount;
-                cyclingCount++;
-                game.setGameID(cID);
-                game.setGameType("Cycling");
-                athleteChoose(game.getGameType(),athleteArrayList);
-                break;
-            case 3:// link to Cycling game
-
-                String rID = "R" + runningCount;
-                runningCount++;
-                game.setGameID(rID);
-                game.setGameType("Running");
-                athleteChoose(game.getGameType(),athleteArrayList);
-                break;
-            case 4:// back to main menu
-                break;
-        }
-    }
-
-    private boolean bGameMenuOptionTest(int gameMenuOption) {
-        if (gameMenuOption >= 1 && gameMenuOption <= 4)
-            return true;
-        else {
-            System.out.println("\n\tYour option is invalid, please enter number between 1 to 4.");
-            return false;
-        }
-    }
-
-    private void gameMenuText(){
-        System.out.print("\tOlympic Game\t\n=============================\n" +
+        System.out.print("\n\tOlympic Game\t\n=============================\n" +
                 "1.\tSwimming\n" +
                 "2.\tCycling\n" +
                 "3.\tRunning\n" +
-                "4.\tBack to main menu without save game\n\n" +
+                "4.\tBack to main menu without saving game\n\n" +
                 "Enter an option: ");
     }
 
+    public void selectGame(ArrayList<Participant> participants) {
+        int gameMenuOption = 0 ;
+        boolean bGameMenuOption = false;
+        gameMenuText();
+        do {
+            gameMenuOption = intException(); // exception
+            bGameMenuOption = bGameMenuOptionTest(gameMenuOption); //test mainMenuOption in the range
+        } while (!bGameMenuOption);
+        switch (gameMenuOption){
+            case 1:
+                gameType = "Swimming";
+                break;
+            case 2:
+                gameType ="Cycling";
+                break;
+            case 3:
+                gameType = "Running";
+                break;
+            case 4:
+                break;
+        }
+    }
+
+    public void setGame(String gameType){
+        // call from start a game (option3)
+
+        String gameID = "";
+        game = new Game("","");
+        if (gameType == "Swimming"){
+            gameID = "S"+swimmingCount;
+            swimmingCount++;
+        }
+        if (gameType == "Running"){
+            gameID = "R"+runningCount;
+            runningCount++;
+        }
+        if (gameType == "Cycling"){
+            gameID = "C" +cyclingCount;
+            cyclingCount++;
+        }
+        game.setGameID(gameID);
+        game.setGameType(gameType);
+    }
+
     /****************************************************************************************************************
      *
-     * Select athlete to run a game will as a sub part of select a game menu
+     * Select athletes
      *
      ****************************************************************************************************************/
-    private void athleteChoose(String gameType, ArrayList<Athlete> athleteArrayList) {
-        System.out.println("1\tadd athletes by yourself? (less than 8 athletes)\n" +
-                "2\tadd athletes automatically (full fill)");
-        int athleteNum = 0;
-        int athleteChoose = 0;
-        boolean bAthleteChoose = false;
+    public void selectAthlete(ArrayList<Participant> participants) {
+
+        System.out.print("\n\tOlympic Game\t\n=============================\n"
+                +"how do you want to add the Athletes?\n"
+                +"1\tAdding athletes manually by Athlete ID (less than 8 athletes)\n"
+                +"2\tAdd athletes automatically (8 athletes)\n"
+                +"Your option: ");
+        int athleteNum;
+        int athleteChoose;
+        boolean bAthleteChoose;
         do {
-            athleteChoose = intTest(); // exception
-            bAthleteChoose = bAthleteChooseTest(athleteChoose); //test mainMenuOption in the range
+            athleteChoose = intException(); // exception
+            if (athleteChoose == 1 || athleteChoose == 2) {
+                bAthleteChoose = true;
+            }else {
+                bAthleteChoose = false;
+                System.out.println("\n\tYour option is invalid, please enter number 1 or 2.");
+            }
         } while (!bAthleteChoose);
-        bAthleteChoose = true;
         switch (athleteChoose){
             case 1:
                 athleteNum =  athleteNo();
-                addParticipationList(gameType, athleteArrayList, athleteNum);
+                addParticipationList(participants, athleteNum);
                 break;
             case 2:
-                fullFillParticipationList(gameType, athleteArrayList, 8);
+                fullFillParticipationList(participants, 8);
                 break;
         }
+
     }
 
-    private boolean bAthleteChooseTest(int athleteChoose) {
-        if (athleteChoose >= 1 && athleteChoose <= 2) return true;
-        else {
-            System.out.println("\n\tYour option is invalid, please enter number 1 or 2.");
-            return false;
-        }
-    }
-
-    /****************************************************************************************************************
-     *
-     * Add athlete by user
-     *
-     ****************************************************************************************************************/
-    private int athleteNo() {
-        int athleteNum =0;
-        boolean bAthleteNum = false;
-        System.out.println("How many athletes your want to add?");
-        do {
-            athleteNum = intTest(); // how many athletes you want
-            bAthleteNum = bAthleteNumTest(athleteNum); //test mainMenuOption in the range
-        } while (!bAthleteNum);
-        return athleteNum;
-    }
-
-    private boolean bAthleteNumTest(int athleteNum) {
-        if (athleteNum >= 1 && athleteNum <= 8) return true;
-        else {
-            System.out.println("\n\tYour option is invalid, please enter number 1 or 8.");
-            return false;
-        }
-    }
-
-    public void listPlayers(String gameType, ArrayList<Athlete> athleteArrayList) {
-        for (int j = 0; j < athleteArrayList.size();j ++){
-            if(athleteArrayList.get(j) instanceof SuperAthlete){
-                System.out.println(athleteArrayList.get(j).printAthlete());
-            } else if (gameType.equalsIgnoreCase("Swimming") && athleteArrayList.get(j) instanceof Swimmer){
-                System.out.println(athleteArrayList.get(j).printAthlete());
-            } else if (gameType.equalsIgnoreCase("Running") && athleteArrayList.get(j) instanceof Runner){
-                System.out.println(athleteArrayList.get(j).printAthlete());
-            } else if (gameType.equalsIgnoreCase("Cycling") && athleteArrayList.get(j) instanceof Cyclist){
-                System.out.println(athleteArrayList.get(j).printAthlete());
-            }
-        }
-    }
-
-    private void addParticipationList(String gameType, ArrayList<Athlete> athleteArrayList, int athleteNum) {
+    public void addParticipationList(ArrayList<Participant> participants, int athleteNum) {
         Scanner input = new Scanner(System.in);
         for (int i =0; i < athleteNum; i++){
-            listPlayers(gameType, athleteArrayList);
-            System.out.println("Please enter athlete's ID to add athlete to play game.");
-            System.out.println("Please add（" +(i+1)+" of "+athleteNum+"） athlete: ");
+            listPlayers(participants);
+            System.out.println("Please enter the athlete's ID to compete.");
+            System.out.println("Please add（" +(i+1)+" of "+athleteNum+"） athletes: ");
             String addParticipant = "";
-            boolean bAddParticipant = false;
-            boolean bCheckExist = false;
-            boolean bGameType = false;
+            boolean bAddParticipant;// = false;
+            boolean bCheckExist;// = false;
+            boolean bGameType;// = false;
             do {
                 bAddParticipant = false;
                 bCheckExist = false;
                 bGameType = false;
                 addParticipant = input.next();
-                for (int j=0; j< athleteArrayList.size(); j++){
-                    bAddParticipant = addParticipant.equalsIgnoreCase(athleteArrayList.get(j).getParticipantID());
+                for (int j=0; j< participants.size(); j++){
+                    bAddParticipant = addParticipant.equalsIgnoreCase(participants.get(j).getParticipantID());
                     if (bAddParticipant) {
                         // bAddParticipant = true && bCheckExist = false && bGameType = false
-                        Athlete athlete = athleteArrayList.get(j);
+                        Athlete athlete = (Athlete) participants.get(j);
                         bCheckExist = checkExist(athlete.getParticipantID());
                         if (bCheckExist){
                             // bAddParticipant = true && bCheckExist = true && bGameType = false
-                            bGameType = checkGameType(gameType,athlete);
+                            bGameType = checkGameType(athlete);
                             if (bGameType) {
                                 // bAddParticipant = true && bCheckExist = false && bGameType = true
                                 participantArrayList.add(athlete);
@@ -281,44 +251,53 @@ public class Driver {
                         bGameType = true;
                     }
                 }
-                if (!bAddParticipant)
-                    System.out.println("We don't have this athlete, please enter the existing athleteID.");
-                if (!bCheckExist)
-                    System.out.println("This athlete already the add to list, please select again.");
-                if (!bGameType){
-                    listPlayers(gameType, athleteArrayList);
-                    System.out.println("This athlete is not suitable for " + gameType +", please enter the ID above: ");
-                }
+                warning(bAddParticipant,bCheckExist,bGameType,participants);
             } while (!bAddParticipant || !bGameType || !bCheckExist);
-            System.out.println(participantArrayList.size());
         }
-        for (int i = 0; i < participantArrayList.size();i++){
-            System.out.println(participantArrayList.get(i).printAthlete());
+        System.out.print("\n\tOlympic Game\t\n=============================\n"
+                +"\tParticipant List as below: \n");
+        displayAthlete(participantArrayList);
+    }
+
+    public int athleteNo() {
+        int athleteNum;
+        boolean bAthleteNum;
+        System.out.println("How many athletes do you want to add?");
+        do {
+            athleteNum = intException(); // how many athletes you want
+            if (athleteNum >= 1 && athleteNum <= 8) bAthleteNum = true;
+            else {
+                bAthleteNum = false;
+                System.out.println("\n\tYour option is invalid, please enter a number from 1 to 8.");
+            }
+        } while (!bAthleteNum);
+        return athleteNum;
+    }
+
+    public void warning(boolean bAddParticipant, boolean bCheckExist, boolean bGameType, ArrayList participants) {
+        if (!bAddParticipant)
+            System.out.println("We do not have this athlete, please enter an existing athleteID.");
+        if (!bCheckExist)
+            System.out.println("This athlete has already been added to the list, please select another.");
+        if (!bGameType){
+            listPlayers(participants);
+            System.out.println("This athlete is not suitable for " + gameType +", please enter an ID from above: ");
         }
     }
 
-    /****************************************************************************************************************
-     *
-     * Add athlete by system
-     *
-     ****************************************************************************************************************/
-    private void fullFillParticipationList(String gameType, ArrayList<Athlete> athleteArrayList, int athleteNum) {
-
-        for (int i = 0; i <athleteNum; i++){
-            boolean bCheckExist = false;
-            boolean bGameType = false;
+    public void fullFillParticipationList(ArrayList<Participant> participants, int AthleteNo) {
+        for (int i = 0; i <AthleteNo; i++){
+            boolean bCheckExist;// = false;
+            boolean bGameType;// = false;
             do {
-                bCheckExist = false;
                 bGameType = false;
                 Random random = new Random();
-                int index = random.nextInt(athleteArrayList.size()-1);
-                Athlete athlete = athleteArrayList.get(index);
+                int index = random.nextInt(participants.size()- 4);
+                Athlete athlete = (Athlete) participants.get(index);
                 bCheckExist = checkExist(athlete.getParticipantID());
                 if (bCheckExist){
                     // bCheckExist = true && bGameType = false
-                    // if true means this athlete not exist in participantArrayList
-                    // then go to check if the athlete is the same gametype we need.
-                    bGameType = checkGameType(gameType, athlete);
+                    bGameType = checkGameType(athlete);
                     if (bGameType) {
                         // bCheckExist = true && bGameType = true
                         // if game type is right then add to list.
@@ -327,40 +306,162 @@ public class Driver {
                 }
             } while (!bCheckExist || !bGameType);
         }
+        System.out.print("\n\tOlympic Game\t\n=============================\n"
+                +"\tParticipant List as below: \n");
+        displayAthlete(participantArrayList);
+    }
+
+    public void listPlayers(ArrayList<Participant> participants) {
+        for (int i = 0; i < participants.size();i ++){
+            if(participants.get(i) instanceof SuperAthlete){
+                System.out.println(participants.get(i).printParticipant());
+            } else if (gameType =="Swimming" && participants.get(i) instanceof Swimmer){
+                System.out.println(participants.get(i).printParticipant());
+            } else if (gameType == "Running" && participants.get(i) instanceof Runner){
+                System.out.println(participants.get(i).printParticipant());
+            } else if (gameType == "Cycling" && participants.get(i) instanceof Cyclist){
+                System.out.println(participants.get(i).printParticipant());
+            }
+        }
+    }
+
+    public void displayAthlete(ArrayList<Athlete> participantArrayList){
         for (int i = 0; i < participantArrayList.size();i++){
-            System.out.println(participantArrayList.get(i).printAthlete());
+            System.out.println(participantArrayList.get(i).printParticipant());
         }
     }
 
     /****************************************************************************************************************
      *
-     * Identify add athlete in the right way
+     * Predict a Athlete
      *
      ****************************************************************************************************************/
-    private boolean checkGameType(String gameType, Athlete athlete) {
-        boolean bGameType = false;
-        if (gameType.equalsIgnoreCase("Swimming")) {
-            if (athlete instanceof Swimmer || athlete instanceof SuperAthlete) {
-                bGameType = true;
-            }else bGameType = false;
-        } else if (gameType.equalsIgnoreCase("Running")) {
-            if (athlete instanceof Runner || athlete instanceof SuperAthlete) {
-                bGameType = true;
-            }else bGameType = false;
-        } else if (gameType.equalsIgnoreCase("Cycling")) {
-            if (athlete instanceof Cyclist || athlete instanceof SuperAthlete) {
-                bGameType = true;
-            }else bGameType = false;
+    public void predictAthlete (){
+        // after run a game, here should clean.
+        Scanner input = new Scanner(System.in);
+        boolean bCheckExist = false;
+        System.out.print("\n\tOlympic Game\t\n=============================\n"
+                        +"\tParticipant List as below: \n");
+        if (participantArrayList.size() !=0){
+            for (int i = 0; i < participantArrayList.size();i++){
+                System.out.println(participantArrayList.get(i).printParticipant());
+            }
+            System.out.println("\nSelect an athlete from above to predict.\nPlease enter athlete ID");
+            do {
+                String athleteID = input.next();
+                for (int i = 0; i < participantArrayList.size();i++) {
+                    bCheckExist = athleteID.equalsIgnoreCase(participantArrayList.get(i).getParticipantID());
+                    if (bCheckExist) {
+                        Athlete athlete = participantArrayList.get(i);
+                        prediction.setPredicationID(athlete.getParticipantID());
+                        break;
+                    }
+                }
+                if (!bCheckExist)
+                    System.out.println("This athlete is not ready for this game, please select from above.");
+            }while (!bCheckExist);
+        }else {
+            System.out.println("Game is not ready, please select a game to run.");
         }
-        return bGameType;
     }
 
-    private boolean checkExist(String addParticipant) {
+    /****************************************************************************************************************
+     *
+     * Run the game
+     *
+     ****************************************************************************************************************/
+    public void processGame() throws Exception {
+        System.out.println("Athletes are ready to compete, please wait a second.");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("**********\t3\t***********");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("**********\t2\t***********");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("**********\t1\t***********");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("/******************************************************\n" +
+                "*\n" +
+                "* \tProcessing results completed! The result will be listed below\n" +
+                "*\n" +
+                "*******************************************************/");
+        TimeUnit.SECONDS.sleep(1);
+        for (int i = 0; i < processResultsArrayList.size(); i++) {
+            System.out.println(processResultsArrayList.get(i).toString());
+        }
+    }
+
+    /****************************************************************************************************************
+     *
+     * Set and display the results
+     *
+     ****************************************************************************************************************/
+    public void setFinalResult(ArrayList processResultsArrayList, Official official) throws Exception{
+        results = new Results(game,"","","",official);
+        results.setWinners(processResultsArrayList);
+        results.setOfficial(official);
+        results.setGame(game);
+        resultsArrayList.add(results);
+
+        // prediction.prediciton(results.getFirstID());
+        System.out.println(prediction.compareWinner(results.getFirstID()));
+        processResults.cleanArrayList();
+
+        prediction.setPredicationID("");
+    }
+
+    public void displayResult() {
+        if (resultsArrayList.size() != 0){
+            for (int i = 0; i <resultsArrayList.size();i++){
+                System.out.print("\n\tOlympic Game\t\n=============================\n"
+                        +"\tResult from history: \n");
+                System.out.println(resultsArrayList.get(i).toString());
+            }
+        }else {
+            System.out.println("No data of any game, please run a game first to display results.");
+        }
+
+
+
+    }
+
+    /****************************************************************************************************************
+     *
+     * Set and display the point
+     *
+     ****************************************************************************************************************/
+    public void setPoint(ArrayList<Athlete> athleteArrayList, Results results){
+        for (int i =0; i< athleteArrayList.size();i++){
+            if (results.getFirstID().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
+                Athlete athlete = athleteArrayList.get(i);
+                athlete.setLastPoint(FIRSTPLACEPOINT);
+            }
+            if (results.getSecondID().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
+                Athlete athlete = athleteArrayList.get(i);
+                athlete.setLastPoint(SECONDPLACEPOINT);
+            }
+            if (results.getThirdID().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
+                Athlete athlete = athleteArrayList.get(i);
+                athlete.setLastPoint(THIRDPLACEPOINT);
+            }
+        }
+    }
+
+    public void displayPoint(ArrayList<Participant> participants) {
+        for (int i =0; i<participants.size()-4; i++)
+            System.out.println(participants.get(i).toString());
+    }
+
+    /****************************************************************************************************************
+     *
+     * Exception Parts
+     *
+     ****************************************************************************************************************/
+    public boolean checkExist(String addingAthlete) {
         boolean exist = false;
-        if (participantArrayList.size() == 0) return true; // ez to do that if this is not null then to do sth
-        else { // if not null then check in the participantArrayList have this athlete or not
-            for (int i = 0; i < participantArrayList.size(); i++){
-                if (addParticipant.equalsIgnoreCase(participantArrayList.get(i).getParticipantID())) {
+        if (participantArrayList.size() != 0) {
+            // if not null then check in the participantArrayList have this athlete or not
+            for (int i = 0; i < participantArrayList.size(); i++) {
+                if (addingAthlete.equalsIgnoreCase(participantArrayList.get(i).getParticipantID())) {
                     // if yes then re turn false to stop system add this athlete in.
                     exist = false;
                     // even find the same ID then break the loop and return exist
@@ -371,51 +472,61 @@ public class Driver {
             }
             return exist;
         }
+        else
+            return true;
     }
 
-    /****************************************************************************************************************
-     *
-     * Predict athlete part
-     *
-     ****************************************************************************************************************/
-    public void predictAthlete (){
-        // after run a game, here should clean.
-        Scanner input = new Scanner(System.in);
-        boolean bCheckExist = false;
-        if (participantArrayList.size() !=0){
-            for (int i = 0; i < participantArrayList.size();i++){
-                System.out.println(participantArrayList.get(i).printAthlete());
-            }
-            System.out.println("Select a athlete above to predict.\nPlease enter athlete ID");
-            do {
-                String athleteID = input.next();
-                for (int i = 0; i < participantArrayList.size();i++) {
-                    bCheckExist = athleteID.equalsIgnoreCase(participantArrayList.get(i).getParticipantID());
-                    if (bCheckExist) {
-                        Athlete athlete = participantArrayList.get(i);
-                        prediction.setPredicationID(athlete.getParticipantID());
-                        prediction.setGetPredicationName(athlete.getParticipantName());
-                        break;
-                    }
-                }
-                if (!bCheckExist)
-                    System.out.println("This athlete is not ready for this game, pleas select from above.");
-            }while (!bCheckExist);
-        }else {
-            System.out.println("Game is not ready, please select a game to run.");
+    public boolean checkGameType(Athlete athlete) {
+        boolean bGameType = false;
+        if (gameType == "Swimming") {
+            if (athlete instanceof Swimmer || athlete instanceof SuperAthlete) {
+                bGameType = true;
+            }else bGameType = false;
+        } else if (gameType == "Running") {
+            if (athlete instanceof Runner || athlete instanceof SuperAthlete) {
+                bGameType = true;
+            }else bGameType = false;
+        } else if (gameType == "Cycling") {
+            if (athlete instanceof Cyclist || athlete instanceof SuperAthlete) {
+                bGameType = true;
+            }else bGameType = false;
         }
-
-
-
-
-
+        return bGameType;
     }
 
-    /****************************************************************************************************************
-     *
-     * Start game part
-     *
-     ****************************************************************************************************************/
+    public boolean bGameMenuOptionTest(int gameMenuOption) {
+        if (gameMenuOption >= 1 && gameMenuOption <= 4)
+            return true;
+        else {
+            System.out.println("\tYour option is invalid, please enter number between 1 to 4.");
+            return false;
+        }
+    }
+
+    public boolean bMainOptionTest(int mainMenuOption) {
+        if (mainMenuOption >= 1 && mainMenuOption <= 6)
+            return true;
+        else {
+            System.out.println("\tYour option is invalid, please enter number between 1 to 6.");
+            return false;
+        }
+    }
+
+    public boolean startGame(ArrayList<Athlete> participantArrayList, Game game) throws Exception {
+        if (participantArrayList.size() < 4) {
+            // cancel the game
+            System.out.println("Sorry, the number of athletes competing are less than 4, this game can't start with less than 4 athletes");
+            participantArrayList.clear();
+            System.out.println("This game had cancelled, please start again.");
+            return false;
+        } else {
+            processResults = new ProcessResults("",0);
+            // processGame(); // the process text
+            processResultsArrayList = processResults.processResultsArrayList(participantArrayList,game);
+            return true;
+        }
+    }
+
     public boolean runGame(){
         if (participantArrayList.size() !=0)
             return true;
@@ -425,145 +536,16 @@ public class Driver {
         }
     }
 
-
-
-
-    public void startGame(ArrayList<Athlete> participantArrayList, Game game) throws InterruptedException {
-        if(participantArrayList.size()<4){
-            // cancel the game
-            System.out.println("Sorry, the athlete numbers is less than 4, this game can not be accessed!");
-            participantArrayList.clear();
-            System.out.println("This game had canceled, please start again.");
-        }else {
-            processGame(); // the process text
-            processResultsArrayList = processResults.processResultsArrayList(participantArrayList,game);
-            for (int i =0; i< processResultsArrayList.size(); i++){
-                System.out.println(processResultsArrayList.get(i).toString());
-            }
-
-            finalResult.setWinners(processResultsArrayList);
-
-            System.out.println("you prediction is :" + prediction.getPredicationID());
-            System.out.println("The winner is : " + finalResult.getFirstPlace());
-            if (prediction.compareAthlete(finalResult.getFirstPlace())) {
-                System.out.println("\t||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
-                        "\n\t||\t\t\t\t\t\t\t||" +
-                        "\n\t||\t\tyou predict\t\t\t|| " +
-                        "\n\t||\t   right athlete!\t\t||" +
-                        "\n\t||\t\t\t\t\t\t\t||" +
-                        "\n\t||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||");
-            }else {
-                System.out.println("You did not win");
-            }
-            processResults.cleanArrayList();
-            prediction.setPredicationID("");
-
-
-            // TODO: 2017/9/6  Reword.
-        }
-
-    }
-
-    private void processGame() throws InterruptedException {
-        System.out.println("Athletes are ready to compete, wait a second.");
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println("*****o\n" +
-                "    _ /<.\n" +
-                "   (*)>(*)*****\t3\t***********");
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println("**********\t2\t***********");
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println("**********\t1\t***********");
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println("/******************************************************\n" +
-                "*\n" +
-                "* \tResult competed, will be list blow\n" +
-                "*\n" +
-                "*******************************************************/");
-        TimeUnit.SECONDS.sleep(1);
-    }
-
-    /****************************************************************************************************************
-     *
-     * Display the result
-     *
-     ****************************************************************************************************************/
-    private void setFinalResult(ArrayList<Official> officialArrayList){
-        finalResult.setOfficial(randomOfficial(officialArrayList));
-        finalResult.setGame(game);
-        finalResultArrayList.add(finalResult);
-    }
-
-    private void displayResult() {
-        if (finalResultArrayList.size() != 0){
-            for (int i = 0; i <finalResultArrayList.size();i++){
-                System.out.println(finalResultArrayList.get(i).toString());
-            }
-        }else {
-            System.out.println("No game had hold before, please run a game first.");
-        }
-
-
-
-    }
-
-    /****************************************************************************************************************
-     *
-     * Display the point
-     *
-     ****************************************************************************************************************/
-    private void setPoint(ArrayList<Athlete> athleteArrayList, Results results){
-        for (int i =0; i< athleteArrayList.size();i++){
-            if (results.getFirstPlace().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
-                Athlete athlete = athleteArrayList.get(i);
-                athlete.setLastPoint(FIRSTPLACEPOINT);
-            }
-            if (results.getSecondPlace().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
-                Athlete athlete = athleteArrayList.get(i);
-                athlete.setLastPoint(SECONDPLACEPOINT);
-            }
-            if (results.getThirdPlace().equalsIgnoreCase(athleteArrayList.get(i).getParticipantID())){
-                Athlete athlete = athleteArrayList.get(i);
-                athlete.setLastPoint(THIRDPLACEPOINT);
-            }
-        }
-    }
-
-    private void displayPoint(ArrayList<Athlete> athleteArrayList) {
-        for (int i =0; i<athleteArrayList.size(); i++)
-            System.out.println(athleteArrayList.get(i).toString());
-    }
-
-
-
-
-    /****************************************************************************************************************
-     *
-     * Input exception part
-     *
-     ****************************************************************************************************************/
-    private int intTest(){
+    public int intException(){
         Scanner input = new Scanner(System.in);
         int inputInt = 0;
-            try {
-                inputInt = input.nextInt();
-            } catch (Exception e){
-                System.out.println("\n\tYour option is invalid, please enter number\n\n");
-            }
+        try {
+            inputInt = input.nextInt();
+        } catch (Exception e){
+            System.out.println("\n\tYour option is invalid, please enter number\n\n");
+        }
         return inputInt;
     }
 
-    /****************************************************************************************************************
-     *
-     * Random a official
-     *
-     ****************************************************************************************************************/
-
-    private Official randomOfficial(ArrayList<Official> officialArrayList){
-        Random random = new Random();
-        int index = random.nextInt(officialArrayList.size()-1);
-        Official official = officialArrayList.get(index);
-        return official;
-    }
 
 }

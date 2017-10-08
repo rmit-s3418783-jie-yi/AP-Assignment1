@@ -1,45 +1,44 @@
-
+/**********************************************************************************************************************
+ * Author: Dario Ongsono
+ * Purpose: This is class allows user to predict winner and compare the prediction to the actual result
+ * Create Date: 28/07/2017
+ * Version: 1.15
+ * Update Date: 04/09/2017
+ **********************************************************************************************************************/
 
 public class Prediction {
-    //private Athlete prediction;
-    // private Results results;
     private String predicationID;
-    private String getPredicationName;
-    // only one thing need to do
-    // compare the prediction with the first place
 
-    // public Results results;
-
-    public Prediction (String predicationID, String predicationName){
+    public Prediction (String predicationID){
         this.predicationID = predicationID;
-        this.getPredicationName = predicationName;
     }
 
-
-    public boolean compareAthlete(String results){
-        if (results == null) {
-            System.out.println("Your prediction is Null.");
-            return false;
+    public String compareWinner(String results){
+        if (results == null || predicationID == null){ //If the user did not predict
+            if (predicationID == null)
+                return "You did not predict a winner";
+            else return "";
+        } else {
+            if (predicationID.equalsIgnoreCase(results)) { //If winner predicted correctly
+                return "\t\tOlympic Game\t\n==============================\n"+
+                        "||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||" +
+                        "\n||\t\t\t\t\t\t\t||" +
+                        "\n||\t\tCongratulation!\t\t|| " +
+                        "\n||\t\t you predicted\t\t|| " +
+                        "\n||\t   the right athlete!\t||" +
+                        "\n||\t\t\t\t\t\t\t||" +
+                        "\n||\t★,:*:‧\\(￣▽￣)/‧:*‧°★*\t||";
+            } else
+                return "Sorry! You did not predict correctly. Please try again! :) "; //If winner did not predict correctly
         }
-        else if (predicationID.equalsIgnoreCase(results))
-            return true;
-        else return false;
     }
-
 
     public void setPredicationID(String predicationID) {
         this.predicationID = predicationID;
     }
 
-    public void setGetPredicationName(String getPredicationName) {
-        this.getPredicationName = getPredicationName;
-    }
-
     public String getPredicationID() {
         return predicationID;
     }
-
-    public String getGetPredicationName() {
-        return getPredicationName;
-    }
 }
+

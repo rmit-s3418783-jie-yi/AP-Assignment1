@@ -1,129 +1,106 @@
 /**********************************************************************************************************************
- * Author: JIE YI (Jay) && Dario
- * Purpose: The Start class that for AP-Assignment1
+ * Author: JIE YI (Jay)
+ * Purpose: This is the control class that can hold most function and method to run a game.
  * Create Date: 28/07/2017
- * Version: 1.03
- * Update Date: 11/08/2017
- *********************************************************************************************************************/
+ * Version: 2.05
+ * Update Date: 08/09/2017
+ **********************************************************************************************************************/
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Ozlympic {
-    // this is the main class which control all games and may be the interface
-    // Scanner input = new Scanner(System.in);
-    public static void main (String[] args) throws InterruptedException {
 
-        ArrayList<Athlete> athleteList = new ArrayList<>();
-        ArrayList<Game> gameList = new ArrayList<>();
-        ArrayList<Official> officialsList = new ArrayList<>();
+    public static void main (String[] args) throws Exception {
+        ArrayList<Participant> participants = new ArrayList<>();
+        setCyclist(participants);
+        setRunner(participants);
+        setSuperAthlete(participants);
+        setSwimmer(participants);
+        setOfficial(participants);
 
-        cyclistData(athleteList);
-        runnerData(athleteList);
-        swimmerData(athleteList);
-        supAthleteData(athleteList);
-        officialData(officialsList);
-        gameType(gameList);
+        Driver driver = new Driver();
+        driver.start(participants);
 
-        // pass value to menu class and then return sth
-        Driver driver = new Driver(); // create new menu
-        driver.mainMenu(athleteList, gameList,officialsList);
+
 
     }
 
-
-
-    // test
-    public static void getAthlete (ArrayList Athlete){
-        Random random = new Random();
-        // 0-6 cyclist      7-13 runner     14-20 swimmer       21-24 supAthletes
-        int index = random.nextInt(Athlete.size());
-        System.out.println(index);
-        String s = Athlete.get(index).toString();
-        System.out.println(s);
-    }
-
-
-    public static void cyclistData(ArrayList athleteList){
-        Athlete cyclist1 = new Cyclist("C01","Dario","VIC",25);
-        Athlete cyclist2 = new Cyclist("C02","Aario","VIC",36);
-        Athlete cyclist3 = new Cyclist("C03","Bario","VIC",27);
-        Athlete cyclist4 = new Cyclist("C04","Cario","VIC",32);
-        Athlete cyclist5 = new Cyclist("C05","Eario","VIC",31);
-        Athlete cyclist6 = new Cyclist("C06","Fario","VIC",22);
-        Athlete cyclist7 = new Cyclist("C07","Gario","VIC",26);
-        athleteList.add(cyclist1);
-        athleteList.add(cyclist2);
-        athleteList.add(cyclist3);
-        athleteList.add(cyclist4);
-        athleteList.add(cyclist5);
-        athleteList.add(cyclist6);
-        athleteList.add(cyclist7);
-    }
-
-    public static void runnerData(ArrayList athleteList){
-        Athlete runner1 = new Runner("R01","Jay","VIC",24);
-        Athlete runner2 = new Runner("R02","Aay","VIC",25);
-        Athlete runner3 = new Runner("R03","Bay","VIC",27);
-        Athlete runner4 = new Runner("R04","Cay","VIC",31);
-        Athlete runner5 = new Runner("R05","Day","VIC",33);
-        Athlete runner6 = new Runner("R06","Eay","VIC",32);
-        Athlete runner7 = new Runner("R07","Fay","VIC",29);
-        athleteList.add(runner1);
-        athleteList.add(runner2);
-        athleteList.add(runner3);
-        athleteList.add(runner4);
-        athleteList.add(runner5);
-        athleteList.add(runner6);
-        athleteList.add(runner7);
-    }
-
-    public static void swimmerData(ArrayList athleteList){
-        Athlete swimmer1 = new Swimmer("S01","Vincent","VIC",23);
-        Athlete swimmer2 = new Swimmer("S02","Aincent","VIC",25);
-        Athlete swimmer3 = new Swimmer("S03","Bincent","VIC",28);
-        Athlete swimmer4 = new Swimmer("S04","Cincent","VIC",35);
-        Athlete swimmer5 = new Swimmer("S05","Dincent","VIC",25);
-        Athlete swimmer6 = new Swimmer("S06","Eincent","VIC",27);
-        Athlete swimmer7 = new Swimmer("S07","Fincent","VIC",26);
-        athleteList.add(swimmer1);
-        athleteList.add(swimmer2);
-        athleteList.add(swimmer3);
-        athleteList.add(swimmer4);
-        athleteList.add(swimmer5);
-        athleteList.add(swimmer6);
-        athleteList.add(swimmer7);
-    }
-
-    public static void supAthleteData(ArrayList athleteList){
-        Athlete superAthlete1 = new SuperAthlete("SA01","Maggie","VIC",33);
-        Athlete superAthlete2 = new SuperAthlete("SA02","Aaggie","VIC",31);
-        Athlete superAthlete3 = new SuperAthlete("SA03","Baggie","VIC",32);
-        Athlete superAthlete4 = new SuperAthlete("SA04","Caggie","VIC",34);
-        athleteList.add(superAthlete1);
-        athleteList.add(superAthlete2);
-        athleteList.add(superAthlete3);
-        athleteList.add(superAthlete4);
-    }
-
-    private static void officialData(ArrayList<Official> officialsList) {
-        Official official1 = new Official("OF01","Dario");
-        Official official2 = new Official("OF02","Jay");
-        Official official3 = new Official("OF03","Vincent");
-        Official official4 = new Official("OF04","Maggie");
-        officialsList.add(official1);
-        officialsList.add(official2);
-        officialsList.add(official3);
-        officialsList.add(official4);
-    }
-
-    public static void gameType(ArrayList gameList){
-        Game game1 = new Game("GCyc01", "Cycling");
-        gameList.add(game1);
-        Game game2 = new Game("GRun01", "Running");
-        gameList.add(game2);
-        Game game3 = new Game("GSwim01", "Swimming");
-        gameList.add(game3);
+    public static void setOfficial(ArrayList participants){
+        Participant official1 = new Official("OF01","Official01","VIC",50);
+        Participant official2 = new Official("OF02","Official02","VIC",52);
+        Participant official3 = new Official("OF03","Official03","VIC",54);
+        Participant official4 = new Official("OF04","Official04","VIC",58);
+        participants.add(official1);
+        participants.add(official2);
+        participants.add(official3);
+        participants.add(official4);
+        
 
     }
+
+    public static void setCyclist(ArrayList participants){
+        Participant cyclist1 = new Cyclist("C01","Cyc01","VIC",25);
+        Participant cyclist2 = new Cyclist("C02","Cyc02","VIC",36);
+        Participant cyclist3 = new Cyclist("C03","Cyc03","VIC",27);
+        Participant cyclist4 = new Cyclist("C04","Cyc04","VIC",32);
+        Participant cyclist5 = new Cyclist("C05","Cyc05","VIC",31);
+        Participant cyclist6 = new Cyclist("C06","Cyc06","VIC",22);
+        Participant cyclist7 = new Cyclist("C07","Cyc07","VIC",26);
+        participants.add(cyclist1);
+        participants.add(cyclist2);
+        participants.add(cyclist3);
+        participants.add(cyclist4);
+        participants.add(cyclist5);
+        participants.add(cyclist6);
+        participants.add(cyclist7);
+
+    }
+
+    public static void setRunner(ArrayList participants){
+        Participant runner1 = new Runner("R01","Run01","VIC",24);
+        Participant runner2 = new Runner("R02","Run02","VIC",25);
+        Participant runner3 = new Runner("R03","Run03","VIC",27);
+        Participant runner4 = new Runner("R04","Run04","VIC",31);
+        Participant runner5 = new Runner("R05","Run05","VIC",33);
+        Participant runner6 = new Runner("R06","Run06","VIC",32);
+        Participant runner7 = new Runner("R07","Run07","VIC",29);
+        participants.add(runner1);
+        participants.add(runner2);
+        participants.add(runner3);
+        participants.add(runner4);
+        participants.add(runner5);
+        participants.add(runner6);
+        participants.add(runner7);
+
+    }
+
+    public static void setSwimmer(ArrayList participants){
+        Participant swimmer1 = new Swimmer("S01","Swim01","VIC",23);
+        Participant swimmer2 = new Swimmer("S02","Swim02","VIC",25);
+        Participant swimmer3 = new Swimmer("S03","Swim03","VIC",28);
+        Participant swimmer4 = new Swimmer("S04","Swim04","VIC",35);
+        Participant swimmer5 = new Swimmer("S05","Swim05","VIC",25);
+        Participant swimmer6 = new Swimmer("S06","Swim06","VIC",27);
+        Participant swimmer7 = new Swimmer("S07","Swim07","VIC",26);
+        participants.add(swimmer1);
+        participants.add(swimmer2);
+        participants.add(swimmer3);
+        participants.add(swimmer4);
+        participants.add(swimmer5);
+        participants.add(swimmer6);
+        participants.add(swimmer7);
+
+    }
+    
+    public static void setSuperAthlete(ArrayList participants){
+        Participant superAthlete1 = new SuperAthlete("SA01","Sup01","VIC",33);
+        Participant superAthlete2 = new SuperAthlete("SA02","Sup02","VIC",31);
+        Participant superAthlete3 = new SuperAthlete("SA03","Sup03","VIC",32);
+        Participant superAthlete4 = new SuperAthlete("SA04","Sup04","VIC",34);
+        participants.add(superAthlete1);
+        participants.add(superAthlete2);
+        participants.add(superAthlete3);
+        participants.add(superAthlete4);
+    }
+
 }
-
