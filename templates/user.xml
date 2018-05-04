@@ -1,0 +1,7 @@
+<templateSet group="user">
+  <template name="JavaDoc@author" value="@author" description="fill author" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+</templateSet>
